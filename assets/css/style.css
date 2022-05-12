@@ -962,7 +962,7 @@ section {
 .events .event-item h3 {
   font-weight: 600;
   font-size: 26px;
-  color: #cda45e;
+  color: #DC143C;
 }
 .events .event-item .price {
   font-size: 26px;
@@ -999,7 +999,7 @@ section {
   opacity: 1;
 }
 .events .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #cda45e;
+  background-color: #DC143C;
 }
 
 /*--------------------------------------------------------------
@@ -1124,7 +1124,7 @@ section {
   margin: 0 0 0 45px;
 }
 .testimonials .testimonial-item .quote-icon-left, .testimonials .testimonial-item .quote-icon-right {
-  color: #d3af71;
+  color: #DC143C;
   font-size: 26px;
 }
 .testimonials .testimonial-item .quote-icon-left {
@@ -1522,4 +1522,8 @@ section {
 .rewards{
   margin-top: 50px;
   font-family: "Open Sans", sans-serif;
+}
+
+#btcicon{
+  padding-left: 1px;
 }
