@@ -584,7 +584,7 @@ section {
   margin: 0;
   font-size: 36px;
   font-weight: 700;
-  font-family: "Playfair Display", serif;
+  font-family: "Poppins", sans-serif;
   color: #cda45e;
 }
 
@@ -724,6 +724,11 @@ section {
 /*--------------------------------------------------------------
 # Why Us
 --------------------------------------------------------------*/
+.why-us{
+  background:#ffffff;
+  background-size:cover;
+  position:relative;
+}
 .why-us .box {
   padding: 50px 30px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
@@ -731,6 +736,7 @@ section {
   background: #1a1814;
 }
 .why-us .box span {
+  padding-top: 5px;
   display: block;
   font-size: 28px;
   font-weight: 700;
@@ -757,6 +763,7 @@ section {
 .why-us .box:hover span, .why-us .box:hover h4, .why-us .box:hover p {
   color: #fff;
 }
+
 
 /*--------------------------------------------------------------
 # Menu Section
@@ -1480,3 +1487,4 @@ section {
   font-size: 13px;
   color: #fff;
 }
+
