@@ -154,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 # Book a table button Menu
 --------------------------------------------------------------*/
 .book-a-table-btn {
-  margin: 0 0 0 15px;
+  margin: 0 0 0 0px;
   border: 2px solid#DC143C;
   color: #fff;
   border-radius: 50px;
@@ -166,6 +166,9 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
   font-size: 12px;
   font-weight: bold;
+  background: #DC143C;
+  width: 120px;
+  text-align: center;
 
 }
 .book-a-table-btn:hover {
@@ -174,10 +177,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (max-width: 992px) {
   .book-a-table-btn {
-    margin: 0 15px 0 0;
+    margin: 0 100px 0 0;
     padding: 8px 20px;
   }
+
 }
+
+/*--------------------------------------------------------------
+# Store Buttons
+--------------------------------------------------------------*/
+
+
+
+
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -926,7 +938,7 @@ section {
 @media (max-width: 992px) {
   .specials .nav-link {
     border: 0;
-    padding: 15px;
+    padding: 1px;
   }
 }
 
@@ -1534,6 +1546,3 @@ section {
   padding-left: 1px;
 }
 
-#boosterpack1{
-  width:1000px;
-}
