@@ -875,6 +875,12 @@ section {
 # Specials
 --------------------------------------------------------------*/
 .specials {
+  background: url("../img/store-back.jpg") center center;
+  background-size: cover;
+  position: relative;
+  padding: 80px 0;
+}`
+.specials {
   overflow: hidden;
 }
 .specials .nav-tabs {
@@ -886,20 +892,20 @@ section {
   transition: 0.3s;
   color: #fff;
   border-radius: 0;
-  border-right: 2px solid #cda45e;
+  border-right: 2px solid #ffffff;
   font-weight: 600;
   font-size: 15px;
 }
 .specials .nav-link:hover {
-  color: #cda45e;
+  color: #DC143C;
 }
 .specials .nav-link.active {
-  color: #1a1814;
-  background: #cda45e;
-  border-color: #cda45e;
+  color: #ffffff;
+  background: #DC143C;
+  border-color: #ffffff;
 }
 .specials .nav-link:hover {
-  border-color: #cda45e;
+  border-color: #DC143C;
 }
 .specials .tab-pane.active {
   -webkit-animation: fadeIn 0.5s ease-out;
@@ -1526,4 +1532,8 @@ section {
 
 #btcicon{
   padding-left: 1px;
+}
+
+#boosterpack1{
+  width:1000px;
 }
