@@ -58,7 +58,7 @@
       </div>
     </header><!-- End Header -->
     
-    <form action="connect.php">
+    <form action="connect.php" method = 'post'>
         <div class="container-2">
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
@@ -72,12 +72,13 @@
 
           <label for="lastName"><b>Last Name</b></label>
           <input type="text" placeholder="Last Name" name="lastName" id="lastName" required>
+
+          <label for="favtm"><b>Last Name</b></label>
+          <input type="text" placeholder="Last Name" name="favtm" id="favtm" required>
       
           <label for="password"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-          <label for="num"><b>Number</b></label><br>
-          <input type="number" id="num" name="Number" min="10000000" max="99999999"><br></br>
 
           <b>Gender:</b><br>
           <input type="radio" id="male" name="Gender" value="Male">
