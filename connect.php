@@ -4,7 +4,7 @@
     $gender = $_POST['gender'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $number = $_POST['number'];
+    $favtm = $_POST['favtm'];
     
     $conn = new mysqli('localhost', 'root', "reallyStrongPwd123", "CFFLDB");
     if($conn -> connect_error) {
@@ -12,7 +12,7 @@
     } else {
         $stmt = $conn-> prepare("INSERT INTO Users (`firstName`, `lastName`, `gender`, `email`, `password`, `fav`) 
         VALUES (?,?,?,?,?,?)");
-        $stmt -> bind_param("ssssss", $firstName, $lastName, $gender, $email, $password, $number);
+        $stmt -> bind_param("ssssss", $firstName, $lastName, $gender, $email, $password, $favtm);
         $stmt -> execute();
         echo "registration Sucessfully...";
         $stmt -> close();
