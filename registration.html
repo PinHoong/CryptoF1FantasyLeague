@@ -113,7 +113,7 @@
     })
 
     //since we set to insert only, the data parameter actually reads frm it. Henceforth, the {} is to prevent it 
-    const {error, data} = await supabase.from('Users').insert([submission])
+    const {error, data} = await supabase.from('Users').insert([submission], {returning: 'minimal'})
 
     if (error) {
       alert("There was an error. Please try again")
