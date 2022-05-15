@@ -36,6 +36,8 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <!--Crypto-JS CDN Link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 
 <body>
@@ -155,7 +157,7 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
               // ... user.uid
               set(ref(database, 'users/' + user.uid), {
                   email: email,
-                  password: password,
+                  password: encPass(),
                   firstName: firstName,
                   lastName: lastName,
                   favtm: favtm,
@@ -177,7 +179,11 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
               // ..
               alert(errorMessage);
           });
-
+      // function to encrypt password
+      function encPass(){
+        var pass12 = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), password);
+        return pass12.toString();
+      }  
   });
 
 </script>
