@@ -53,15 +53,15 @@
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
-        <a href="sign-in.html" class="book-a-table-btn scrollto d-none d-lg-flex">Log-in</a>
+        <a href="registration.html" class="book-a-table-btn scrollto d-none d-lg-flex">Register</a>
   
       </div>
     </header><!-- End Header -->
     
     <form name = "contact" id = "contact-form">
         <div class="container-2">
-          <h1>Register</h1>
-          <p>Please fill in this form to create an account.</p>
+          <h1>Sign In</h1>
+          <p>Please Enter your Email and Password to Sign In</p>
           <hr>
       
           <label for="email"><b>Email</b></label>
@@ -69,42 +69,13 @@
 
           <label><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="password" id="psw" required>
-
-          <label for="firstName"><b>First Name</b></label>
-          <input type="text" placeholder="First Name" name="firstName" id="firstName" required>
-
-          <label for="lastName"><b>Last Name</b></label>
-          <input type="text" placeholder="Last Name" name="lastName" id="lastName" required>
-
-          <label for="gender"><b>Gender</b></label>
-          <select name="gender" id="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          </select><br></br>
-
-          <label for="favtm">Your Favourite Team:</label>
-          <select name="favtm" id="favtm">
-          <option value="Mercedes">Mercedes</option>
-          <option value="Red Bull">Red Bull</option>
-          <option value="Ferrari">Ferrari</option>
-          <option value="Mclaren">Mclaren</option>
-          <option value="Alpine">Alpine</option>
-          <option value="Alpha Tauri">Alpha Tauri</option>
-          <option value="Alfa Romeo">Alfa Romeo</option>
-          <option value="Williams">Williams</option>
-          <option value="Haas">Haas</option>
-          <option value="Aston Martin">Aston Martin</option>
-          </select><br></br>
  
           <hr>
       
-          <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-          <button type="button" id="submitData" name="submitData" class="registerbtn">Register</button>
+          <p>By signing in you agree to our <a href="#">Terms & Privacy</a>.</p>
+          <button type="button" id="submitData" name="submitData" class="registerbtn">Sign In</button>
         </div>
-      
-        <div class="container-2 signin">
-          <p>Already have an account? <a href="sign-in.html">Sign in</a>.</p>
-        </div>
+    
       </form>
 </body>
 <script type="module">
@@ -142,29 +113,24 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
 
       var email = document.getElementById('email').value;
       var password = document.getElementById('psw').value;
-      var firstName = document.getElementById('firstName').value;
-      var lastName = document.getElementById('lastName').value;
-      var favtm = document.getElementById('favtm').value;
-      var gender = document.getElementById('gender').value;
+    
 
-      //sign up user
-      createUserWithEmailAndPassword(auth, email, password, firstName, lastName, favtm, gender)
+      // log in user
+      signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
               // Signed in
               const user = userCredential.user;
-              // ... user.uid
-              set(ref(database, 'users/' + user.uid), {
-                  email: email,
-                  password: password,
-                  firstName: firstName,
-                  lastName: lastName,
-                  favtm: favtm,
-                  gender: gender
+              // ...
+
+              // save log in details into real time database
+              var lgDate = new Date();
+              update(ref(database, 'users/' + user.uid), {
+                  last_login: lgDate,
               })
                   .then(() => {
                       // Data saved successfully!
-                      alert('user created successfully');
-      
+                      alert('user logged in successfully');
+
                   })
                   .catch((error) => {
                       // The write failed...
@@ -174,10 +140,14 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
           .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
-              // ..
               alert(errorMessage);
           });
 
+      signOut(auth).then(() => {
+             // Sign-out successful.
+      }).catch((error) => {
+          // An error happened.
+      });
   });
 
 </script>
