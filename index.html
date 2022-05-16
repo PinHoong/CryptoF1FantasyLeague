@@ -109,6 +109,7 @@
 
     </div>
   </header><!-- End Header -->
+
   <script>
     let userlink = document.getElementById('userlink');
     var currentUser = null;
@@ -132,9 +133,7 @@
 
     window.onload = function(){
       getUsername();
-      console.log(localStorage.getItem('keepLoggedIn'))
-      console.log(JSON.parse(localStorage.getItem('user')))
-      console.log(currentUser)
+      console.log('this is the current user' + currentUser);
       if (currentUser == null){
         userlink.innerText = 'Log In';
         userlink.classList.replace('nav-link', 'btn');
@@ -148,7 +147,7 @@
         userlink.href = '#';
 
         signoutlink.innerText = 'Sign-out';
-        signoutlink.style = "padding-left: 25px";
+        signoutlink.style = "padding-left: 23px";
         signoutlink.href = 'javascript:Signout()';
         
       }
