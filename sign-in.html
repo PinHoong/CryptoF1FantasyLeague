@@ -129,6 +129,9 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
               })
                   .then(() => {
                       // Data saved successfully!
+                      localStorage.setItem('keepLoggedIn', 'yes');
+                      localStorage.setItem('user',JSON.stringify(email));
+                      window.location='index.html';
                       alert('user logged in successfully');
 
                   })
