@@ -87,8 +87,7 @@
       signInWithEmailAndPassword,
       signOut
   } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
-  import {getDatabase, set, ref, update} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
-
+  import {getDatabase, set, ref, update, onValue} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
 
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -113,7 +112,6 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
 
       var email = document.getElementById('email').value;
       var password = document.getElementById('psw').value;
-    
 
       // log in user
       signInWithEmailAndPassword(auth, email, password)
@@ -129,11 +127,14 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
               })
                   .then(() => {
                       // Data saved successfully!
-                      localStorage.setItem('keepLoggedIn', 'yes');
-                      localStorage.setItem('user',JSON.stringify(email));
-                      window.location='index.html';
-                      alert('user logged in successfully');
-
+                      const starCountRef = ref(database, 'users/' + user.uid + '/lastName');
+                      onValue(starCountRef, (snapshot) => {
+                        const data = snapshot.val();
+                        localStorage.setItem('keepLoggedIn', 'yes');
+                        localStorage.setItem('user',JSON.stringify(data));
+                        window.location='index.html';
+                        alert('user logged in successfully');
+                      });
                   })
                   .catch((error) => {
                       // The write failed...
