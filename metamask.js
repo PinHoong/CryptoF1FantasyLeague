@@ -19,9 +19,8 @@ async function loginwithMetaMask() {
         })
     if (!accounts) {return}
     window.userWalletAddress = accounts[0]
-    localStorage.setItem('wadd',JSON.stringify(window.userWalletAddress));
-    console.log(window.userWalletAddress)
-    return window.userWalletAddress
+    localStorage.wadd = window.userWalletAddress;
+    console.log(wadd)
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
