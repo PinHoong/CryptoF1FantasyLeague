@@ -1550,3 +1550,7 @@ section {
   padding-left: 1px;
 }
 
+#btn-store-1 #btn-store-2{
+  display: none;
+
+}

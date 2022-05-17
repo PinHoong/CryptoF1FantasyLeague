@@ -344,6 +344,7 @@
           <div class="col-lg-6 menu-item filter-starters">
             <img src="assets/img/Alfa_Romeo_logo.png" class="menu-img" alt="Alfa Romeo">
             <div class="menu-content">
+
               <a href="#" id = "alfa_romeo"></a>
               <script type="module">
                   const firebaseConfig = {
@@ -368,7 +369,6 @@
                     for (var key in data) {
                       console.log(key);
                       tms[c].innerText = key.toUpperCase();
-                      data[key]['driver1'][0].toUpperCase();
                       tms2[c].innerText = data[key]['driver1'] + ', ' + data[key]['driver2'];
                       console.log(data[key]['driver1']);
                       c++;
@@ -525,7 +525,7 @@
                     <h3>Normal Pack</h3>
                     <p class="fst-italic">Guaranteed Cards Include: 5x Common</p>
                     <p>Normal Cards include: Schumacher, Magnussen, Ocon</p>
-                    <a href="inner-page.html" class="book-a-table-btn scrollto d-none d-lg-flex" id='btn-store-1'>Buy Now</a>
+                    <a href="inner-page.html" class="book-a-table-btn scrollto d-none d-lg-flex" id='btn-store-2'>Buy Now</a>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="assets/img/Normal.png" alt="" class="img-fluid">
