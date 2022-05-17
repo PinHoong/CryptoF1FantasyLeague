@@ -258,8 +258,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Menu</h2>
-          <p>Check Our Tasty Menu</p>
+          <h2>Drivers</h2>
+          <p>Current Season</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -278,7 +278,41 @@
           <div class="col-lg-6 menu-item filter-starters">
             <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Lobster Bisque</a><span>$5.95</span>
+              <a href="#" id = "alfa_romeo">Lobster Bisque</a><span>$5.95</span>
+              <script type="module">
+                  const firebaseConfig = {
+                      apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+                authDomain: "f1-crypto.firebaseapp.com",
+                databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "f1-crypto",
+                storageBucket: "f1-crypto.appspot.com",
+                messagingSenderId: "512980395232",
+                appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+                  };
+                import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+                import { getDatabase, ref, onValue} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+                const app = initializeApp(firebaseConfig);
+                const db = getDatabase(app);
+                const starCountRef = ref(db, 'teams/');
+                const tms = [alfa_romeo, alpha_tauri, alpine, aston_martin, ferrari, haas, mclaren, mercedes, red_bull, williams];
+                var c = 0;
+                onValue(starCountRef, (snapshot) => {
+                    var data = snapshot.val();
+                    console.log(alpha_tauri.innerText)
+                    for (var key in data) {
+                      tms[c].innerText = key.toUpperCase();
+                      c++;
+                    }
+                  });
+                  /*
+                  const app = initializeApp(firebaseConfig);
+                  const database = getDatabase(app);
+                  import { collection, query, where } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+                  const teamsRef = collection(database, "teams");
+                  const Ferrari = query(teamsRef, where("teams", "==", "ferrari"));
+                  console.log(Ferrari)
+                  */
+              </script>
             </div>
             <div class="menu-ingredients">
               Lorem, deren, trataro, filede, nerada
@@ -288,7 +322,7 @@
           <div class="col-lg-6 menu-item filter-specialty">
             <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Bread Barrel</a><span>$6.95</span>
+              <a href="#" id="alpha_tauri">Bread Barrel</a><span>$6.95</span>
             </div>
             <div class="menu-ingredients">
               Lorem, deren, trataro, filede, nerada
@@ -298,7 +332,7 @@
           <div class="col-lg-6 menu-item filter-starters">
             <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Crab Cake</a><span>$7.95</span>
+              <a href="#" id="alpine">Crab Cake</a><span>$7.95</span>
             </div>
             <div class="menu-ingredients">
               A delicate crab cake served on a toasted roll with lettuce and tartar sauce
@@ -308,7 +342,7 @@
           <div class="col-lg-6 menu-item filter-salads">
             <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Caesar Selections</a><span>$8.95</span>
+              <a href="#" id="aston_martin"> Caesar Selections</a><span>$8.95</span>
             </div>
             <div class="menu-ingredients">
               Lorem, deren, trataro, filede, nerada
@@ -318,7 +352,7 @@
           <div class="col-lg-6 menu-item filter-specialty">
             <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Tuscan Grilled</a><span>$9.95</span>
+              <a href="#" id="ferrari">Tuscan Grilled</a><span>$9.95</span>
             </div>
             <div class="menu-ingredients">
               Grilled chicken with provolone, artichoke hearts, and roasted red pesto
@@ -328,7 +362,7 @@
           <div class="col-lg-6 menu-item filter-starters">
             <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Mozzarella Stick</a><span>$4.95</span>
+              <a href="#" id = "haas">Mozzarella Stick</a><span>$4.95</span>
             </div>
             <div class="menu-ingredients">
               Lorem, deren, trataro, filede, nerada
@@ -338,7 +372,7 @@
           <div class="col-lg-6 menu-item filter-salads">
             <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Greek Salad</a><span>$9.95</span>
+              <a href="#" id="mclaren">Greek Salad</a><span>$9.95</span>
             </div>
             <div class="menu-ingredients">
               Fresh spinach, crisp romaine, tomatoes, and Greek olives
@@ -348,7 +382,7 @@
           <div class="col-lg-6 menu-item filter-salads">
             <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Spinach Salad</a><span>$9.95</span>
+              <a href="#" id="mercedes">Spinach Salad</a><span>$9.95</span>
             </div>
             <div class="menu-ingredients">
               Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
@@ -358,7 +392,17 @@
           <div class="col-lg-6 menu-item filter-specialty">
             <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Lobster Roll</a><span>$12.95</span>
+              <a href="#" id="red_bull">Lobster Roll</a><span>$12.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+            </div>
+          </div>
+          
+          <div class="col-lg-6 menu-item filter-specialty">
+            <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#" id="williams">Lobster Roll</a><span>$12.95</span>
             </div>
             <div class="menu-ingredients">
               Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll

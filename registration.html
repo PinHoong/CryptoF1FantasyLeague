@@ -97,9 +97,10 @@
           <option value="Haas">Haas</option>
           <option value="Aston Martin">Aston Martin</option>
           </select><br></br>
- 
+          <script src = "./metamask.js"></script>
+          <button type="button" id="connect" class = "registerbtn" onclick = "toggleButton()">Connect Your Wallet</button>
           <hr>
-      
+
           <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
           <button type="button" id="submitData" name="submitData" class="registerbtn">Register</button>
         </div>
@@ -148,9 +149,11 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
       var lastName = document.getElementById('lastName').value;
       var favtm = document.getElementById('favtm').value;
       var gender = document.getElementById('gender').value;
+      var walletAdd = loginWithMetaMask()[PromiseResult];
+      console.log(walletAdd)
 
       //sign up user
-      createUserWithEmailAndPassword(auth, email, password, firstName, lastName, favtm, gender)
+      createUserWithEmailAndPassword(auth, email, password, firstName, lastName, favtm, gender, walletAdd)
           .then((userCredential) => {
               // Signed in
               const user = userCredential.user;
@@ -161,7 +164,8 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
                   firstName: firstName,
                   lastName: lastName,
                   favtm: favtm,
-                  gender: gender
+                  gender: gender,
+                  walletAddress: walletAdd
               })
                   .then(() => {
                       // Data saved successfully!

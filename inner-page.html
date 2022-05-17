@@ -130,7 +130,7 @@
         <!-- Product Pricing -->
         <div class="product-price">
           <span>0.02<i class="fa-brands fa-ethereum"></i></span>
-          <input class = "cart-btn" type="button" value="Connect" onclick="Connect()">
+          <button class = "cart-btn" onclick="" id = "onboardButton">Purchase</button>
         </div>
       </div>
     </main>
@@ -213,10 +213,37 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script type="module" src="block-net.mjs"></script>
+  <script>
+    window.userwWalletAddress = null
+    const loginButton = document.getElementById('LoginButton')
+    function toggleButton() {
+      if (!window.ethereum) {
+        loginButton.innerText = "No MetaMask Installed";
+        onBoard();
+      }
+  
+      loginButton.addEventListener('click', () => {
+        loginWithMetaMask()
+      });
+    }
+    async function loginWithMetaMask() {
+      const accounts = await window.ethereum.request({method: 'eth_requestAccounts'})
+        .catch((e) => {
+          console.error(e.message)
+          return
+        })
+      if (!accounts) {return}
+      window.userwWalletAddress = accounts[0]
+  
+    }
+  
+  
+    window.addEventListener("DOMContentLoaded", (event) => {
+        toggleButton()
+    });
+  </script>
 </body>
-
 </html>
