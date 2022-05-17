@@ -295,12 +295,15 @@
                 const db = getDatabase(app);
                 const starCountRef = ref(db, 'teams/');
                 const tms = [alfa_romeo, alpha_tauri, alpine, aston_martin, ferrari, haas, mclaren, mercedes, red_bull, williams];
+                const tms2 = [alfa_romeo2, alpha_tauri2, alpine2, aston_martin2, ferrari2, haas2, mclaren2, mercedes2, red_bull2, williams2];
                 var c = 0;
                 onValue(starCountRef, (snapshot) => {
                     var data = snapshot.val();
                     console.log(alpha_tauri.innerText)
                     for (var key in data) {
                       tms[c].innerText = key.toUpperCase();
+                      tms2[c].innerText = data[key]['driver1'] + ', ' + data[key]['driver2'];
+                      console.log(data[key]['driver1']);
                       c++;
                     }
                   });
@@ -314,7 +317,7 @@
                   */
               </script>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id="alfa_romeo2">
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
@@ -324,7 +327,7 @@
             <div class="menu-content">
               <a href="#" id="alpha_tauri"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = "alpha_tauri2" >
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
@@ -334,7 +337,7 @@
             <div class="menu-content">
               <a href="#" id="alpine"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'alpine2'>
               A delicate crab cake served on a toasted roll with lettuce and tartar sauce
             </div>
           </div>
@@ -344,7 +347,7 @@
             <div class="menu-content">
               <a href="#" id="aston_martin"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'aston_martin2'>
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
@@ -354,7 +357,7 @@
             <div class="menu-content">
               <a href="#" id="ferrari"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = "ferrari2">
               Grilled chicken with provolone, artichoke hearts, and roasted red pesto
             </div>
           </div>
@@ -364,7 +367,7 @@
             <div class="menu-content">
               <a href="#" id = "haas">Mozzarella Stick</a><span>$4.95</span>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = "haas2">
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
@@ -374,7 +377,7 @@
             <div class="menu-content">
               <a href="#" id="mclaren"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'mclaren2'>
               Fresh spinach, crisp romaine, tomatoes, and Greek olives
             </div>
           </div>
@@ -384,7 +387,7 @@
             <div class="menu-content">
               <a href="#" id="mercedes"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'mercedes2'>
               Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
             </div>
           </div>
@@ -394,7 +397,7 @@
             <div class="menu-content">
               <a href="#" id="red_bull"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id="red_bull2">
               Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
             </div>
           </div>
@@ -404,7 +407,7 @@
             <div class="menu-content">
               <a href="#" id="williams"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'williams2'>
               Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
             </div>
           </div>
