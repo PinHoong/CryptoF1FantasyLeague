@@ -233,9 +233,52 @@
           <div class="col-lg-6 menu-item filter-starters">
             <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
             <div class="menu-content">
+<<<<<<< Updated upstream
               <a href="#">Lobster Bisque</a><span>$5.95</span>
             </div>
             <div class="menu-ingredients">
+=======
+              <a href="#" id = "alfa_romeo"></a>
+              <script type="module">
+                  const firebaseConfig = {
+                      apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+                authDomain: "f1-crypto.firebaseapp.com",
+                databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "f1-crypto",
+                storageBucket: "f1-crypto.appspot.com",
+                messagingSenderId: "512980395232",
+                appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+                  };
+                import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+                import { getDatabase, ref, onValue} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+                const app = initializeApp(firebaseConfig);
+                const db = getDatabase(app);
+                const starCountRef = ref(db, 'teams/');
+                const tms = [alfa_romeo, alpha_tauri, alpine, aston_martin, ferrari, haas, mclaren, mercedes, red_bull, williams];
+                const tms2 = [alfa_romeo2, alpha_tauri2, alpine2, aston_martin2, ferrari2, haas2, mclaren2, mercedes2, red_bull2, williams2];
+                var c = 0;
+                onValue(starCountRef, (snapshot) => {
+                    var data = snapshot.val();
+                    for (var key in data) {
+                      console.log(key);
+                      tms[c].innerText = key.toUpperCase();
+                      tms2[c].innerText = data[key]['driver1'] + ', ' + data[key]['driver2'];
+                      console.log(data[key]['driver1']);
+                      c++;
+                    }
+                  });
+                  /*
+                  const app = initializeApp(firebaseConfig);
+                  const database = getDatabase(app);
+                  import { collection, query, where } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+                  const teamsRef = collection(database, "teams");
+                  const Ferrari = query(teamsRef, where("teams", "==", "ferrari"));
+                  console.log(Ferrari)
+                  */
+              </script>
+            </div>
+            <div class="menu-ingredients" id="alfa_romeo2">
+>>>>>>> Stashed changes
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
@@ -366,7 +409,7 @@
                     <h3>Normal Pack</h3>
                     <p class="fst-italic">Guaranteed Cards Include: 5x Common</p>
                     <p>Normal Cards include: Schumacher, Magnussen, Ocon</p>
-                    <a href="inner-page.html" class="book-a-table-btn scrollto d-none d-lg-flex" id='btn-store-1'>Buy Now</a>
+                    <a href="inner-page.html" class="book-a-table-btn scrollto d-none d-lg-flex" id='btn-store-2'>Buy Now</a>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="assets/img/Normal.png" alt="" class="img-fluid">
