@@ -253,6 +253,72 @@
       </div>
     </section><!-- End Why Us Section -->
 
+<!-- ======= Events Section ======= -->
+<section id="events" class="events">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <p>Rewards</p>
+    </div>
+
+    <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/crypto-pic.jpg" class="img-fluid" alt="" style="height:320px">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Crypto Payouts</h3>
+              <ul class="rewards">
+                <li>Earn you rewards in the form of crypto-currency, one of the fastest growing digital-assets on the market</li>
+                <li>Earn more as you rise through the leaderboard</li>
+                <li>Secure better cards with your hard-earned currency!</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/merch.png.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Merchandise</h3>
+              <ul class="rewards">
+                <li> Stand a chance to win exclusive F1 merchandise!</li>
+                <li> </li>
+                <li> Use the opportunity to show your support for the F1 community</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/trip.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Paddock Club Passes</h3>
+              <ul class="rewards">
+                <li>Wins 2x Paddock Club Passes to a 2023 Grand Prix</li>
+                <li>Visit the latest tracks built at Miami and Las Vegas!</li>
+                <li>Meet your favourite Drivers in person!</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section><!-- End Events Section -->
+
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu section-bg">
       <div class="container" data-aos="fade-up">
@@ -298,8 +364,8 @@
                 var c = 0;
                 onValue(starCountRef, (snapshot) => {
                     var data = snapshot.val();
-                    console.log(alpha_tauri.innerText)
                     for (var key in data) {
+                      console.log(key);
                       tms[c].innerText = key.toUpperCase();
                       c++;
                     }
@@ -469,72 +535,6 @@
 
       </div>
     </section><!-- End Specials Section -->
-
-    <!-- ======= Events Section ======= -->
-    <section id="events" class="events">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <p>Rewards</p>
-        </div>
-
-        <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="row event-item">
-                <div class="col-lg-6">
-                  <img src="assets/img/crypto-pic.jpg" class="img-fluid" alt="" style="height:320px">
-                </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Crypto Payouts</h3>
-                  <ul class="rewards">
-                    <li>Earn you rewards in the form of crypto-currency, one of the fastest growing digital-assets on the market</li>
-                    <li>Earn more as you rise through the leaderboard</li>
-                    <li>Secure better cards with your hard-earned currency!</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="row event-item">
-                <div class="col-lg-6">
-                  <img src="assets/img/merch.png.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Merchandise</h3>
-                  <ul class="rewards">
-                    <li> Stand a chance to win exclusive F1 merchandise!</li>
-                    <li> </li>
-                    <li> Use the opportunity to show your support for the F1 community</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="row event-item">
-                <div class="col-lg-6">
-                  <img src="assets/img/trip.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Paddock Club Passes</h3>
-                  <ul class="rewards">
-                    <li>Wins 2x Paddock Club Passes to a 2023 Grand Prix</li>
-                    <li>Visit the latest tracks built at Miami and Las Vegas!</li>
-                    <li>Meet your favourite Drivers in person!</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Events Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
