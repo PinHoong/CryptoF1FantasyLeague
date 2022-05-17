@@ -802,7 +802,7 @@ section {
 # Menu Section
 --------------------------------------------------------------*/
 .menu{
-  background:#864848;
+  background:#8b5d5d;
   background-size:cover;
   position:relative;
 }
@@ -861,7 +861,7 @@ section {
 }
 .menu .menu-content a {
   padding-right: 10px;
-  background: #1a1814;
+  background: #DC143C;
   position: relative;
   z-index: 3;
   font-weight: 700;
@@ -882,7 +882,7 @@ section {
 .menu .menu-ingredients {
   margin-left: 85px;
   font-style: italic;
-  font-size: 14px;
+  font-size: 20px;
   font-family: "Poppins", sans-serif;
   color: rgba(255, 255, 255, 0.5);
 }
