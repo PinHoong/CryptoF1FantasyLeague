@@ -7,7 +7,7 @@
   <meta name="keywords" content="Store, INTUITIVE">
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
-  <title>Home</title>
+  <title>Crypto F1 Fantasy</title>
   <link rel="stylesheet" href="nicepage.css" media="screen">
 <link rel="stylesheet" href="Home.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
@@ -104,15 +104,60 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:35px">Log-in</a>
+      <a href="sign-in.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:35px" id="userlink">Log-in</a>
+      <a href="registration.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:30px" id="signoutlink">Sign-Up</a>
 
     </div>
   </header><!-- End Header -->
+
+  <script>
+    let userlink = document.getElementById('userlink');
+    var currentUser = null;
+
+    function getUsername(){
+      let keeploggedIn = localStorage.getItem('keepLoggedIn');
+      if ((keeploggedIn) == 'yes'){
+        currentUser = JSON.parse(localStorage.getItem('user'));
+      }
+      else{
+        currentUser = JSON.parse(sessionStorage.getItem('user'));
+      }
+    }
+
+    function Signout() {
+      sessionStorage.removeItem('user');
+      localStorage.removeItem('user');
+      localStorage.removeItem('keepLoggedIn');
+      window.location = 'index.html';
+    }
+
+    window.onload = function(){
+      getUsername();
+      console.log('this is the current user' + currentUser);
+      if (currentUser == null){
+        userlink.innerText = 'Log In';
+        userlink.classList.replace('nav-link', 'btn');
+        userlink.classList.add('btn-primary');
+        userlink.href = 'sign-in.html';
+
+      } 
+      else{
+        userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px"></i> ' + currentUser;
+        userlink.classList.remove('book-a-table-btn');
+        userlink.href = '#';
+
+        signoutlink.innerText = 'Sign-out';
+        signoutlink.style = "padding-left: 23px";
+        signoutlink.href = 'javascript:Signout()';
+        
+      }
+    }
+  </script>
    
   
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">   
-    <video autoplay muted loop id="myVideo" width="1920" height="1080"><source src="assets/vid/f1headvid.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>  
+    <video autoplay muted loop id="myVideo" width="100%" height="1080"><source src="assets/vid/f1headvid.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>  
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
         <div class="col-lg-8">
@@ -122,7 +167,7 @@
 
           <div class="btns">
             <a href="registration.html" class="btn-menu animated fadeInUp scrollto">Register</a>
-            <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Log-In</a>
+            <a href="sign-in.html" class="btn-book animated fadeInUp scrollto">Log-In</a>
           </div>
         </div>
       </div>
@@ -208,13 +253,79 @@
       </div>
     </section><!-- End Why Us Section -->
 
+<!-- ======= Events Section ======= -->
+<section id="events" class="events">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <p>Rewards</p>
+    </div>
+
+    <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/crypto-pic.jpg" class="img-fluid" alt="" style="height:320px">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Crypto Payouts</h3>
+              <ul class="rewards">
+                <li>Earn you rewards in the form of crypto-currency, one of the fastest growing digital-assets on the market</li>
+                <li>Earn more as you rise through the leaderboard</li>
+                <li>Secure better cards with your hard-earned currency!</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/merch.png.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Merchandise</h3>
+              <ul class="rewards">
+                <li> Stand a chance to win exclusive F1 merchandise!</li>
+                <li> </li>
+                <li> Use the opportunity to show your support for the F1 community</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/trip.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Paddock Club Passes</h3>
+              <ul class="rewards">
+                <li>Wins 2x Paddock Club Passes to a 2023 Grand Prix</li>
+                <li>Visit the latest tracks built at Miami and Las Vegas!</li>
+                <li>Meet your favourite Drivers in person!</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section><!-- End Events Section -->
+
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Menu</h2>
-          <p>Check Our Tasty Menu</p>
+          <h2>Teams & Drivers</h2>
+          <p>Current Season</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -231,13 +342,9 @@
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
+            <img src="assets/img/Alfa_Romeo_logo.png" class="menu-img" alt="Alfa Romeo">
             <div class="menu-content">
-<<<<<<< Updated upstream
-              <a href="#">Lobster Bisque</a><span>$5.95</span>
-            </div>
-            <div class="menu-ingredients">
-=======
+
               <a href="#" id = "alfa_romeo"></a>
               <script type="module">
                   const firebaseConfig = {
@@ -278,87 +385,96 @@
               </script>
             </div>
             <div class="menu-ingredients" id="alfa_romeo2">
->>>>>>> Stashed changes
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
+            <img src="assets/img/Alpha Tauri.jpeg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Bread Barrel</a><span>$6.95</span>
+              <a href="#" id="alpha_tauri"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = "alpha_tauri2" >
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
+            <img src="assets/img/Alpine.jpeg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Crab Cake</a><span>$7.95</span>
+              <a href="#" id="alpine"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'alpine2'>
               A delicate crab cake served on a toasted roll with lettuce and tartar sauce
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
+            <img src="assets/img/Aston Martin.jpeg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Caesar Selections</a><span>$8.95</span>
+              <a href="#" id="aston_martin"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'aston_martin2'>
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
+            <img src="assets/img/Ferrari.jpeg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Tuscan Grilled</a><span>$9.95</span>
+              <a href="#" id="ferrari"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = "ferrari2">
               Grilled chicken with provolone, artichoke hearts, and roasted red pesto
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
+            <img src="assets/img/Haas.jpeg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Mozzarella Stick</a><span>$4.95</span>
+              <a href="#" id = "haas"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = "haas2">
               Lorem, deren, trataro, filede, nerada
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
+            <img src="assets/img/Mclaren.jpeg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Greek Salad</a><span>$9.95</span>
+              <a href="#" id="mclaren"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'mclaren2'>
               Fresh spinach, crisp romaine, tomatoes, and Greek olives
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
+            <img src="assets/img/Mercedes.jpeg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Spinach Salad</a><span>$9.95</span>
+              <a href="#" id="mercedes"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id = 'mercedes2'>
               Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
+            <img src="assets/img/Red Bull.jpeg" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">Lobster Roll</a><span>$12.95</span>
+              <a href="#" id="red_bull"></a>
             </div>
-            <div class="menu-ingredients">
+            <div class="menu-ingredients" id="red_bull2">
+              Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+            </div>
+          </div>
+          
+          <div class="col-lg-6 menu-item filter-specialty">
+            <img src="assets/img/Williams.jpeg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#" id="williams"></a>
+            </div>
+            <div class="menu-ingredients" id = 'williams2'>
               Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
             </div>
           </div>
@@ -423,72 +539,6 @@
 
       </div>
     </section><!-- End Specials Section -->
-
-    <!-- ======= Events Section ======= -->
-    <section id="events" class="events">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <p>Rewards</p>
-        </div>
-
-        <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="row event-item">
-                <div class="col-lg-6">
-                  <img src="assets/img/crypto-pic.jpg" class="img-fluid" alt="" style="height:320px">
-                </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Crypto Payouts</h3>
-                  <ul class="rewards">
-                    <li>Earn you rewards in the form of crypto-currency, one of the fastest growing digital-assets on the market</li>
-                    <li>Earn more as you rise through the leaderboard</li>
-                    <li>Secure better cards with your hard-earned currency!</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="row event-item">
-                <div class="col-lg-6">
-                  <img src="assets/img/merch.png.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Merchandise</h3>
-                  <ul class="rewards">
-                    <li> Stand a chance to win exclusive F1 merchandise!</li>
-                    <li> </li>
-                    <li> Use the opportunity to show your support for the F1 community</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="row event-item">
-                <div class="col-lg-6">
-                  <img src="assets/img/trip.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Paddock Club Passes</h3>
-                  <ul class="rewards">
-                    <li>Wins 2x Paddock Club Passes to a 2023 Grand Prix</li>
-                    <li>Visit the latest tracks built at Miami and Las Vegas!</li>
-                    <li>Meet your favourite Drivers in person!</li>
-                  </ul>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Events Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
