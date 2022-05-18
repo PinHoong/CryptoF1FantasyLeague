@@ -145,6 +145,8 @@
         userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px"></i> ' + currentUser;
         userlink.classList.remove('book-a-table-btn');
         userlink.href = '#';
+        playnow.innerText = 'Play Now';
+        dependantlogin.innerText = 'My Profile';
 
         signoutlink.innerText = 'Sign-out';
         signoutlink.style = "padding-left: 23px";
@@ -166,8 +168,8 @@
           <h2>Leave It All On The Track</h2>
 
           <div class="btns">
-            <a href="registration.html" class="btn-menu animated fadeInUp scrollto">Register</a>
-            <a href="sign-in.html" class="btn-book animated fadeInUp scrollto">Log-In</a>
+            <a href="registration.html" class="btn-menu animated fadeInUp scrollto" id="playnow">Register</a>
+            <a href="sign-in.html" class="btn-book animated fadeInUp scrollto" id="dependantlogin">Log-In</a>
           </div>
         </div>
       </div>
