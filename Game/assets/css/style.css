@@ -1,6 +1,6 @@
 /**
 * Template Name: NiceAdmin - v2.2.2
-* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ 
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
@@ -213,6 +213,8 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  width:350px;
+
 }
 
 .card-header, .card-footer {
@@ -241,6 +243,7 @@ h1, h2, h3, h4, h5, h6 {
 .card-img-overlay {
   background-color: rgba(255, 255, 255, 0.6);
 }
+
 
 /* Alerts */
 .alert-heading {
@@ -583,6 +586,8 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
+
+
 .sidebar {
   position: fixed;
   top: 60px;
@@ -598,6 +603,10 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
   
+}
+
+#sidebar{
+  margin-top:38px;
 }
 @media (max-width: 1199px) {
   .sidebar {
@@ -631,6 +640,7 @@ h1, h2, h3, h4, h5, h6 {
     left: -300px;
   }
 }
+
 
 .sidebar-nav {
   padding: 0;
@@ -1132,4 +1142,9 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   font-size: 13px;
   color: #012970;
+}
+
+#verstappen{
+  padding-top: 10px;
+  margin-top:10px;
 }
