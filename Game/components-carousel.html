@@ -321,7 +321,78 @@
 
   </aside><!-- End Sidebar-->
 
+  <script type="module">
+    const firebaseConfig = {
+        apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+  authDomain: "f1-crypto.firebaseapp.com",
+  databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "f1-crypto",
+  storageBucket: "f1-crypto.appspot.com",
+  messagingSenderId: "512980395232",
+  appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+    };
+  import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+  import { getDatabase, ref, onValue} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const starCountRef = ref(db, 'drivers/');
+  const drivers = [Albon, Alonso, Bottas, Gasly, Hamiliton, Lafti, Leclerc, Magussen, Norris, Ocon, Perez, Ricardo, Russell, Sainz, Schumacher, Stroll, Tsunoda, Verstappen, Vettel, Zhou];
+  const drivers2 = ['albon', 'alonso', 'bottas', 'gasly', 'hamiliton', 'lafti', 'leclerc', 'magussen', 'norris', 'ocon', 'perez', 'ricardo', 'russell', 'sainz', 'schumacher', 'stroll', 'tsunoda', 'verstappen', 'vettel', 'zhou'];
+  var c = 0;
+  onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+      console.log(data)
+      for (var key in data) {
+        console.log("this is a driver:" + key);
+        var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
+        console.log(link);
+        console.log('<td><img src=' + link + '></td><td>');
+        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>82</td><td>3200</td><td><a href = "youtube.com" class="book-a-table-btn scrollto d-none d-lg-flex">purchase</a></td>';  
+        c++;
+      }
+    });
+    /*
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    import { collection, query, where } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+    const teamsRef = collection(database, "teams");
+    const Ferrari = query(teamsRef, where("teams", "==", "ferrari"));
+    console.log(Ferrari)
+    */
+</script>
+
+
+
   <main id="main" class="main">
+    <table>
+      <tr><th>Picture</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Age</th>
+        <th>Score</th>
+        <th>Price</th>
+        <th>Action</th></tr>
+      <tr id = 'Albon'></tr>
+      <tr id = 'Alonso'></tr>
+      <tr id = 'Bottas'></tr>
+      <tr id = 'Gasly'></tr>
+      <tr id = 'Hamiliton'></tr>
+      <tr id = 'Lafti'></tr>
+      <tr id = 'Leclerc'></tr>
+      <tr id = 'Magussen'></tr>
+      <tr id = 'Norris'></tr>
+      <tr id = 'Ocon'></tr>
+      <tr id = 'Perez'></tr>
+      <tr id = 'Ricardo'></tr>
+      <tr id = 'Russell'></tr>
+      <tr id = 'Sainz'></tr>
+      <tr id = 'Schumacher'></tr>
+      <tr id = 'Stroll'></tr>
+      <tr id = 'Tsunoda'></tr>
+      <tr id = 'Verstappen'></tr>
+      <tr id = 'Vettel'></tr>
+      <tr id = 'Zhou'></tr>
+    </table>
 
     <div class="pagetitle">
       <h1>Drivers</h1>
