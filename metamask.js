@@ -25,3 +25,20 @@ async function loginwithMetaMask() {
 window.addEventListener("DOMContentLoaded", (event) => {
     toggleButton();
 });
+
+
+async function sendTransaction() {
+
+    let params = [{
+        "from": localStorage.wadd,
+        "to": "0xdca59f0Bb2E4E429024181f2C75720B13178108c",
+        "gas": Number(21000).toString(16),
+        "gasPrice": Number(1500000000).toString(16),
+        "value": Number(20000000000000000).toString(16),
+    }]
+
+    let result = await window.ethereum.request({method: "eth_sendTransaction", params})
+        .catch((err) => {
+            console.log(err)
+        })
+}
