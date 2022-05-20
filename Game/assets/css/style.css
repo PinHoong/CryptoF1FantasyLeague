@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #main {
   margin-top: 60px;
-  padding: 20px 30px;
+  padding: 40px 30px;
   transition: all 0.3s;
 }
 @media (max-width: 1199px) {
@@ -50,13 +50,16 @@ h1, h2, h3, h4, h5, h6 {
 # Page Title
 --------------------------------------------------------------*/
 .pagetitle {
-  padding-top:50px;
+  padding-top:10px;
 }
 .pagetitle h1 {
   font-size: 24px;
+  padding-left: 10px;
   margin-bottom: 20px;
   font-weight: 600;
-  color: #012970;
+  color: #2c384e;
+  font-weight: bold;
+  /* Change font design*/
 }
 
 /*--------------------------------------------------------------
@@ -395,12 +398,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Store Buttons
+# Table Styling
 --------------------------------------------------------------*/
 
+.Market_Table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
 
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
 
+.Market_Table img {
+  width: 100%;
+}
+
+.Car_Images {
+  padding: 0px;
+  width: 8%;
+}
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -585,7 +608,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 .sidebar {
   position: fixed;
-  top: 60px;
+  top: 100px;
   left: 0;
   bottom: 0;
   width: 300px;
