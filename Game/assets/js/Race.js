@@ -15,19 +15,27 @@ const db = getDatabase(app);
 const currentUser = JSON.parse(localStorage.getItem('usr'));
 const starCountRef2 = ref(db, 'users/' + currentUser.uid);
 const name = "ferrari"
-document.getElementById(name).addEventListener('click', (e) => {
-  get(starCountRef2).then((snapshot) => {
-      const data2 = snapshot.val();
-      const curr = data2['cars']
-      console.log(curr.length)
-      if (curr.length > 2) {
-        alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
-      } else {
-        //Think of how to automate the names of cars purchased
-        curr.push(name)
-        const updates = {};
-        updates['users/' + currentUser.uid + '/cars'] = curr
-        update(ref(db), updates)
-      }
+const arry = ["RedBull2022", "Ferrari2022", "Mercedes2022", "Mclaren2022", "AlfaRomeo2022", "AlphaTauri2022", "Alpine2022", "AstonMartin2022", "Haas2022", "Williams2022"];
+for (var i = 0; i < arry.length; i++) {
+  const vehicle = arry[i];
+  document.getElementById(arry[i]).addEventListener('click', (e) => {
+    if (e == undefined) {
+      return
+    } else {
+      get(starCountRef2).then((snapshot) => {
+        const data2 = snapshot.val();
+        const curr = data2['cars']
+        console.log(curr.length)
+        if (curr.length > 2) {
+          alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
+        } else {
+          //Think of how to automate the names of cars purchased
+          curr.push(vehicle)
+          const updates = {};
+          updates['users/' + currentUser.uid + '/cars'] = curr
+          update(ref(db), updates)
+        }
+      })
+    }
   })
-})
+}
