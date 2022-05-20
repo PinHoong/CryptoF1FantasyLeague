@@ -133,6 +133,7 @@
 
     window.onload = function(){
       getUsername();
+      console.log('this is the current user' + currentUser);
       if (currentUser == null){
         userlink.innerText = 'Log In';
         userlink.classList.replace('nav-link', 'btn');
@@ -144,7 +145,7 @@
         userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px"></i> ' + currentUser;
         userlink.classList.remove('book-a-table-btn');
         userlink.href = '#';
-        playnow.innerText = 'Play Now';
+        playnow.innerHTML = '<a href="Game/index-2.html"  id="playnow">Play Now</a>';
         dependantlogin.innerText = 'My Profile';
 
         signoutlink.innerText = 'Sign-out';
@@ -362,7 +363,6 @@
                 const app = initializeApp(firebaseConfig);
                 const db = getDatabase(app);
                 const starCountRef = ref(db, 'teams/');
-                console.log("this is the startcount" + starCountRef);
                 const tms = [alfa_romeo, alpha_tauri, alpine, aston_martin, ferrari, haas, mclaren, mercedes, red_bull, williams];
                 const tms2 = [alfa_romeo2, alpha_tauri2, alpine2, aston_martin2, ferrari2, haas2, mclaren2, mercedes2, red_bull2, williams2];
                 var c = 0;
