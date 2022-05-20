@@ -133,6 +133,7 @@
 
     window.onload = function(){
       getUsername();
+
       if (currentUser == null){
         userlink.innerText = 'Log In';
         userlink.classList.replace('nav-link', 'btn');
@@ -144,7 +145,6 @@
         userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px"></i> ' + currentUser;
         userlink.classList.remove('book-a-table-btn');
         userlink.href = '#';
-        playnow.innerText = 'Play Now';
         dependantlogin.innerText = 'My Profile';
 
         signoutlink.innerText = 'Sign-out';
