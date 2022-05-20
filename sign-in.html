@@ -118,6 +118,10 @@ appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
           .then((userCredential) => {
               // Signed in
               const user = userCredential.user;
+              localStorage.setItem('usr', JSON.stringify(user));
+              const Usr = JSON.parse(localStorage.getItem('usr'));
+              const UsrID = Usr.uid;
+              console.log(UsrID)          
               // ...
 
               // save log in details into real time database
