@@ -344,7 +344,7 @@
       var data = snapshot.val();
       for (var key in data) {
         var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
-        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>82</td><td>3200</td><td><button type="button" id=' + drivers[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
+        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>82</td><td>3200</td><td><button onclick="style.opacity= 0.5" type="button" id=' + drivers[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
         c++;
       }
     });
@@ -372,9 +372,15 @@
       const data = snapshot.val();
       console.log(data['email']);
       console.log(data['driverCount']);
-      if (data['driverCount'] == 10){
+      var old = data['drivers'];
+      var drvrname = JSON.parse(localStorage.getItem('drvrname'));
+      if (data['driverCount'] == 2){
         alert("You already have 2 Drivers");
       }
+      else if (drvrname in old){
+        alert("You already own this driver");
+      }
+
       else{
         var curr = data['driverCount'];
         curr += 1 ;
@@ -388,8 +394,9 @@
         update(ref(db, 'users/' + Usr.uid), {
                   'drivers': old,
               })
-        
+        titlecount.innerHTML = '<h1 style = "font-size: xx-large" id = "title-count">Drivers ' +  (data['driverCount'] + 1) + '/2</h1>';
 
+        
 
       }
     }
@@ -403,7 +410,7 @@
 
   <main id="main" class="main">
     <div class="pagetitle">
-      <h1 style = "font-size: xx-large">Drivers</h1>
+      <h1 style = "font-size: xx-large" id = "titlecount">Drivers 0/2</h1>
     </div><!-- End Page Title -->
 
     <table>
