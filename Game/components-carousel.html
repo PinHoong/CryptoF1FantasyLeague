@@ -332,7 +332,7 @@
   appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
     };
   import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-  import { getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+  import { getDatabase, ref, onValue, update, get, set} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   const starCountRef = ref(db, 'drivers/');
@@ -360,25 +360,36 @@
 
     for (var i = 0 ;i < drivers.length;i++){
     (function () {
-    var elementttt = drivers3[i];
+    const elementttt = drivers3[i];
     console.log("this is the element " + elementttt);
     drivers[i].addEventListener('click', (e) => { var drvr = document.getElementById(elementttt);
     console.log('i found it '+ drvr.cells[1].innerHTML);
     const Usr = JSON.parse(localStorage.getItem('usr'));
     const starCountRef = ref(db, 'users/' + Usr.uid);
+    localStorage.setItem('drvrname', JSON.stringify(elementttt));
+    
     get(starCountRef).then((snapshot) => {
       const data = snapshot.val();
       console.log(data['email']);
       console.log(data['driverCount']);
-      if (data['driverCount'] == 2){
+      if (data['driverCount'] == 10){
         alert("You already have 2 Drivers");
       }
       else{
         var curr = data['driverCount'];
         curr += 1 ;
+        var drvrname = JSON.parse(localStorage.getItem('drvrname'));
         update(ref(db, 'users/' + Usr.uid), {
-                  driverCount: curr,
+                  'driverCount': curr,
               });
+        var old = data['drivers'];
+        old[drvrname] = 1;
+        console.log(old);
+        update(ref(db, 'users/' + Usr.uid), {
+                  'drivers': old,
+              })
+        
+
 
       }
     }
