@@ -356,6 +356,8 @@
       var c = 0;
       onValue(starCountRef, (snapshot) => {
           var data = snapshot.val();
+          window.firebaseData = data
+          localStorage.fbd = window.firebaseData;
           for (var key in data) {
             tms[c].innerText = key;
             tms2[c].innerText = data[key]['Speed'];
@@ -387,8 +389,11 @@
       <td id="red_bull3"></td>
       <td id="red_bull4"></td>
       <td id="red_bull5"></td>
-      <script src="./assets/js/Race.js"></script>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" onclick="carPurchase()">Puchase</button></td>
+      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id= "redBull_Btn">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Red Bull 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!-- Ferrari -->
@@ -401,7 +406,11 @@
       <td id="ferrari3"></td>
       <td id="ferrari4"></td>
       <td id="ferrari5"></td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="ferrari_Btn">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Ferrari 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!-- Mercedes Car Image-->
@@ -415,6 +424,10 @@
       <td id="mercedes4"></td>
       <td id="mercedes5"></td>
       <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Mercedes 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Mclaren-->
@@ -428,6 +441,10 @@
       <td id="mclaren4">85</td>
       <td id="mclaren5">3,500,000</td>
       <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Mclaren 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Alfa Romeo-->
@@ -441,6 +458,10 @@
       <td id="alfa_romeo4"></td>
       <td id="alfa_romeo5"></td>
       <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Alfa Romeo 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Alpha Tauri-->
@@ -454,6 +475,10 @@
       <td id="alpha_tauri4"></td>
       <td id="alpha_tauri5"></td>
       <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Alpha Tauri 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Alpine-->
@@ -467,6 +492,10 @@
       <td id="alpine4"></td>
       <td id="alpine5"></td>
       <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Alpine 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Aston Martin-->
@@ -480,6 +509,10 @@
       <td id="aston_martin4"></td>
       <td id="aston_martin5"></td>
       <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Aston Martin 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Haas-->
@@ -493,6 +526,10 @@
       <td id='haas4'></td>
       <td id='haas5'></td>
       <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Haas 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Williams-->
@@ -506,6 +543,10 @@
       <td id ="williams4"></td>
       <td id ="williams5"></td>
       <td><button class = "book-a-table-btn scrollto d-none d-lg-flex">Puchase</button></td>
+      <script>
+        var Name_Vehicle = "Williams 2022"
+      </script>
+      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
   </table>
   

@@ -1,24 +1,33 @@
-function carPurchase() {
-    const firebaseConfig = {
-        apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
-        authDomain: "f1-crypto.firebaseapp.com",
-        databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "f1-crypto",
-        storageBucket: "f1-crypto.appspot.com",
-        messagingSenderId: "512980395232",
-        appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
-    };
-    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-    import { getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const starCountRef = ref(db, 'users/' + UsrID);
-    get(starCountRef).then((snapshot) => {
-        const data = snapshot.val();
-        const curr = data['carCount']
-        curr.push("Mercedes")
-        update(ref(db, 'users/' + Usr.uid), {
-            carCount: curr,
-        });
-    })
-}
+import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+  authDomain: "f1-crypto.firebaseapp.com",
+  databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "f1-crypto",
+  storageBucket: "f1-crypto.appspot.com",
+  messagingSenderId: "512980395232",
+  appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const currentUser = JSON.parse(localStorage.getItem('usr'));
+const starCountRef2 = ref(db, 'users/' + currentUser.uid);
+const name = "ferrari"
+document.getElementById(name).addEventListener('click', (e) => {
+  get(starCountRef2).then((snapshot) => {
+      const data2 = snapshot.val();
+      const curr = data2['cars']
+      console.log(curr.length)
+      if (curr.length > 2) {
+        alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
+      } else {
+        //Think of how to automate the names of cars purchased
+        curr.push(name)
+        const updates = {};
+        updates['users/' + currentUser.uid + '/cars'] = curr
+        update(ref(db), updates)
+      }
+  })
+})
