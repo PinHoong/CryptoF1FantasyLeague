@@ -26,20 +26,11 @@ for (var i = 0; i < arry.length; i++) {
         const Usr = JSON.parse(localStorage.getItem('usr'));
         const data2 = snapshot.val();
         const curr = data2['cars']
-        console.log(curr.length)
-        if (curr.length > 2) {
+        if (data2['carCount'] >= 2) {
           alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
         } else {
           //Think of how to automate the names of cars purchased
-          var curr2 = data2['carCount'];
-          curr2 += 1 ;
-          update(ref(db, 'users/' + Usr.uid), {
-                  'carCount': curr,
-              });
-          curr.push(vehicle)
-          const updates = {};
-          updates['users/' + currentUser.uid + '/cars'] = curr
-          update(ref(db), updates)
+
         }
       })
     }
