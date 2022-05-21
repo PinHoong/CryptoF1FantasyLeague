@@ -384,45 +384,15 @@
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cone-striped"></i>
+                      <i class="bi bi-people"></i>
                     </div>
-                    <div class="ps-3">
-                      <h6 id = "TeamDrivers"></h6>
                       <div id="TeamDrivers2">
                         <ol id="listOfDrivers">
-                          <li id="Driver_1"></li>
-                          <li id="Driver_2"></li>
+                          <h6><li id="Driver_1"></li></h6>
+                          <h6><li id="Driver_2"></li></h6>
                         </ol>
                       </div>
-                      <script type="Module">
-                        import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-                        import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
-
-                        const firebaseConfig = {
-                          apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
-                          authDomain: "f1-crypto.firebaseapp.com",
-                          databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
-                          projectId: "f1-crypto",
-                          storageBucket: "f1-crypto.appspot.com",
-                          messagingSenderId: "512980395232",
-                          appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
-                        };
-                        const app = initializeApp(firebaseConfig);
-                        const db = getDatabase(app);
-                        const currentUser = JSON.parse(localStorage.getItem('usr'));
-                        const starCountRef2 = ref(db, 'users/' + currentUser.uid + '/driverCount');
-                        onValue(starCountRef2, (snapshot) => {
-                            var data = snapshot.val();
-                            if (data == 0) {
-                              document.getElementById('listOfDrivers').remove();
-                              //Styling is incomplete
-                              document.getElementById('TeamDrivers2').innerHTML =  '<a href= "./components-accordion.html">Purchase Drivers</a>';
-                            } else {
-                              
-                            }
-                        })
-                      </script>
-                    </div>
+                      <script type="module" src="./assets/js/Initializer.js"></script>
                   </div>
                 </div>
 
@@ -438,11 +408,15 @@
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cone-striped"></i>
+                      <i class="bi bi-bicycle"></i>
                     </div>
-                    <div class="ps-3">
-                      <a href="#"><h6>Click To View</h6></a>
+                    <div id="TeamCars">
+                      <ol id="listOfCars">
+                        <h6><li id="Car_1"></li></h6>
+                        <h6><li id="Car_2"></li></h6>
+                      </ol>
                     </div>
+                    <script type="module" src="./assets/js/Initializer2.js"></script>
                   </div>
                 </div>
 
