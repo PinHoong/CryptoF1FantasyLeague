@@ -481,8 +481,7 @@
                 
                 get(starCountRef).then((snapshot) => {
                     const data = snapshot.val();
-                    titledraft.innerHTML = '<h5 class="card-title" id="titledraft">' +  data['driverCount'] + '/2  ' + 'Drivers' + '<span>/Today</span></h5>'
-                    titledraft2.innerHTML = '<h5 class="card-title" id="titledraft">' +  data['carCount'] + '/3  cars' + '<span>/Today</span></h5>'
+
                     if (data['driverCount'] > 0){
                       var li = data['drivers'];
                       console.log(li);
@@ -503,6 +502,8 @@
                             var isit = data['drafted'];
                             if (countt < data['driverCount']){
                               countt += 1
+                              console.log('countt:' + countt);
+                              titledraft.innerText = countt + '/2  drivers';
 
 
                               var old = data['draft'];
@@ -512,6 +513,7 @@
                               'draft': old,
                               'drafted': countt,
                               })
+                              
                             }
 
                             else{
@@ -544,11 +546,39 @@
                   for (var cc in li2){
                         if (cc != 'nil'){
                           mapping2[cid2[c]] = cc
-                          console.log('<img src="assets/img/' + dictt2[cc]  + '.jpg" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>');
-                          cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.jpg" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>';
+                          console.log('<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>');
+                          cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>';
                           c++;
                         }
-                      }                  
+                      }
+                  console.log(mapping2); 
+                  var countt = 0;  
+                  for (var i = 0;i < data['carCount'];i++){
+                        (function () {
+                          const elementt = cid2[i];
+                          cid[i].addEventListener('click', (e) => { var drivr = document.getElementById(elementt);
+                            console.log('this car just got clicked: ' + mapping2[elementt]);
+                            if (countt < data['carCount']){
+                              countt += 1
+                              titledraft2.innerText = countt + '/2  cars';
+                              var old = data['draftCars'];
+                              old[mapping2[elementt]] = 1;
+                              console.log(old);
+                              update(ref(db, 'users/' + Usr.uid), {
+                              'draftCars': old,
+                              'draftedCars': countt,
+                              })
+                              
+                            }
+
+                            else{
+                              alert("You already have a full draft")
+                            }
+                            
+                          })
+
+                        }())
+                      }               
                 }
               })
                 //END OF CAR DRAFT 
@@ -595,7 +625,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title" id="titledraft2">0/3 Cars</h5>
+                  <h5 class="card-title" id="titledraft2">0/2 Cars</h5>
                   <p id = 'c1'><button></button></p>
                   <p id = 'c2'><button></button></p>
                   <p id = 'c3'><button></button></p>
