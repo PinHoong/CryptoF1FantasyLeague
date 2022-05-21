@@ -819,6 +819,34 @@ tr:nth-child(even) {
   background: #ffecdf;
 }
 
+#TeamDrivers2 {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+#Driver_1 {
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+#Driver_2 {
+  font-size: 18px;
+}
+
+#TeamCars {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+#Car_1 {
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+#Car_2 {
+  font-size: 18px;
+}
+
 /* Activity */
 .dashboard .activity {
   font-size: 14px;
