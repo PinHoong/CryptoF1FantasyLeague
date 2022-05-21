@@ -325,7 +325,52 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 style="font-size: xx-large">CarMart</h1>
+      <h1 style="font-size: xx-large">CarMart <span id = "NumOfVeh">0/2</span></h1>
+        <script type="module">
+          import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+          import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+          const firebaseConfig = {
+            apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+            authDomain: "f1-crypto.firebaseapp.com",
+            databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "f1-crypto",
+            storageBucket: "f1-crypto.appspot.com",
+            messagingSenderId: "512980395232",
+            appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+          };
+          const app = initializeApp(firebaseConfig);
+          const db = getDatabase(app);
+          const currentUser = JSON.parse(localStorage.getItem('usr'));
+          const starCountRef2 = ref(db, 'users/' + currentUser.uid + '/carCount');
+          get(starCountRef2).then((snapshot) => {
+            const data2 = snapshot.val();
+            const lengthOfArr = data2;
+            //Slight lag here 
+            document.getElementById('NumOfVeh').innerHTML = `${lengthOfArr}/2`;
+            if (lengthOfArr == 2) {
+              alert("Sell one of your cars before purchasing a new one!")
+              var k = document.getElementsByClassName("book-a-table-btn scrollto d-none d-lg-flex");
+              for (var i = 0; i < k.length; i++) {
+                k[i].style.opacity = 0.4;
+                k[i].disabled = true;
+              }
+            } else {
+              const starCountRef3 = ref(db, 'users/' + currentUser.uid + '/cars');
+              get(starCountRef3).then((snapshot) => {
+                const data3 = snapshot.val();
+                for (var key in data3) {
+                  if (key == "nil") {
+                    continue;
+                  } else {
+                    document.getElementById(key).style.opacity = 0.4;
+                    document.getElementById(key).disabled = true;
+                  }
+                }
+              })
+            }
+          })
+        </script>
     </div><!-- End Page Title -->
 
   

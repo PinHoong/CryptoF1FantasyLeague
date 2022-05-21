@@ -25,16 +25,37 @@ for (var i = 0; i < arry.length; i++) {
       get(starCountRef2).then((snapshot) => {
         const data2 = snapshot.val();
         const curr = data2['cars']
-        console.log(curr.length)
-        if (curr.length > 2) {
+        if (data2['carCount'] >= 2) {
           alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
         } else {
           //Think of how to automate the names of cars purchased
+          curr[vehicle] = 1;
+          update(ref(db, 'users/' + currentUser.uid), {
+            'cars': curr,
+          })
+          var numOfCars = data2['carCount'];
+          numOfCars += 1 ;
+          update(ref(db, 'users/' + currentUser.uid), {
+            'carCount': numOfCars,
+          });
+          document.getElementById('NumOfVeh').innerHTML = `${numOfCars}/2`;
+          document.getElementById(vehicle).style.opacity = 0.4;
+          document.getElementById(vehicle).disabled = true;
+        }
+
+      
+          /*
           curr.push(vehicle)
+
           const updates = {};
           updates['users/' + currentUser.uid + '/cars'] = curr
           update(ref(db), updates)
-        }
+          const starCountRef3 = ref(db, 'users/' + currentUser.uid + '/cars');
+          get(starCountRef3).then((snapshot) => {
+            const data3 = snapshot.val();
+            const lengthOfArr = data3.length - 1;
+            //Slight lack here 
+          */
       })
     }
   })
