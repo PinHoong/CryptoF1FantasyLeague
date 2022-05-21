@@ -357,7 +357,6 @@
     console.log(Ferrari)
     */
 
-
     for (var i = 0 ;i < drivers.length;i++){
     (function () {
     const elementttt = drivers3[i];
@@ -370,10 +369,10 @@
     
     get(starCountRef).then((snapshot) => {
       const data = snapshot.val();
-      console.log(data['email']);
       console.log(data['driverCount']);
       var old = data['drivers'];
       var drvrname = JSON.parse(localStorage.getItem('drvrname'));
+      
       if (data['driverCount'] == 2){
         alert("You already have 2 Drivers");
         for (var j = 0;j < 20;j++){
