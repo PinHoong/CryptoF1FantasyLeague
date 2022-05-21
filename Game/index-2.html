@@ -433,7 +433,7 @@
                 const app = initializeApp(firebaseConfig);
                 const db = getDatabase(app);
 
-
+                //START OF DRIVER DRAFT
                 const drivers2 = ['albon', 'alonso', 'bottas', 'gasly', 'hamiliton', 'lafti', 'leclerc', 'magussen', 'norris', 'ocon', 'perez', 'ricardo', 'russell', 'sainz', 'schumacher', 'stroll', 'tsunoda', 'verstappen', 'vettel', 'zhou'];
                 const dictt = {Albon: 'albon', Alonso: 'alonso', Bottas: 'bottas', Gasly: 'gasly', Hamiliton: 'hamiliton', Lafti: 'lafti', Leclerc: 'leclerc', Magussen: 'magussen', Norris: 'norris', Ocon: 'ocon', Perez:'perez', Ricardo:'ricardo', Russell:'russell', Sainz: 'sainz', Schumacher:'schumacher', Stroll:'stroll', Tsunoda:'tsunoda', Verstappen:'verstappen', Vettel:'vettel', Zhou:'zhou'};
                 const pid = [d1, d2];
@@ -444,9 +444,11 @@
                 const starCountRef = ref(db, 'users/' + Usr.uid);
                 var c = 0
                 var countt = 0
+                
                 get(starCountRef).then((snapshot) => {
                     const data = snapshot.val();
-                    titledraft.innerHTML = '<h5 class="card-title" id="titledraft">My Draft ' +  data['driverCount'] + '/2' + 'drivers' + data['carCount'] + '/3 cars' + '<span>/Today</span></h5>'
+                    titledraft.innerHTML = '<h5 class="card-title" id="titledraft">' +  data['driverCount'] + '/2  ' + 'Drivers' + '<span>/Today</span></h5>'
+                    titledraft2.innerHTML = '<h5 class="card-title" id="titledraft">' +  data['carCount'] + '/3  cars' + '<span>/Today</span></h5>'
                     if (data['driverCount'] > 0){
                       var li = data['drivers'];
                       console.log(li);
@@ -487,12 +489,61 @@
                       }
                       
                     }
+                    
+                    //END OF DRIVER DRAFT
+                    //START OF CAR DRAFT
+ 
+
                   })
 
+                get(starCountRef).then((snapshot) => {             
+                  const data = snapshot.val();
+                const cid = [c1, c2, c3];
+                const cid2 = ['c1', 'c2', 'c3']
+                const cars = ["RedBull2022", "Ferrari2022", "Mercedes2022", "Mclaren2022", "AlfaRomeo2022", "AlphaTauri2022", "Alpine2022", "AstonMartin2022", "Haas2022", "Williams2022"];
+                const dictt2 = {RedBull2022: 'RedBull', Ferrari2022: 'Ferrari', Mercedes2022: 'Mercedes', Mclaren2022: 'Mclaren', AlfaRomeo2022: 'AlfaRomeo',AlphaTauri2022:'AlphaTauri', Alpine2022: 'Alpine',AstonMartin2022:'AstonMartin', Haas2022:'Haas',Williams2022:'Williams' }                
+                const mapping2 = {}
+
+                var c = 0;
+                if (data['carCount'] > 0){
+                  var li2 = data['cars'];
+                  for (var cc in li2){
+                        if (cc != 'nil'){
+                          mapping2[cid2[c]] = cc
+                          console.log('<img src="assets/img/' + dictt2[cc]  + '.jpg" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>');
+                          cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.jpg" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>';
+                          c++;
+                        }
+                      }                  
+                }
+              })
+                //END OF CAR DRAFT 
               </script>
 
 
 
+              <h4 class="card-title">My Draft </h4>
+              <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title" id="titledraft">0/2 Drivers</h5>
+                  <p id = 'd1'><button></button></p>
+                  <p id = 'd2'><button></button></p>
+              </div>
+              </div>
 
               <div class="card">
 
@@ -510,10 +561,15 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title" id="titledraft">My Draft <span>/Today</span></h5>
-                  <p id = 'd1'><button></button></p>
-                  <p id = 'd2'><button></button></p>
-                  
+                  <h5 class="card-title" id="titledraft2">0/3 Cars</h5>
+                  <p id = 'c1'><button></button></p>
+                  <p id = 'c2'><button></button></p>
+                  <p id = 'c3'><button></button></p>
+              </div>
+              </div>
+
+
+
 
       </div>
     </section>

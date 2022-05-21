@@ -23,24 +23,14 @@ for (var i = 0; i < arry.length; i++) {
       return
     } else {
       get(starCountRef2).then((snapshot) => {
+        const Usr = JSON.parse(localStorage.getItem('usr'));
         const data2 = snapshot.val();
         const curr = data2['cars']
         if (data2['carCount'] >= 2) {
           alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
         } else {
           //Think of how to automate the names of cars purchased
-          curr[vehicle] = 1;
-          update(ref(db, 'users/' + currentUser.uid), {
-            'cars': curr,
-          })
-          var numOfCars = data2['carCount'];
-          numOfCars += 1 ;
-          update(ref(db, 'users/' + currentUser.uid), {
-            'carCount': numOfCars,
-          });
-          document.getElementById('NumOfVeh').innerHTML = `${numOfCars}/2`;
-          document.getElementById(vehicle).style.opacity = 0.4;
-          document.getElementById(vehicle).disabled = true;
+
         }
       })
     }
