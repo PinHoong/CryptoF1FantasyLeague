@@ -30,15 +30,18 @@ for (var i = 0; i < arry.length; i++) {
           alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
         } else {
           //Think of how to automate the names of cars purchased
-          var curr2 = data['carCount'];
-          curr2 += 1 ;
-          update(ref(db, 'users/' + Usr.uid), {
-                  'carCount': curr,
-              });
-          curr.push(vehicle)
-          const updates = {};
-          updates['users/' + currentUser.uid + '/cars'] = curr
-          update(ref(db), updates)
+          curr[vehicle] = 1;
+          update(ref(db, 'users/' + currentUser.uid), {
+            'cars': curr,
+          })
+          var numOfCars = data2['carCount'];
+          numOfCars += 1 ;
+          update(ref(db, 'users/' + currentUser.uid), {
+            'carCount': numOfCars,
+          });
+          document.getElementById('NumOfVeh').innerHTML = `${numOfCars}/2`;
+          document.getElementById(vehicle).style.opacity = 0.4;
+          document.getElementById(vehicle).disabled = true;
         }
       })
     }
