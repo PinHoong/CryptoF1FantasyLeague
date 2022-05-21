@@ -376,6 +376,9 @@
       var drvrname = JSON.parse(localStorage.getItem('drvrname'));
       if (data['driverCount'] == 2){
         alert("You already have 2 Drivers");
+        for (var j = 0;j < 20;j++){
+          drivers[j].style.opacity = 0.5;
+        }
       }
       else if (drvrname in old){
         alert("You already own this driver");
