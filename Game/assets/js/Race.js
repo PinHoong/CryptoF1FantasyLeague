@@ -23,6 +23,7 @@ for (var i = 0; i < arry.length; i++) {
       return
     } else {
       get(starCountRef2).then((snapshot) => {
+        const Usr = JSON.parse(localStorage.getItem('usr'));
         const data2 = snapshot.val();
         const curr = data2['cars']
         console.log(curr.length)
@@ -30,7 +31,7 @@ for (var i = 0; i < arry.length; i++) {
           alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
         } else {
           //Think of how to automate the names of cars purchased
-          var curr2 = data['carCount'];
+          var curr2 = data2['carCount'];
           curr2 += 1 ;
           update(ref(db, 'users/' + Usr.uid), {
                   'carCount': curr,
