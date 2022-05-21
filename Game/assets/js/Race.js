@@ -42,20 +42,6 @@ for (var i = 0; i < arry.length; i++) {
           document.getElementById(vehicle).style.opacity = 0.4;
           document.getElementById(vehicle).disabled = true;
         }
-
-      
-          /*
-          curr.push(vehicle)
-
-          const updates = {};
-          updates['users/' + currentUser.uid + '/cars'] = curr
-          update(ref(db), updates)
-          const starCountRef3 = ref(db, 'users/' + currentUser.uid + '/cars');
-          get(starCountRef3).then((snapshot) => {
-            const data3 = snapshot.val();
-            const lengthOfArr = data3.length - 1;
-            //Slight lack here 
-          */
       })
     }
   })
