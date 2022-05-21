@@ -25,8 +25,7 @@ for (var i = 0; i < arry.length; i++) {
       get(starCountRef2).then((snapshot) => {
         const data2 = snapshot.val();
         const curr = data2['cars']
-        console.log(curr.length)
-        if (curr.length > 2) {
+        if (data2['carCount'] >= 2) {
           alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
         } else {
           //Think of how to automate the names of cars purchased
