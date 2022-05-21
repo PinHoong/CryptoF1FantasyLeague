@@ -481,6 +481,9 @@
                 
                 get(starCountRef).then((snapshot) => {
                     const data = snapshot.val();
+                    titledraft.innerText = data['drafted'] + '/2  drivers';
+                    titledraft2.innerText = data['draftedCars'] +'/2  cars'
+
 
                     if (data['driverCount'] > 0){
                       var li = data['drivers'];
