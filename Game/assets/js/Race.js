@@ -30,6 +30,11 @@ for (var i = 0; i < arry.length; i++) {
           alert("You have purchased the maximum number of cars! Sell some cars before proceeding")
         } else {
           //Think of how to automate the names of cars purchased
+          var curr2 = data['carCount'];
+          curr2 += 1 ;
+          update(ref(db, 'users/' + Usr.uid), {
+                  'carCount': curr,
+              });
           curr.push(vehicle)
           const updates = {};
           updates['users/' + currentUser.uid + '/cars'] = curr
