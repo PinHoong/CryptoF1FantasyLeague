@@ -1262,6 +1262,7 @@ button{
 }
 
 .profilebtn{
-  margin-left: 250px;
+  position:relative;
+  left:220px;
 }
 
