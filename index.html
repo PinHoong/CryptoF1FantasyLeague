@@ -144,14 +144,24 @@
       else{
         userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px"></i> ' + currentUser;
         userlink.classList.remove('book-a-table-btn');
-        userlink.href = '#';
-        playnow.innerHTML = '<a style="color:white" href="Game/index-2.html"  id="playnow">Play Now</a>';
+        document.getElementById("playnow").remove();
+        document.getElementById("dependantlogin").remove();
+        document.getElementById("specialBtns").innerHTML = '<a href="Game/index-2.html" class="btn-menu animated fadeInUp scrollto" id="playnow">Play Now</a>';
+        //document.getElementById("specialBtns").innerHTML '<a href="#" class="btn-book animated fadeInUp scrollto" id="dependantlogin">Log-In</a>';
+        signoutlink.innerText = 'Sign-out';
+        signoutlink.style = "padding-left: 23px";
+        signoutlink.href = 'javascript:Signout()';
+        /*
+        userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px"></i> ' + currentUser;
+        userlink.classList.remove('book-a-table-btn');
+        document.getElementById("playnow").innerHTML = '<a style="color:white" href="Game/index-2.html"  id="playnow">Play Now</a>';
+        document.getElementsByClassName("btn-menu animated fadeInUp scrollto").remove();
         dependantlogin.innerText = 'My Profile';
 
         signoutlink.innerText = 'Sign-out';
         signoutlink.style = "padding-left: 23px";
         signoutlink.href = 'javascript:Signout()';
-        
+        */
       }
     }
   </script>
@@ -167,7 +177,7 @@
           <h1>FORMULA 1  <span> Crypto Fantasy League</span></h1>
           <h2>Leave It All On The Track</h2>
 
-          <div class="btns">
+          <div class="btns" id="specialBtns">
             <a href="registration.html" class="btn-menu animated fadeInUp scrollto" id="playnow">Register</a>
             <a href="sign-in.html" class="btn-book animated fadeInUp scrollto" id="dependantlogin">Log-In</a>
           </div>
