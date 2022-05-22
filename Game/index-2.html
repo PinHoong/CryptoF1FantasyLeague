@@ -425,7 +425,7 @@
 
             <!-- Reports -->
             <div class="col-12">
-              <!--JS for draft selection-->
+              <!--JS FOR DRAFT SELECTION!-->
               <script type="module">
                 const firebaseConfig = {
                 apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
@@ -455,8 +455,8 @@
                 
                 get(starCountRef).then((snapshot) => {
                     const data = snapshot.val();
-                    titledraft.innerText = data['drafted'] + '/2  drivers';
-                    titledraft2.innerText = data['draftedCars'] +'/2  cars'
+                    //titledraft.innerText = data['drafted'] + '/2  drivers';
+                    //titledraft2.innerText = data['draftedCars'] +'/2  cars'
 
 
                     if (data['driverCount'] > 0){
@@ -466,12 +466,14 @@
                         if (dd != 'nil'){
                           mapping[pid2[c]] = dd
                           console.log('<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>');
-                          pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' + dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>';
+                          pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' + dd + '<a class="profilebtn" + href =' + dd +'.html>View Profile</a>';
                           c++;
                         }
                       }
                       console.log(mapping)
-                      for (var i = 0;i < data['driverCount'];i++){
+                      //START OF DRIVER DRAFT JS CODE
+                      //TO RE-IMPLEMENT DRAFTING REPLACE INNERHTML WITH '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>'
+                      /*for (var i = 0;i < data['driverCount'];i++){
                         (function () {
                           const elementt = pid2[i];
                           pid[i].addEventListener('click', (e) => { var drivr = document.getElementById(elementt);
@@ -499,20 +501,19 @@
                           })
 
                         }())
-                      }
+                      }*/
+                      //END OF DRIVER DRAFT JS CODE
                       
                     }
                     
-                    //END OF DRIVER DRAFT
-                    //START OF CAR DRAFT
  
 
                   })
 
                 get(starCountRef).then((snapshot) => {             
                   const data = snapshot.val();
-                const cid = [c1, c2, c3];
-                const cid2 = ['c1', 'c2', 'c3']
+                const cid = [c1, c2];
+                const cid2 = ['c1', 'c2']
                 const cars = ["RedBull2022", "Ferrari2022", "Mercedes2022", "Mclaren2022", "AlfaRomeo2022", "AlphaTauri2022", "Alpine2022", "AstonMartin2022", "Haas2022", "Williams2022"];
                 const dictt2 = {'Red Bull 2022': 'RedBull', 'Ferrari 2022': 'Ferrari', 'Mercedes 2022': 'Mercedes', 'Mclaren 2022': 'Mclaren', 'Alfa Romeo 2022': 'AlfaRomeo','Alpha Tauri 2022':'AlphaTauri', 'Alpine 2022': 'Alpine','Aston Martin 2022':'AstonMartin', 'Haas 2022':'Haas','Williams 2022':'Williams' }                
                 const mapping2 = {}
@@ -526,12 +527,14 @@
                           console.log('this is cc' + cc)
 
                           console.log('<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>');
-                          cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>';
+                          cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc;
                           c++;
                         }
                       }
-                  console.log(mapping2); 
-                  var countt = 0;  
+                  console.log(mapping2);
+                  //START OF CAR DRAFTING JS CODE 
+                  //TO RE-IMPLEMENT DRAFTING, REPLACE INNERHTML WITH '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>'
+                  /*var countt = 0;  
                   for (var i = 0;i < data['carCount'];i++){
                         (function () {
                           const elementt = cid2[i];
@@ -557,10 +560,10 @@
                           })
 
                         }())
-                      }               
+                      } */  
+                  //END OF CAR DRAFTING JS CODE             
                 }
               })
-                //END OF CAR DRAFT 
               </script>
 
 
@@ -582,9 +585,53 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title" id="titledraft">0/2 Drivers</h5>
+                  <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
+                  <h5 class = 'card-title'>Driver 1</h5>
                   <p id = 'd1'><button></button></p>
+                </div>
+              </div>
+
+              <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
+                  <h5 class = 'card-title'>Driver 2</h5>
                   <p id = 'd2'><button></button></p>
+                </div>
+              </div>
+
+              <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
+                  <h5 class = 'card-title'>Car 1</h5>
+                  <p id = 'c1'><button></button></p>
               </div>
               </div>
 
@@ -604,12 +651,12 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title" id="titledraft2">0/2 Cars</h5>
-                  <p id = 'c1'><button></button></p>
+                  <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
+                  <h5 class = 'card-title'>Car 2</h5>
                   <p id = 'c2'><button></button></p>
-                  <p id = 'c3'><button></button></p>
               </div>
               </div>
+
 
 
 
