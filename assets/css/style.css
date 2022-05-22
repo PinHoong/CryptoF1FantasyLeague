@@ -441,6 +441,11 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #DC143C;
   font-weight: bold;
 }
+
+#playnow {
+  padding: 10px 30px;
+}
+
 #hero .btn-menu:hover, #hero .btn-book:hover {
   background: #DC143C;
   color: #fff;
