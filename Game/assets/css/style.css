@@ -16,6 +16,7 @@ body {
   font-family: "Open Sans", sans-serif;
   background: #f6f9ff;
   color: #444444;
+  padding-top: 100px;
 }
 
 a {
@@ -46,6 +47,83 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px;
   }
 }
+
+#popUpmain{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  /*This is important*/
+  background: rgba(0,0,0,0.6);
+  z-index: 1001;
+}
+
+#popUpmain2 {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  /*This is important*/
+  background: rgba(0,0,0,0.6);
+  z-index: 1001;
+}
+
+#popUpmain3 {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  /*This is important*/
+  background: rgba(0,0,0,0.6);
+  z-index: 1001;
+}
+
+.popup {
+  width: 700px;
+  height: 400px;
+  background-color: #DC143C;
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 2px 5px 3px white;
+  text-align: center;
+}
+
+.newsHeading {
+  transform: translateY(50px);
+  color: white;
+
+}
+
+.popup_buttons {
+  margin-top: 15%;
+  border: 2px solid#fff;
+  color: #DC143C;
+  border-radius: 50px;
+  padding: 8px 25px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  font-size: 12px;
+  font-weight: bold;
+  background: #fff;
+  width: 150px;
+  text-align: center;
+  height: 40px;
+}
+
+.threeStages {
+  transform: translateY(50px);
+  color: white;
+  width: 28%;
+  display: inline-block;
+  margin-top: 3%;
+  font-size: 18px;
+  margin-right: 4%;
+  margin-bottom: 3%;
+}
+
 
 /*--------------------------------------------------------------
 # Page Title
@@ -385,7 +463,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
   font-weight: bold;
   background: #DC143C;
-  width: 110px;
+  width: 120px;
   text-align: center;
   height: 40px;
 

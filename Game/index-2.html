@@ -25,6 +25,9 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3772469bf7.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="./assets/css/popup-slider.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -38,16 +41,100 @@
 </head>
 
 <body>
+  <!--
+      <div id="popUpmain">
+    <div id="popup">
+      <h1 class="newsHeading">Subscribe to our Newsletter.</h1>
+      <button class="closeit" style="margin-top: 60px;" onclick="closeWindow()">X</button>
+    </div>
+  </div>
+  <div id= "popUpmain2" style="display: none;">
+    <div id = "popup2">
+      <h1 class = "newsHeading">What's up!</h1>
+      <button class="closeit" style = "margin-top:60px;" onclick = "closeWindow2()">X</button>
+    </div>
+  </div>
+  <script>
+    function closeWindow() {
+      document.getElementById('popUpmain').remove();
+      document.getElementById('popUpmain2').style.display = "block";
 
+    }
+
+    $(document).ready(function() {
+      setTimeout(function() {
+        $('#popUpMain').css('display', 'block');},5000);
+      });  
+  </script>
+  -->
+  <div id="popUpmain">
+    <div class="popup">
+      <h1 class="newsHeading" style="font-weight: bold; margin-bottom: 5%; margin-top: 10%">Welcome Team Managers!</h1>
+      <h2 class = "newsHeading" style="font-style: italic">Do you have the skills to the best?</h2>
+      <button class="popup_buttons" onclick="closeWindow()">Get Started</button>
+    </div>
+  </div>
+  <div id= "popUpmain2" style="display: none;">
+    <div  class = "popup">
+      <h1 class = "newsHeading" style="font-weight: bold;">Rules Of The Game</h1>
+      <p class="threeStages"><i class="fa fa-check-square fa-5x"></i><br>Choose The Level Of Difficulty</p>
+      <!--<i class="fa-solid fa-user" ><p class = "threeStages">Choose the level of difficuly.</p></i>-->
+      <p class="threeStages"><i class="fa fa-handshake-o fa-5x"></i><br>Purchase 2 Drivers & Cars Respectively</p>
+      <p class="threeStages"><i class="fa fa-money fa-5x"></i><br>Prepare your team and get rewarded</p><br>
+      <button class="popup_buttons" style = "margin-top:60px;" onclick = "closeWindow2()">Continue</button>
+    </div>
+  </div>
+  <div id= "popUpmain3" style="display: none;">
+    <div  class = "popup">
+      <h1 class = "newsHeading">The End!</h1>
+      <button class="closeit" style = "margin-top:60px;" onclick = "closeWindow3()">X</button>
+    </div>
+  </div>
+  <script>
+    function closeWindow() {
+      document.getElementById('popUpmain').remove();
+      document.getElementById('popUpmain2').style.display = 'block';
+    }
+
+    function closeWindow2() {
+      document.getElementById('popUpmain2').remove();
+      document.getElementById('popUpmain3').style.display = 'block';
+    }
+
+    function closeWindow3() {
+      document.getElementById('popUpmain3').remove();
+    }
+ 
+
+    $(document).ready(function() {
+      setTimeout(function() {
+        $('#popUpMain').css('display', 'block');},5000);
+      });  
+  </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
       <!--<h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>-->
-      <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
-
+      <a href="index-2.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
+      <script>
+        function Signout() {
+          sessionStorage.removeItem('user');
+          localStorage.removeItem('user');
+          localStorage.removeItem('keepLoggedIn');
+          window.location = '/';
+        }
+      </script>
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
+          <li><i class = "fa-solid fa-user" id="UserName" style="color: #cda45e; margin-right: 200px;"></i></li>
+          <li><button class="book-a-table-btn scrollto d-none d-lg-flex" onclick="Signout()">Sign Out</button></li>
+        </ul>
+        <script>
+          const currentUser = JSON.parse(localStorage.getItem('user'));
+          document.getElementById("UserName").innerText = currentUser;
+        </script>
+          <!--
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#why-us">How To Play</a></li>
@@ -55,6 +142,7 @@
           <li><a class="nav-link scrollto" href="#menu">Drivers</a></li>
           <li><a class="nav-link scrollto" href="#specials">Store</a></li>
           <li><a class="nav-link scrollto" href="#testimonials">Reviews</a></li>
+          -->
         <!--
                   <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -76,7 +164,6 @@
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         -->
-        </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -618,7 +705,6 @@
     </section>
 
   </main><!-- End #main -->
-
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
