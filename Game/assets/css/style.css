@@ -295,7 +295,12 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-  width:980px;
+  width:550px;
+  display:inline-block;
+  margin-right:10px;
+  font-size:large;
+  font-family: "Poppins", sans-serif;
+  font-weight:900;
 
 }
 
@@ -320,6 +325,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .card-body {
   padding: 0 20px 20px 20px;
+  display:inline-block;
 }
 
 .card-img-overlay {
@@ -1327,9 +1333,14 @@ button{
 }
 
 .special{
-  width: 60px;
-  height: 80px;
+  width: 80px;
+  height: 100px;
   border-radius: 10%;
   margin-bottom:10px;
+}
+
+.profilebtn{
+  position:relative;
+  left:220px;
 }
 
