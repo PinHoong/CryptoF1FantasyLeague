@@ -37,8 +37,13 @@ async function sendTransaction() {
         "value": Number(20000000000000000).toString(16),
     }]
 
-    let result = await window.ethereum.request({method: "eth_sendTransaction", params})
+    let txnHash = await window.ethereum.request({method: "eth_sendTransaction", params})
         .catch((err) => {
             console.log(err)
         })
+    var receipt =  null;
+    while (receipt == null) {
+        receipt = await window.ethereum.request({method: 'eth_getTransactionReceipt', params: [txnHash]});
+    }
+    window.location.replace('/')
 }
