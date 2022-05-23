@@ -39,32 +39,6 @@
 </head>
 
 <body>
-  <!--
-      <div id="popUpmain">
-    <div id="popup">
-      <h1 class="newsHeading">Subscribe to our Newsletter.</h1>
-      <button class="closeit" style="margin-top: 60px;" onclick="closeWindow()">X</button>
-    </div>
-  </div>
-  <div id= "popUpmain2" style="display: none;">
-    <div id = "popup2">
-      <h1 class = "newsHeading">What's up!</h1>
-      <button class="closeit" style = "margin-top:60px;" onclick = "closeWindow2()">X</button>
-    </div>
-  </div>
-  <script>
-    function closeWindow() {
-      document.getElementById('popUpmain').remove();
-      document.getElementById('popUpmain2').style.display = "block";
-
-    }
-
-    $(document).ready(function() {
-      setTimeout(function() {
-        $('#popUpMain').css('display', 'block');},5000);
-      });  
-  </script>
-  -->
   <div id="popUpmain">
     <div class="popup">
       <h1 class="newsHeading" style="font-weight: bold; margin-bottom: 5%; margin-top: 10%">Welcome Team Managers!</h1>
@@ -75,17 +49,11 @@
   <div id= "popUpmain2" style="display: none;">
     <div  class = "popup">
       <h1 class = "newsHeading" style="font-weight: bold;">Rules Of The Game</h1>
-      <p class="threeStages"><i class="fa fa-check-square fa-5x"></i><br>Choose The Level Of Difficulty</p>
+      <p class="threeStages"><i class="fa fa-check-square fa-5x"></i><br>Choose Your Budget Level</p>
       <!--<i class="fa-solid fa-user" ><p class = "threeStages">Choose the level of difficuly.</p></i>-->
       <p class="threeStages"><i class="fa fa-handshake-o fa-5x"></i><br>Purchase 2 Drivers & Cars Respectively</p>
       <p class="threeStages"><i class="fa fa-money fa-5x"></i><br>Prepare your team and get rewarded</p><br>
-      <button class="popup_buttons" style = "margin-top:60px;" onclick = "closeWindow2()">Continue</button>
-    </div>
-  </div>
-  <div id= "popUpmain3" style="display: none;">
-    <div  class = "popup">
-      <h1 class = "newsHeading">The End!</h1>
-      <button class="closeit" style = "margin-top:60px;" onclick = "closeWindow3()">X</button>
+      <button class="popup_buttons" style = "margin-top:60px;" onclick = "closeWindow2()">I'M Ready</button>
     </div>
   </div>
   <script>
@@ -96,13 +64,8 @@
 
     function closeWindow2() {
       document.getElementById('popUpmain2').remove();
-      document.getElementById('popUpmain3').style.display = 'block';
+      //window.location.href = "components-badges.html"
     }
-
-    function closeWindow3() {
-      document.getElementById('popUpmain3').remove();
-    }
- 
 
     $(document).ready(function() {
       setTimeout(function() {
@@ -125,9 +88,12 @@
       </script>
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
+          <i class="fa-solid fa-wallet fa-1x" style="color: #cda45e;"></i>
+          <li id="VirtualCurrency" style="color: #cda45e; margin-right: 200px; margin-left: 10px; font-size: 20px;" ></li>
           <li><i class = "fa-solid fa-user" id="UserName" style="color: #cda45e; margin-right: 200px;"></i></li>
           <li><button class="book-a-table-btn scrollto d-none d-lg-flex" onclick="Signout()">Sign Out</button></li>
         </ul>
+        <script type = "module" src = "./VirtualCurrency.js"></script>
         <script>
           const currentUser = JSON.parse(localStorage.getItem('user'));
           document.getElementById("UserName").innerText = currentUser;
