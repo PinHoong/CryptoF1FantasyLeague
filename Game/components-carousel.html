@@ -153,11 +153,13 @@
   const drivers2 = ['albon', 'alonso', 'bottas', 'gasly', 'hamiliton', 'lafti', 'leclerc', 'magussen', 'norris', 'ocon', 'perez', 'ricardo', 'russell', 'sainz', 'schumacher', 'stroll', 'tsunoda', 'verstappen', 'vettel', 'zhou'];
   const drivers3 = ['Albon', 'Alonso', 'Bottas', 'Gasly', 'Hamiliton', 'Lafti', 'Leclerc', 'Magussen', 'Norris', 'Ocon', 'Perez', 'Ricardo', 'Russell', 'Sainz', 'Schumacher', 'Stroll', 'Tsunoda', 'Verstappen', 'Vettel', 'Zhou'];
   var c = 0;
+
   onValue(starCountRef, (snapshot) => {
       var data = snapshot.val();
       for (var key in data) {
         var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
-        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>82</td><td>3200</td><td><button onclick="style.opacity= 0.5" type="button" id=' + drivers[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
+        console.log(data[key])
+        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td>3200</td><td><button onclick="style.opacity= 0.5" type="button" id=' + drivers[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
         c++;
       }
       
@@ -172,6 +174,7 @@
     */
   get(anotherref).then((snapshot) =>{
     const d2 = snapshot.val();
+    console.log(d2);
     if (d2['driverCount'] == 2){
       alert("You already have 2 Drivers");
         for (var j = 0;j < 20;j++){
@@ -184,7 +187,6 @@
     for (var i = 0 ;i < drivers.length;i++){
     (function () {
     const elementttt = drivers3[i];
-    console.log("this is the element " + elementttt);
     const Usr = JSON.parse(localStorage.getItem('usr'));
     const starCountRef = ref(db, 'users/' + Usr.uid);
     drivers[i].addEventListener('click', (e) => { var drvr = document.getElementById(elementttt);
