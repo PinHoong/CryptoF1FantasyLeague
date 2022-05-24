@@ -452,6 +452,85 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 2%;
 }
 
+.raceImg {
+  position: relative;
+}
+
+#raceImg2 {
+  opacity: 0.3;
+}
+
+#TextOverImg {
+  position: absolute;
+  top: 30%;
+  left: 31%;
+  color: #000000;
+  font-weight: bold;
+  font-size: 80px;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.raceButton {
+  position: absolute;
+  top: 45%;
+  left: 44%;
+  margin: 0 0 0 0px;
+  border: 2px solid#DC143C;
+  color: #fff;
+  border-radius: 50px;
+  padding: 8px 25px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-weight: bold;
+  background: #DC143C;
+  width: 120px;
+  text-align: center;
+  height: 40px;
+}
+
+.topnav {
+  position: absolute;
+  top: 64%;
+  background: rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  width: 100vw;
+}
+
+.topnav ul{
+  margin: 2px;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.topnav li {
+  margin-left: 18.5%;
+  position: relative;
+}
+
+.topnav a, .topnav a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 10px 0 10px 30px;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.topnav .active {
+  color: #DC143C;
+}
+
+.topnav a:hover {
+  color: #DC143C;
+}
 /*--------------------------------------------------------------
 # Book a table button Menu
 --------------------------------------------------------------*/
