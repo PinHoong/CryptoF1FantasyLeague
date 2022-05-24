@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const currentUser = JSON.parse(localStorage.getItem('usr'));
 const starCountRef2 = ref(db, 'users/' + currentUser.uid + '/currency');
-const price2 = {'b1': 20, 'b2': 40, 'b3': 50};
+const price2 = {'b1': 30, 'b2': 40, 'b3': 50};
 get(starCountRef2).then ((snapshot) => {
     var data = snapshot.val();
     localStorage.setItem('Amt', JSON.stringify(data));
