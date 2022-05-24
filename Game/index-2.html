@@ -39,6 +39,7 @@
 </head>
 
 <body>
+  <script type="module" src="./assets/js/ScoreCalculator.js"></script>
   <div id="popUpmain">
     <div class="popup">
       <h1 class="newsHeading" style="font-weight: bold; margin-bottom: 5%; margin-top: 10%">Welcome Team Managers!</h1>
@@ -58,6 +59,8 @@
   </div>
   <script type="module" src = "assets/js/UserFunded.js"></script>
   <script>
+    var money = JSON.parse(localStorage.getItem('Amt'));
+    var driverc = JSON.parse(localStorage.getItem('dc'));
     if (money > 0 | driverc > 0) {
       document.getElementById("popUpmain").remove();
     } 
@@ -70,9 +73,6 @@
       document.getElementById('popUpmain2').remove();
       //window.location.href = "components-badges.html"
     }
-
-    var money = JSON.parse(localStorage.getItem('Amt'));
-    var driverc = JSON.parse(localStorage.getItem('dc'));
   </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">
@@ -227,7 +227,7 @@
                       <i class="fa-solid fa-flag-checkered"></i>
                     </div>
                     <div class="ps-3">
-                      <h6 id="raceName">Saudi Arabia</h6>
+                      <a href = "racePage.html"><h6 id="raceName">Saudi Arabia</h6></a>
                       <!--<div>Race ends in <span id="time">01:00</span> minutes!</div>-->
                     </div>
                   </div>
@@ -294,7 +294,6 @@
 
                     if (data['driverCount'] > 0){
                       var li = data['drivers'];
-                      console.log(li);
                       for (var dd in li){
                         if (dd != 'nil'){
                           mapping[pid2[c]] = dd
@@ -364,7 +363,6 @@
                           c++;
                         }
                       }
-                  console.log(mapping2);
                   //START OF CAR DRAFTING JS CODE 
                   //TO RE-IMPLEMENT DRAFTING, REPLACE INNERHTML WITH '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>'
                   /*var countt = 0;  
