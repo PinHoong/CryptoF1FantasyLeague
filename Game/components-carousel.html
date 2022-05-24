@@ -178,7 +178,6 @@
       var data = snapshot.val();
       for (var key in data) {
         var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
-        console.log(data[key])
         drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td>' +  data[key]['Price'] +'<i class="fa-brands fa-ethereum"></i></td><td><button onclick="style.opacity= 0.5" type="button" id=' + drivers[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
         c++;
       }
@@ -194,7 +193,6 @@
     */
   get(anotherref).then((snapshot) =>{
     const d2 = snapshot.val();
-    console.log(d2);
     if (d2['driverCount'] == 2){
       alert("You already have 2 Drivers");
         for (var j = 0;j < 20;j++){
@@ -209,16 +207,26 @@
     const elementttt = drivers3[i];
     const Usr = JSON.parse(localStorage.getItem('usr'));
     const starCountRef = ref(db, 'users/' + Usr.uid);
+    const starCountRef2 = ref(db, 'drivers/');
     drivers[i].addEventListener('click', (e) => { var drvr = document.getElementById(elementttt);
-    console.log('i found it '+ drvr.cells[1].innerHTML);
 
     localStorage.setItem('drvrname', JSON.stringify(elementttt));
+    get(starCountRef2).then((snapshot) => {
+        const drvdata = snapshot.val();
+        var drvrname = JSON.parse(localStorage.getItem('drvrname'));
+        console.log("og prce:" + drvdata[drvrname]['Price']);
+        localStorage.answer = JSON.stringify(drvdata[drvrname]['Price'].toString());
+      })
     
     get(starCountRef).then((snapshot) => {
       const data = snapshot.val();
-      console.log(data['driverCount']);
       var old = data['drivers'];
       var drvrname = JSON.parse(localStorage.getItem('drvrname'));
+
+      //to get driver price 
+      let drvPrice2 = JSON.parse(localStorage.answer);
+      console.log("this is the drvPrice2 " + drvPrice2)
+      //end of getting driver price 
       
       if (data['driverCount'] == 2){
         alert("You already have 2 Drivers");
@@ -230,12 +238,22 @@
         alert("You already own this driver");
       }
 
+      else if (drvPrice2 > data['currency']){
+        alert('Insufficient Funds');
+      }
+
+
       else{
         var curr = data['driverCount'];
+        var currcash = data['currency'];
         curr += 1 ;
+        currcash -= parseInt(drvPrice2);
+        console.log("this is the price of the drv:" + drvPrice2)
+        console.log("this is current cash:" + currcash)
         var drvrname = JSON.parse(localStorage.getItem('drvrname'));
         update(ref(db, 'users/' + Usr.uid), {
                   'driverCount': curr,
+                  'currency': currcash
               });
         var old = data['drivers'];
         old[drvrname] = 1;
