@@ -172,17 +172,21 @@
   const drivers = [Albon, Alonso, Bottas, Gasly, Hamiliton, Lafti, Leclerc, Magussen, Norris, Ocon, Perez, Ricardo, Russell, Sainz, Schumacher, Stroll, Tsunoda, Verstappen, Vettel, Zhou];
   const drivers2 = ['albon', 'alonso', 'bottas', 'gasly', 'hamiliton', 'lafti', 'leclerc', 'magussen', 'norris', 'ocon', 'perez', 'ricardo', 'russell', 'sainz', 'schumacher', 'stroll', 'tsunoda', 'verstappen', 'vettel', 'zhou'];
   const drivers3 = ['Albon', 'Alonso', 'Bottas', 'Gasly', 'Hamiliton', 'Lafti', 'Leclerc', 'Magussen', 'Norris', 'Ocon', 'Perez', 'Ricardo', 'Russell', 'Sainz', 'Schumacher', 'Stroll', 'Tsunoda', 'Verstappen', 'Vettel', 'Zhou'];
+  //const drivers4 = [albon, alonso, bottas, gasly, hamiliton,lafti, leclerc, magussen, norris, ocon, perez, ricardo, russell, sainz, schumacher, stroll, tsunoda, verstappen, vettel, zhou];
   var c = 0;
 
   onValue(starCountRef, (snapshot) => {
       var data = snapshot.val();
       for (var key in data) {
+        
         var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
-        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td>' +  data[key]['Price'] +'<i class="fa-brands fa-ethereum"></i></td><td><button onclick="style.opacity= 0.5" type="button" id=' + drivers[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
+        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td>' +  data[key]['Price'] +'<i class="fa-brands fa-ethereum"></i></td><td><button  type="button" id=' + drivers2[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
         c++;
       }
       
-    });
+    
+  
+  //const drivers4 = [albon,alonso, bottas, gasly, hamiliton, lafti, leclerc, magussen, norris, ocon, perez, ricardo, russell, sainz, schumacher, stroll, tsunoda, verstappen, vettel, zhou];
     /*
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
@@ -208,8 +212,10 @@
     const Usr = JSON.parse(localStorage.getItem('usr'));
     const starCountRef = ref(db, 'users/' + Usr.uid);
     const starCountRef2 = ref(db, 'drivers/');
-    drivers[i].addEventListener('click', (e) => { var drvr = document.getElementById(elementttt);
-
+    const e2 = drivers2[i];
+    
+    document.getElementById(drivers2[i]).addEventListener('click', (e) => {
+      localStorage.setItem('btnid', JSON.stringify(e2));
     localStorage.setItem('drvrname', JSON.stringify(elementttt));
     get(starCountRef2).then((snapshot) => {
         const drvdata = snapshot.val();
@@ -262,6 +268,7 @@
                   'drivers': old,
               })
         titlecount.innerHTML = '<h1 style = "font-size: xx-large" id = "title-count">Drivers ' +  (data['driverCount'] + 1) + '/2</h1>';
+        document.getElementById(JSON.parse(localStorage.getItem('btnid'))).style.opacity = 0.5;
 
         
 
@@ -270,6 +277,7 @@
     )})
    }());
     }
+  });
 
 </script>
 
