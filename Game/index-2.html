@@ -58,6 +58,9 @@
   </div>
   <script type="module" src = "assets/js/UserFunded.js"></script>
   <script>
+    if (money > 0 | driverc > 0) {
+      document.getElementById("popUpmain").remove();
+    } 
     function closeWindow() {
       document.getElementById('popUpmain').remove();
       document.getElementById('popUpmain2').style.display = 'block';
@@ -70,9 +73,6 @@
 
     var money = JSON.parse(localStorage.getItem('Amt'));
     var driverc = JSON.parse(localStorage.getItem('dc'));
-    if (money > 0 | driverc > 0) {
-      document.getElementById("popUpmain").remove();
-    }
   </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">
