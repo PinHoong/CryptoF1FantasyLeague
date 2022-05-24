@@ -14,14 +14,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const currentUser = JSON.parse(localStorage.getItem('usr'));
-const starCountRef2 = ref(db, 'users/' + currentUser.uid + '/currency');
-const price2 = {'b1': 20, 'b2': 40, 'b3': 50};
+const starCountRef2 = ref(db, 'users/' + currentUser.uid);
 get(starCountRef2).then ((snapshot) => {
     var data = snapshot.val();
-    localStorage.setItem('Amt', JSON.stringify(data));
-    const newAmt = data + price2[JSON.parse(localStorage.getItem('btn'))];
-    console.log(newAmt);
-    update(ref(db, 'users/' + currentUser.uid), {
-        'currency': newAmt,
-    })
+    localStorage.setItem('Amt', JSON.stringify(data['currency']))
+    localStorage.setItem('dc', JSON.stringify(data['driverCount']));
 })

@@ -56,6 +56,7 @@
       <button class="popup_buttons" style = "margin-top:60px;" onclick = "closeWindow2()">I'M Ready</button>
     </div>
   </div>
+  <script type="module" src = "assets/js/UserFunded.js"></script>
   <script>
     function closeWindow() {
       document.getElementById('popUpmain').remove();
@@ -67,10 +68,11 @@
       //window.location.href = "components-badges.html"
     }
 
-    $(document).ready(function() {
-      setTimeout(function() {
-        $('#popUpMain').css('display', 'block');},5000);
-      });  
+    var money = JSON.parse(localStorage.getItem('Amt'));
+    var driverc = JSON.parse(localStorage.getItem('dc'));
+    if (money > 0 | driverc > 0) {
+      document.getElementById("popUpmain").remove();
+    }
   </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">
@@ -215,33 +217,6 @@
                 import { getDatabase, ref, onValue, update, get, set} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
                 const app = initializeApp(firebaseConfig);
                 const db = getDatabase(app);
-
-                //START OF DRIVER DRAFT
-                const drivers2 = ['albon', 'alonso', 'bottas', 'gasly', 'hamiliton', 'lafti', 'leclerc', 'magussen', 'norris', 'ocon', 'perez', 'ricardo', 'russell', 'sainz', 'schumacher', 'stroll', 'tsunoda', 'verstappen', 'vettel', 'zhou'];
-                const dictt = {Albon: 'albon', Alonso: 'alonso', Bottas: 'bottas', Gasly: 'gasly', Hamiliton: 'hamiliton', Lafti: 'lafti', Leclerc: 'leclerc', Magussen: 'magussen', Norris: 'norris', Ocon: 'ocon', Perez:'perez', Ricardo:'ricardo', Russell:'russell', Sainz: 'sainz', Schumacher:'schumacher', Stroll:'stroll', Tsunoda:'tsunoda', Verstappen:'verstappen', Vettel:'vettel', Zhou:'zhou'};
-                const pid = [d1, d2];
-                const pid2 = ['d1', 'd2']
-                const mapping = {}
-
-                const Usr = JSON.parse(localStorage.getItem('usr'));
-                const starCountRef = ref(db, 'users/' + Usr.uid);
-                console.log(Servervalue.TIMESTAMP);
-                update(ref(db, 'users/' + Usr.uid), {
-                  startAt: firebase.db.ServerValue.TIMESTAMP,
-                  seconds: 20
-
-                  })
-                  const r = ['Australia', 'Singapore', 'Monaco', 'Bahrain', 'Saudi Arabia'];
-                  var c = 0;
-
-                  function name_change(){
-                    display = document.querySelector('#time');
-                    raceName.innerText = r[c]
-                    c++
-                    if (c == r.length){
-                      c = 0;
-                    }
-                  }
 
                 </script>
 

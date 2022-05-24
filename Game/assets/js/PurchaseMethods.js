@@ -1,7 +1,7 @@
 async function PurchaseProcedure(value) {
     document.getElementById('poppingForPurchase').style.display = 'block';
     
-    const price = {'b1': 20000000000000000, 'b2': 40000000000000000, 'b3': 60000000000000000};
+    const price = {'b1': 20000000000000000, 'b2': 40000000000000000, 'b3': 50000000000000000};
     localStorage.setItem('btn', JSON.stringify(value));
     localStorage.setItem('k', JSON.parse(localStorage.getItem('btn')));
     let params = [{
