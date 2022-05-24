@@ -56,9 +56,12 @@
       </script>
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
+          <i class="fa-solid fa-wallet fa-1x" style="color: #cda45e;"></i>
+          <li id="VirtualCurrency" style="color: #cda45e; margin-right: 200px; margin-left: 10px; font-size: 20px;" ></li>
           <li><i class = "fa-solid fa-user" id="UserName" style="color: #cda45e; margin-right: 200px;"></i></li>
-          <li><button id = "specialSignOut" onclick="Signout()">Sign Out</button></li>
+          <li><button class="book-a-table-btn scrollto d-none d-lg-flex" onclick="Signout()">Sign Out</button></li>
         </ul>
+        <script type = "module" src = "./assets/js/VirtualCurrency.js"></script>
         <script>
           const currentUser = JSON.parse(localStorage.getItem('user'));
           document.getElementById("UserName").innerText = currentUser;
@@ -99,6 +102,7 @@
 
     </div>
   </header><!-- End Header -->
+
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar" style="margin-top:38px">
