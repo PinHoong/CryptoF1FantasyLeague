@@ -295,7 +295,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-  width:520px;
+  width: 48%;
   display:inline-block;
   margin-right:10px;
   font-size:large;
@@ -493,7 +493,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .topnav {
   position: absolute;
-  top: 64%;
+  top: 59%;
   background: rgba(0, 0, 0, 0.85);
   overflow: hidden;
   width: 100vw;
@@ -1439,7 +1439,7 @@ button{
 
 .profilebtn{
   position:relative;
-  left:220px;
+  left:60%;
 }
 
 /* Store Styling */
