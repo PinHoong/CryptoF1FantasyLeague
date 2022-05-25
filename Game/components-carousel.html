@@ -180,7 +180,7 @@
       for (var key in data) {
         
         var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
-        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td>' +  data[key]['Price'] +'<i class="fa-brands fa-ethereum"></i></td><td><button  type="button" id=' + drivers2[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
+        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td><i class="fa-solid fa-wallet fa-1x" ></i>' +  data[key]['Price'] +'</td><td><button  type="button" id=' + drivers2[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td>';  
         c++;
       }
       

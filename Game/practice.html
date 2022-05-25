@@ -39,7 +39,6 @@
 </head>
 
 <body>
-  <script type="module" src="./assets/js/ScoreCalculator.js"></script>
   <div id="popUpmain">
     <div class="popup">
       <h1 class="newsHeading" style="font-weight: bold; margin-bottom: 5%; margin-top: 10%">Welcome Team Managers!</h1>
@@ -59,8 +58,6 @@
   </div>
   <script type="module" src = "assets/js/UserFunded.js"></script>
   <script>
-    var money = JSON.parse(localStorage.getItem('Amt'));
-    var driverc = JSON.parse(localStorage.getItem('dc'));
     if (money > 0 | driverc > 0) {
       document.getElementById("popUpmain").remove();
     } 
@@ -73,6 +70,9 @@
       document.getElementById('popUpmain2').remove();
       //window.location.href = "components-badges.html"
     }
+
+    var money = JSON.parse(localStorage.getItem('Amt'));
+    var driverc = JSON.parse(localStorage.getItem('dc'));
   </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">
@@ -138,7 +138,6 @@
   </header><!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-  <a href="practice.html">Practice</a> 
   <aside id="sidebar" class="sidebar" style="margin-top:38px">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -200,11 +199,10 @@
           <div class="row">
 
             <!-- Upcoming Race Card -->
-            <div class= "col-12">
+            <div class="col-xxl-4 col-md-6" style="width: 50% !important;">
               <div class="card info-card sales-card">
 
                 <!--JS CODE FOR COUNTDOWN-->
-                <script type="module" src="timer.js"></script>
                 <div class="card-body">
                   <h5 class="card-title">Upcoming Race</h5>
                   <div class="d-flex align-items-center">
@@ -212,15 +210,17 @@
                       <i class="fa-solid fa-flag-checkered"></i>
                     </div>
                     <div class="ps-3">
-                      <a href = "racePage.html"><h6 id="raceName">Saudi Arabia</h6></a>
-                      <!--<div>Race ends in <span id="time">01:00</span> minutes!</div>-->
+                      <h6 id="raceName">Saudi Arabia</h6>
+                      <div>Race ends in <span id="time">01:00</span> minutes!</div>
                     </div>
                   </div>
                 </div>
 
               </div>
+            </div><!-- End Upcoming Race Card -->
 
             <!-- Training Card -->
+            <div class="col-xxl-4 col-md-6" style="width: 50% !important;">
               <div class="card info-card revenue-card">
 
                 <div class="card-body">
@@ -238,7 +238,6 @@
 
               </div>
             </div><!-- End Revenue Card -->
-            </div>
 
             <!-- Reports -->
             <div class="col-12">
@@ -264,6 +263,12 @@
                 const pid = [d1, d2];
                 const pid2 = ['d1', 'd2']
                 const mapping = {}
+                const mapping_dupe = {}
+                const btns = ['b1', 'b2']
+                const btns2 = ['b5', 'b6']
+
+                const pid22 = [d12, d22]
+                const pid222 = ['d12', 'd22']
 
                 const Usr = JSON.parse(localStorage.getItem('usr'));
                 const starCountRef = ref(db, 'users/' + Usr.uid);
@@ -275,55 +280,30 @@
                     //titledraft.innerText = data['drafted'] + '/2  drivers';
                     //titledraft2.innerText = data['draftedCars'] +'/2  cars'
 
-
-                    if (data['driverCount'] > 0){
+                        if (data['driverCount'] > 0){
                       var li = data['drivers'];
+                      console.log(li);
                       for (var dd in li){
                         if (dd != 'nil'){
-                          mapping[pid2[c]] = dd
+                          mapping[btns[c]] = dd
+                          mapping_dupe[btns2[c]] = dd
                           console.log('<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>');
-                          pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' + dd + '<a class="profilebtn" + href =' + dd +'.html>View Profile</a>';
+                          pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ btns[c] +'>Draft</button>';
+                          pid22[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ btns2[c] +'>Draft</button>';
+
+
                           c++;
                         }
                       }
                       console.log(mapping)
+                      localStorage.setItem('mapping', JSON.stringify(mapping))
+                      localStorage.setItem('mapping_dupe', JSON.stringify(mapping_dupe))
+
                       //START OF DRIVER DRAFT JS CODE
                       //TO RE-IMPLEMENT DRAFTING REPLACE INNERHTML WITH '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>'
-                      /*for (var i = 0;i < data['driverCount'];i++){
-                        (function () {
-                          const elementt = pid2[i];
-                          pid[i].addEventListener('click', (e) => { var drivr = document.getElementById(elementt);
-                            console.log('this player just got clicked: ' + mapping[elementt]);
-                            var isit = data['drafted'];
-                            if (countt < data['driverCount']){
-                              countt += 1
-                              console.log('countt:' + countt);
-                              titledraft.innerText = countt + '/2  drivers';
 
-
-                              var old = data['draft'];
-                              old[mapping[elementt]] = 1;
-                              console.log(old);
-                              update(ref(db, 'users/' + Usr.uid), {
-                              'draft': old,
-                              'drafted': countt,
-                              })
-                              
-                            }
-
-                            else{
-                              alert("You already have a full draft")
-                            }
-                          })
-
-                        }())
-                      }*/
                       //END OF DRIVER DRAFT JS CODE
-                      
                     }
-                    
- 
-
                   })
 
                 get(starCountRef).then((snapshot) => {             
@@ -333,90 +313,266 @@
                 const cars = ["RedBull2022", "Ferrari2022", "Mercedes2022", "Mclaren2022", "AlfaRomeo2022", "AlphaTauri2022", "Alpine2022", "AstonMartin2022", "Haas2022", "Williams2022"];
                 const dictt2 = {'Red Bull 2022': 'RedBull', 'Ferrari 2022': 'Ferrari', 'Mercedes 2022': 'Mercedes', 'Mclaren 2022': 'Mclaren', 'Alfa Romeo 2022': 'AlfaRomeo','Alpha Tauri 2022':'AlphaTauri', 'Alpine 2022': 'Alpine','Aston Martin 2022':'AstonMartin', 'Haas 2022':'Haas','Williams 2022':'Williams' }                
                 const mapping2 = {}
+                const mapping2_dupe = {}
+                const btns = ['b3', 'b4']
+                const btns2 = ['b7', 'b8']
+
+                const cid22 = [c12, c22]
+                const cid222 = ['c12', 'c22']
 
                 var c = 0;
                 if (data['carCount'] > 0){
                   var li2 = data['cars'];
                   for (var cc in li2){
                         if (cc != 'nil'){
-                          mapping2[cid2[c]] = cc
+                          mapping2[btns[c]] = cc
+                          mapping2_dupe[btns2[c]] = cc
                           console.log('this is cc' + cc)
 
                           console.log('<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>');
-                          cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc;
+                          cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ btns[c] +'>Draft</button>';
+                          cid22[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ btns2[c] +'>Draft</button>';
+
                           c++;
                         }
                       }
+                  console.log(mapping2);
+                  localStorage.setItem('mapping2', JSON.stringify(mapping2))
+                  localStorage.setItem('mapping2_dupe', JSON.stringify(mapping2_dupe))
                   //START OF CAR DRAFTING JS CODE 
                   //TO RE-IMPLEMENT DRAFTING, REPLACE INNERHTML WITH '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>'
-                  /*var countt = 0;  
-                  for (var i = 0;i < data['carCount'];i++){
-                        (function () {
-                          const elementt = cid2[i];
-                          cid[i].addEventListener('click', (e) => { var drivr = document.getElementById(elementt);
-                            console.log('this car just got clicked: ' + mapping2[elementt]);
-                            if (countt < data['carCount']){
-                              countt += 1
-                              titledraft2.innerText = countt + '/2  cars';
-                              var old = data['draftCars'];
-                              old[mapping2[elementt]] = 1;
-                              console.log(old);
-                              update(ref(db, 'users/' + Usr.uid), {
-                              'draftCars': old,
-                              'draftedCars': countt,
-                              })
-                              
-                            }
-
-                            else{
-                              alert("You already have a full draft")
-                            }
-                            
-                          })
-
-                        }())
-                      } */  
+  
                   //END OF CAR DRAFTING JS CODE             
                 }
               })
+
+              get(starCountRef).then((snapshot) => {
+                const data = snapshot.val();
+                const mapping = JSON.parse(localStorage.getItem('mapping'));
+                const mapping_dupe = JSON.parse(localStorage.getItem('mapping_dupe'))
+                const mapping2_dupe = JSON.parse(localStorage.getItem('mapping2_dupe'))
+                const mapping2 = JSON.parse(localStorage.getItem('mapping2'))
+
+                const pair1 = [d1, d2, c1, c2]
+                const pair1s = ['d1', 'd2', 'c1', 'c2']
+                const pair2 = [d12,d22, c12, c22]
+                const pair2s = ['d12', 'd22', 'c12', 'c22']
+                const mapping_combi = Object.assign({}, mapping, mapping2)
+                const mapping_combi_dupe = Object.assign({}, mapping_dupe, mapping2_dupe)
+                var p1DCount = data['poneD'];
+                var p1CCount = data['poneC'];
+                const btns1 = [b1, b2,b3,b4, b5, b6,b7,b8]
+                const btns1s = ['b1', 'b2', 'b3', 'b4']
+                const btns2 = [b5, b6,b7,b8]
+                const btns2s = ['b5', 'b6', 'b7', 'b8']
+
+                var p2DCount = data['ptwoD'];
+                var p2CCount = data['ptwoC'];
+                
+                for (var i = 0;i < 4;i++){
+                    (function() {
+                          const elementt = btns1s[i]
+                          btns1[i].addEventListener('click', (e) => { 
+                            if (mapping_combi[elementt] in data['drivers']){
+                              if (mapping_combi[elementt] in data['pair2']){
+                                alert("Driver has already been drafted in Pair 2")
+                              }
+
+                              else if (p1DCount == 1){
+                                alert("Pair 1 already has a driver")
+                              }
+
+                              else{
+                                p1DCount += 1 
+                                var old = data['pair1']
+                                old[mapping_combi[elementt]] = 1 
+                                update(ref(db, 'users/' + Usr.uid), {
+                                  'pair1': old,
+                                  'poneD': p1DCount
+                                })
+                              }
+                            }
+
+                            if (mapping_combi[elementt] in data['cars']){
+                              if (mapping_combi[elementt] in data['pair2']){
+                                alert("Car has already been drafted in Pair 2")
+                              }
+
+                              else if (p1CCount == 1){
+                                alert("Pair 1 already has a car")
+                              }
+
+                              else{
+                                p1CCount += 1 
+                                var old = data['pair1']
+                                old[mapping_combi[elementt]] = 1 
+                                update(ref(db, 'users/' + Usr.uid), {
+                                  'pair1': old,
+                                  'poneC': p1CCount
+                                })
+                              }
+                            }
+                          
+
+                          })
+                          
+
+
+                        }())//FUNCTION 
+                          }//FIRST FOR LOOP
+                          for (var i = 0;i < 4;i++){
+                    (function() {
+                          const elementt = btns2s[i]
+                          btns2[i].addEventListener('click', (e) => { 
+                            if (mapping_combi_dupe[elementt] in data['drivers']){
+                              if (mapping_combi_dupe[elementt] in data['pair1']){
+                                alert("Driver has already been drafted in Pair 1")
+                              }
+
+                              else if (p2DCount == 1){
+                                alert("Pair 2 already has a driver")
+                              }
+
+                              else{
+                                p2DCount += 1 
+                                var old = data['pair2']
+                                old[mapping_combi_dupe[elementt]] = 1 
+                                update(ref(db, 'users/' + Usr.uid), {
+                                  'pair2': old,
+                                  'ptwoD': p2DCount
+                                })
+                              }
+                            }
+
+                            if (mapping_combi_dupe[elementt] in data['cars']){
+                              if (mapping_combi_dupe[elementt] in data['pair1']){
+                                alert("Car has already been drafted in Pair 1")
+                              }
+
+                              else if (p2CCount == 1){
+                                alert("Pair 2 already has a car")
+                              }
+
+                              else{
+                                p2CCount += 1 
+                                var old = data['pair2']
+                                old[mapping_combi_dupe[elementt]] = 1 
+                                update(ref(db, 'users/' + Usr.uid), {
+                                  'pair2': old,
+                                  'ptwoC': p1CCount
+                                })
+                              }
+                            }
+                          
+
+                          })
+                          
+
+
+                        }())//SECOND FUNCTION 
+                          }//SECOND FOR LOOP
+                        
+                        })// SNAPSHOT
+
+
+                             
+                
+
+
+
+
+
+
               </script>
 
 
 
-              <h4 class="card-title">My Team </h4>
+              <h4 class="card-title">My Draft </h4>
+              <!-- PAIR ONE SELECTION -->
               <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
 
                 <div class="card-body">
                   <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
                   <h5 class = 'card-title'>Driver 1</h5>
-                  <p id = 'd1'><button></button></p>
+                  <p id = 'd1'><button id = 'b1'></button></p>
                 </div>
-              </div>
-
-              <div class="card">
 
                 <div class="card-body">
                   <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
                   <h5 class = 'card-title'>Driver 2</h5>
-                  <p id = 'd2'><button></button></p>
+                  <p id = 'd2'><button id = 'b2'></button></p>
                 </div>
-              </div>
 
-              <div class="card">
                 <div class="card-body">
                   <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
                   <h5 class = 'card-title'>Car 1</h5>
-                  <p id = 'c1'><button></button></p>
+                  <p id = 'c1'><button id = 'b3'></button></p>
                 </div>
+
+              <div class="card-body">
+                <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
+                <h5 class = 'card-title'>Car 2</h5>
+                <p id = 'c2'><button id = 'b4'></button></p>
               </div>
 
+              </div>
+              
+              <!-- PAIR TWO SELECTION -->
               <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
+                  <h5 class = 'card-title'>Driver 1</h5>
+                  <p id = 'd12'><button></button></p>
+                </div>
+
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
+                  <h5 class = 'card-title'>Driver 2</h5>
+                  <p id = 'd22'><button></button></p>
+                </div>
+
                 <div class="card-body">
                   <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
-                  <h5 class = 'card-title'>Car 2</h5>
-                  <p id = 'c2'><button></button></p>
+                  <h5 class = 'card-title'>Car 1</h5>
+                  <p id = 'c12'><button></button></p>
+                </div>
+
+              <div class="card-body">
+                <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
+                <h5 class = 'card-title'>Car 2</h5>
+                <p id = 'c22'><button></button></p>
               </div>
-            </div>
+
+              </div>
+
+
 
 
 
