@@ -17,6 +17,7 @@ const currentUser = JSON.parse(localStorage.getItem('usr'));
 const starCountRef2 = ref(db, 'users/' + currentUser.uid);
 get(starCountRef2).then ((snapshot) => {
     var data = snapshot.val();
+    console.log(data)
     localStorage.setItem('Amt', JSON.stringify(data['currency']))
     localStorage.setItem('dc', JSON.stringify(data['driverCount']));
 })
