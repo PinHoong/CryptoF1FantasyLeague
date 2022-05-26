@@ -372,7 +372,9 @@
                 for (var i = 0;i < 4;i++){
                     (function() {
                           const elementt = btns1s[i]
+                          const elementt2 = btns2s[i]
                           btns1[i].addEventListener('click', (e) => { 
+                            
                             if (mapping_combi[elementt] in data['drivers']){
                               if (mapping_combi[elementt] in data['pair2']){
                                 alert("Driver has already been drafted in Pair 2")
@@ -390,6 +392,13 @@
                                   'pair1': old,
                                   'poneD': p1DCount
                                 })
+                                var buttonz = document.getElementById(elementt);
+                                console.log(buttonz);
+                                buttonz.style.opacity = 0.5;
+
+                                var buttonz2 = document.getElementById(elementt2);
+                                console.log(buttonz2);
+                                buttonz2.style.opacity = 0.5;
                               }
                             }
 
@@ -410,6 +419,16 @@
                                   'pair1': old,
                                   'poneC': p1CCount
                                 })
+                                var buttonz = document.getElementById(elementt);
+                                console.log(buttonz);
+                                buttonz.style.opacity = 0.5;
+
+                                var buttonz2 = document.getElementById(elementt2);
+                                console.log(buttonz2);
+                                buttonz2.style.opacity = 0.5;
+
+
+
                               }
                             }
                           
@@ -423,6 +442,7 @@
                           for (var i = 0;i < 4;i++){
                     (function() {
                           const elementt = btns2s[i]
+                          const elementt2 = btns1s[i]
                           btns2[i].addEventListener('click', (e) => { 
                             if (mapping_combi_dupe[elementt] in data['drivers']){
                               if (mapping_combi_dupe[elementt] in data['pair1']){
@@ -441,6 +461,14 @@
                                   'pair2': old,
                                   'ptwoD': p2DCount
                                 })
+                                var buttonz = document.getElementById(elementt);
+                                console.log(buttonz);
+                                buttonz.style.opacity = 0.5;
+
+                                var buttonz2 = document.getElementById(elementt2);
+                                console.log(buttonz2);
+                                buttonz2.style.opacity = 0.5;
+
                               }
                             }
 
@@ -461,6 +489,14 @@
                                   'pair2': old,
                                   'ptwoC': p1CCount
                                 })
+                                var buttonz = document.getElementById(elementt);
+                                console.log(buttonz);
+                                buttonz.style.opacity = 0.5;
+
+                                var buttonz2 = document.getElementById(elementt2);
+                                console.log(buttonz2);
+                                buttonz2.style.opacity = 0.5;
+
                               }
                             }
                           
