@@ -889,7 +889,7 @@ section {
   font-style: italic;
   font-size: 20px;
   font-family: "Poppins", sans-serif;
-  color: rgba(255, 255, 255, 0.5);
+  color:#fff;
 }
 
 /*--------------------------------------------------------------
@@ -1558,4 +1558,22 @@ section {
 #btn-store-1 #btn-store-2{
   display: none;
 
+}
+
+#specialFooter {
+  text-align: center;
+}
+
+#specialFooter h3{
+  font-size: 300% !important;
+  color: #DC143C;
+}
+
+#specialFooter p {
+  font-size: 16px;
+}
+
+#specialFooter h4 {
+  font-size: 150% !important;
+  color: #DC143C !important;
 }
