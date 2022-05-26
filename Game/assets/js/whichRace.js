@@ -37,7 +37,9 @@ get(starCountRef2).then((snapshot2) => {
 
 //Now is time to set the variables
 var currentRacenum = JSON.parse(localStorage.getItem('raceNo'));
+localStorage.setItem('currentRaceNum', JSON.stringify(currentRacenum));
 var currentRace = JSON.parse(localStorage.getItem('raceNames'))[currentRacenum];
+localStorage.setItem('currentRaceC', JSON.stringify(currentRace))
 var currentRaceDetails = JSON.parse(localStorage.getItem('raceDetails'))[currentRace];
 const currentCircuitName = currentRaceDetails['Circuit'];
 const currentCircuitLength = currentRaceDetails['Circuit Length'];

@@ -103,18 +103,26 @@
   </header><!-- End Header -->
 
   <div class = "RaceImg">
-      <img src = "assets/img/SaudiArabia.jpeg" width="100%" height="380" id="raceImg2">
-      <h1 id = "TextOverImg"></h1>
-      <button class="raceButton" disabled><span id="raceNum"></span></button>
-      <div class = "topnav">
-          <ul>
-            <li><a class = "active" href="">Circuit</a></li>
-            <li><a href = "">Submission</a></li>
-            <li><a href = "">Race Results</a></li>
-          </ul>
-      </div>
-  </div>
-
+    <script type="module" src = "assets/js/whichRace.js"></script>
+    <!-- Need change so that we can automate. KIV-->
+    <img src = "assets/img/SaudiArabia.jpeg" width="100%" height="380" id="raceImg2">
+    <h1 id = "TextOverImg"></h1>
+    <button class="raceButton" disabled><span id="raceNum"></span></button>
+    <div class = "topnav">
+        <ul>
+          <li><a href="racePage.html">Circuit</a></li>
+          <li><a class = "active" href = "">Draft</a></li>
+          <li><a href = "">Configuration</a></li>
+          <li><a href = "">Race Results</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+  const countryName = JSON.parse(localStorage.getItem('currentRaceC'))
+  document.getElementById('TextOverImg').innerText = countryName
+  const raceNum = JSON.parse(localStorage.getItem('currentRaceNum')) + 1
+  document.getElementById('raceNum').innerText = 'Race' + ' ' + `${raceNum}`;
+</script>
   <div class="col-12">
     <!--JS FOR DRAFT SELECTION!-->
     <script type="module">
@@ -402,19 +410,6 @@
     <!-- PAIR ONE SELECTION -->
     <div class="card">
 
-      <div class="filter">
-        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <li class="dropdown-header text-start">
-            <h6>Filter</h6>
-          </li>
-
-          <li><a class="dropdown-item" href="#">Today</a></li>
-          <li><a class="dropdown-item" href="#">This Month</a></li>
-          <li><a class="dropdown-item" href="#">This Year</a></li>
-        </ul>
-      </div>
-
       <div class="card-body">
         <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
         <h5 class = 'card-title'>Driver 1</h5>
@@ -443,19 +438,6 @@
     
     <!-- PAIR TWO SELECTION -->
     <div class="card">
-
-      <div class="filter">
-        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <li class="dropdown-header text-start">
-            <h6>Filter</h6>
-          </li>
-
-          <li><a class="dropdown-item" href="#">Today</a></li>
-          <li><a class="dropdown-item" href="#">This Month</a></li>
-          <li><a class="dropdown-item" href="#">This Year</a></li>
-        </ul>
-      </div>
 
       <div class="card-body">
         <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
@@ -490,5 +472,4 @@
 
 
 </div>
-  <script type="module" src = "assets/js/whichRace.js"></script>
 </body>
