@@ -31,6 +31,7 @@ async function PurchaseProcedure(value) {
         setTimeout(function() {
         document.getElementById("poppingForPurchase").remove();
         }, 5000);
+        localStorage.setItem('funded', 'yes');
     }
 }
 

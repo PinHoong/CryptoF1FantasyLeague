@@ -39,7 +39,7 @@
 </head>
 
 <body>
-  <script type="module" src="./assets/js/ScoreCalculator.js"></script>
+  <!--<script type="module" src="./assets/js/ScoreCalculator.js"></script>-->
   <script type="module" src = "assets/js/UserFunded.js"></script>
   <div id="popUpmain" style="display: block;">
     <div class="popup">
@@ -63,7 +63,8 @@
     var driverc = JSON.parse(localStorage.getItem('dc'));
     console.log(money)
     console.log(driverc)
-    if (money > 0 | driverc > 0) {
+    let funded = localStorage.getItem('funded');
+    if (funded == "yes") {
       document.getElementById('popUpmain').style.display = "none";
     } else {
       window.addEventListener('load', (event) => {
