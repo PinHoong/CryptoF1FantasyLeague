@@ -111,7 +111,7 @@
     <div class = "topnav">
         <ul>
           <li><a href="racePage.html">Circuit</a></li>
-          <li><a class = "active" href = "">Draft</a></li>
+          <li><a class = "active" href = "">Draft Selection</a></li>
           <li><a href = "">Configuration</a></li>
           <li><a href = "">Race Results</a></li>
         </ul>
@@ -171,8 +171,8 @@
                 mapping[btns[c]] = dd
                 mapping_dupe[btns2[c]] = dd
                 console.log('<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>');
-                pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ btns[c] +'>Draft</button>';
-                pid22[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ btns2[c] +'>Draft</button>';
+                pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="draftbtn" id='+ btns[c] +'>Draft</button>';
+                pid22[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="draftbtn" id='+ btns2[c] +'>Draft</button>';
 
 
                 c++;
@@ -213,8 +213,8 @@
                 console.log('this is cc' + cc)
 
                 console.log('<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>');
-                cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ btns[c] +'>Draft</button>';
-                cid22[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ btns2[c] +'>Draft</button>';
+                cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="draftbtn" id='+ btns[c] +'>Draft</button>';
+                cid22[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="draftbtn" id='+ btns2[c] +'>Draft</button>';
 
                 c++;
               }
@@ -408,6 +408,8 @@
 
     <h4 class="card-title">My Draft </h4>
     <!-- PAIR ONE SELECTION -->
+    <div class="draftheader">Pair 1</div>
+    <div class = 'draftheader' >Pair 2</div>
     <div class="card">
 
       <div class="card-body">
