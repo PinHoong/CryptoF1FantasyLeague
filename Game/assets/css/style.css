@@ -1616,6 +1616,7 @@ button{
   font-family: "Poppins", sans-serif;
   font-weight:900;
   width: 60vw;
+  margin-left: 350px;
 }
 
 .tyres{
@@ -1644,4 +1645,23 @@ button{
   height: 40px;
   margin-top:20px;
   float: right;
+}
+
+#configheader{
+  padding-top:8px;
+  margin-top:10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: solid 2px #DC143C;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  width: 60vw;
+  display:inline-block;
+  margin-left:15px;
+  font-size:larger;
+  font-family: "Poppins", sans-serif;
+  font-weight:900;
+  height:50px;
+  text-align:center;
+  margin-left:350px;
+
 }
