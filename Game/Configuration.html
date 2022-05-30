@@ -73,40 +73,25 @@
   </header><!-- End Header -->
 
   <div class = "RaceImg">
-      <img src = "assets/img/SaudiArabia.jpeg" width="100%" height="380" id="raceImg2">
-      <h1 id = "TextOverImg"></h1>
-      <button class="raceButton" disabled><span id="raceNum"></span></button>
-      <div class = "topnav">
-          <ul>
-            <li><a class = "active" href="">Circuit</a></li>
-            <li><a href = "practice2.html">Draft</a></li>
-            <li><a href = "Configuration.html">Configuration</a></li>
-            <li><a href = "">Race Results</a></li>
-          </ul>
-      </div>
-  </div>
-  <script type="module" src = "assets/js/whichRace.js"></script>
-  <div class = "col-12">
-    <div class="row">
-      <span id = "RaceName"></span>
-      <hr>
-      <div class = "col-6">
-        <div class = "row" id = "circuitImg">
-            <img src  = "">   
-        </div>
-      </div>
-      <div class = "col-6">
-        <div class="row">
-            <p class = "iconsofRace">Circuit Length (KM)<br><span class = "thingstoGet" id="CircuitLength"></span></p>
-            <p class = "iconsofRace">Lap Record<br><span class = "thingstoGet" id = "LapRecord"></span></p>
-            <p class = "iconsofRace">Laps<br><span class = "thingstoGet" id="Lap"></span></p>
-            <p class = "iconsofRace">Record Holder<br><span class = "thingstoGet" id="LapRecordHlder"></span></p>
-            <span id = "Highlights">
-              <i class="fas fa-play fa-2x" style="margin-right: 2%;"></i>
-              <a href = "" id="raceHighlights"><span>Race Highlights</span></a>
-            </span>
-        </div>
-      </div>
+    <script type="module" src = "assets/js/whichRace.js"></script>
+    <!-- Need change so that we can automate. KIV-->
+    <img src = "assets/img/SaudiArabia.jpeg" width="100%" height="380" id="raceImg2">
+    <h1 id = "TextOverImg"></h1>
+    <button class="raceButton" disabled><span id="raceNum"></span></button>
+    <div class = "topnav">
+        <ul>
+          <li><a href="racePage.html">Circuit</a></li>
+          <li><a href = "practice2.html" href = "">Draft</a></li>
+          <li><a class = "active">Configuration</a></li>
+          <li><a href = "">Race Results</a></li>
+        </ul>
     </div>
-  </div>
-</body>
+</div>
+<script>
+    const countryName = JSON.parse(localStorage.getItem('currentRaceC'))
+    document.getElementById('TextOverImg').innerText = countryName
+    const raceNum = JSON.parse(localStorage.getItem('currentRaceNum')) + 1
+    document.getElementById('raceNum').innerText = 'Race' + ' ' + `${raceNum}`;
+  </script>
+  </body>
+</html>
