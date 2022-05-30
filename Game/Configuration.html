@@ -179,6 +179,13 @@
             update(ref(db, 'users/' + Usr.uid), {
               'choice': btn_mapping[elementtt],
             })//end of update
+            document.getElementById(elementtt).style.opacity = 0.5;
+            for (var i = 0;i < 3;i ++){
+              if (btnz2[i] != elementtt){
+                document.getElementById(btnz2[i]).style.opacity = 1;
+
+              }
+            }//end of nested for loop
            })//end of event listener 
 
         }())
