@@ -168,13 +168,21 @@
       const data = snapshot.val();
       const btnz = [b1,b2,b3]
       var btnz2 = ['b1','b2','b3']
-      for (var i = 0;i < 3;i++){
-        (function () {
-          btnz[i].addEventListener('click', (e) => { 
-            console.log(btnz[i])
-          })
-        }())
+      const btn_mapping = {'b1': 1, 'b2': 2, 'b3': 3}
 
+      for (var i = 0;i < 3;i++){
+        (function(){
+          const elementtt = btnz2[i]
+          const ee2 = btnz[i]
+          btnz[i].addEventListener('click', (e) => {
+            console.log(elementtt + ' just got clicked')
+            update(ref(db, 'users/' + Usr.uid), {
+              'choice': btn_mapping[elementtt],
+            })//end of update
+           })//end of event listener 
+
+        }())
+        
       }
       
       
