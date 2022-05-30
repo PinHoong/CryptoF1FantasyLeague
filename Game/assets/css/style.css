@@ -324,7 +324,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 .card-body {
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 10px 20px;
   display:block;
 }
 
@@ -1603,4 +1603,45 @@ button{
   font-weight:900;
   height:50px;
   text-align:center;
+}
+
+.cardconfig{
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  display:inline-block;
+  margin-left:15px;
+  font-size:large;
+  font-family: "Poppins", sans-serif;
+  font-weight:900;
+  width: 60vw;
+}
+
+.tyres{
+  margin: 5px;
+  float: right;
+  width: 90px;
+}
+
+.configbtn{
+  display:block;
+  margin-left: 450px;
+  border: 2px solid#fc8fa5;
+  color: rgb(252, 66, 66);
+  border-radius: 50px;
+  padding: 8px 25px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  font-size: 12px;
+  font-weight: bold;
+  background: #fc8fa5;
+  width: 120px;
+  text-align: center;
+  height: 40px;
+  margin-top:20px;
+  float: right;
 }
