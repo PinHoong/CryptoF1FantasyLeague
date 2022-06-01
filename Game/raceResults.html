@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Race Day</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/F1 Logo.jpeg" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3772469bf7.js" crossorigin="anonymous"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-cente">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+    <!--<h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>-->
+    <a href="index-2.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
+    <script>
+      function Signout() {
+        sessionStorage.removeItem('user');
+        localStorage.removeItem('user');
+        localStorage.removeItem('keepLoggedIn');
+        window.location = '/';
+      }
+    </script>
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <i class="fa-solid fa-wallet fa-1x" style="color: #cda45e;"></i>
+        <li id="VirtualCurrency" style="color: #cda45e; margin-right: 200px; margin-left: 10px; font-size: 20px;" ></li>
+        <li><i class = "fa-solid fa-user" id="UserName" style="color: #cda45e; margin-right: 200px;"></i></li>
+        <li><button class="book-a-table-btn scrollto d-none d-lg-flex" onclick="Signout()">Sign Out</button></li>
+      </ul>
+      <script type = "module" src = "./assets/js/VirtualCurrency.js"></script>
+      <script>
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+        document.getElementById("UserName").innerText = currentUser;
+      </script>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+
+  </div>
+</header><!-- End Header -->
+
+<div class = "RaceImg">
+    <img src = "assets/img/SaudiArabia.jpeg" width="100%" height="380" id="raceImg2">
+    <h1 id = "TextOverImg"></h1>
+    <button class="raceButton" disabled><span id="raceNum"></span></button>
+    <div class = "topnav">
+        <ul>
+          <li><a href="racePage.html">Circuit</a></li>
+          <li><a href = "practice2.html">Draft</a></li>
+          <li><a href = "Configuration.html">Configuration</a></li>
+          <li><a class = "active" href = "">Race Results</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<script>
+    const countryName = JSON.parse(localStorage.getItem('currentRaceC'))
+    document.getElementById('TextOverImg').innerText = countryName
+    const raceNum = JSON.parse(localStorage.getItem('currentRaceNum')) + 1
+    document.getElementById('raceNum').innerText = 'Race' + ' ' + `${raceNum}`;
+  </script>
+</body>
+</html>
