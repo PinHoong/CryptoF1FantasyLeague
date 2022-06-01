@@ -51,7 +51,7 @@ const starCountRefPair1 = ref(db, 'users/' + currentUser.uid + '/pair1');
 const starCountRefPair2 = ref(db, 'users/' + currentUser.uid + '/pair2');
 get(starCountRefPair1).then((snapshot3) => {
     const data = snapshot3.val();
-    const pair1 = []
+    var pair1 = []
   for (var key in data) {
       if (key == "nil") {
           continue;
@@ -60,12 +60,16 @@ get(starCountRefPair1).then((snapshot3) => {
       }
   
   }
+  console.log('pair1: ' +pair1)
+  
+ 
+  
   var arrayofScores = [];
   arrayofScores.push(pointsGetter(pair1));
 
   get(starCountRefPair2).then((snapshot4) => {
       const data2 = snapshot4.val();
-      const pair2 = [];
+      var pair2 = [];
       for (var key in data2) {
         if (key == "nil") {
             continue;
@@ -75,10 +79,12 @@ get(starCountRefPair1).then((snapshot3) => {
     }
     arrayofScores.push(pointsGetter(pair2));
     localStorage.setItem('ArrayOfScores', JSON.stringify(arrayofScores));
+
   })
 })
-
-const PairsForScores = JSON.parse(localStorage.getItem('ArrayOfScores'));
+console.log('pair 2:' + pair2)
+console.log(arrayofScores)
+var PairsForScores = JSON.parse(localStorage.getItem('ArrayOfScores'));
 console.log(PairsForScores)
 
 //Function that decides if the user chooses the correc option or not
@@ -147,7 +153,6 @@ for (var s = 0; s < PairsForScores.length; s++) {
     userRaceTimingDetails[randomTempName] = tempArray;
 }
 localStorage.setItem('UserRaceTimingD', JSON.stringify(userRaceTimingDetails));
-
 function lapTimingCalculator(value) {
     const fastest = JSON.parse(localStorage.getItem('Fastest'));
     const fastestEver = JSON.parse(localStorage.getItem('FastestEver'));
