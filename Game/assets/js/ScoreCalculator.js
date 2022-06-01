@@ -108,40 +108,40 @@ get(starCountRef4).then((snapshot4) => {
 
 const userConfigC = JSON.parse(localStorage.getItem('userConfigC'));
 const optimalCFR = JSON.parse(localStorage.getItem('optimalCFR'));
-if (userConfigC != optimalCFR) {
+var arrayOfTiming = [];
+if (userConfigC == optimalCFR) {
     for (var s = 0; s < PairsForScores.length; s++) {
         PairsForScores[s] += 10
+        var timingForAPair = lapTimingCalculator(PairsForScores[s]);
+        arrayOfTiming.push(timingForAPair)
     }
-    lapTimingCalculator()
+    localStorage.setItem('arrayOfTiming', JSON.stringify(arrayOfTiming))
 } else {
     var random_boolean = Math.random() < 0.5;
     if (random_boolean) {
         console.log("DNF")
     } else {
-        lapTimingCalculator()
+        for (var s = 0; s < PairsForScores.length; s++) {
+            arrayOfTiming.push(lapTimingCalculator(PairsForScores[s]));
+            localStorage.setItem('arrayOfTiming', JSON.stringify(arrayOfTiming))
+        }
     }
 }
+console.log(JSON.parse(localStorage.getItem('arrayOfTiming')))
 
-
-function lapTimingCalculator() {
+function lapTimingCalculator(value) {
     const fastest = JSON.parse(localStorage.getItem('Fastest'));
     const fastestEver = JSON.parse(localStorage.getItem('FastestEver'));
     const average = JSON.parse(localStorage.getItem('Average'));
     const slowest = JSON.parse(localStorage.getItem('Slowest'));
-    var totalScore = 0
-    for (var ts = 0; ts < PairsForScores.length; ts++) {
-        totalScore += PairsForScores[ts];
-    }
-    if (totalScore >= 286 & totalScore < 328) {
+    if (value >= 141 & value < 165) {
         var timing = ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
-        console.log(convertHMS(timing));
-    } else if (totalScore >= 328 & totalScore < 337) {
+    } else if (value>= 165 & value < 172) {
         var timing = ((Math.random() * (fastest - average + 1)) + average).toFixed(3);
-        console.log(convertHMS(timing));
     } else {
         var timing = ((Math.random() * (fastestEver - fastest + 1)) + fastest).toFixed(3);
-        console.log(convertHMS(timing));
     }
+    return convertHMS(timing);
 }
 
 function convertHMS(value) {
