@@ -62,6 +62,7 @@ var items = Object.keys(res).map(function(key) {
   items.sort(function(first, second) {
     return first[1] - second[1];
   });
+  
 
 var idx = 0
 const userListOfDrivers = JSON.parse(localStorage.getItem('userDriverNames'));
@@ -86,6 +87,7 @@ for (var i = 0;i < 10;i++){
 document.getElementById('first').innerText =items[0][0]
 document.getElementById('second').innerText=items[1][0]
 document.getElementById('third').innerText=items[2][0]
+
 
   
 
