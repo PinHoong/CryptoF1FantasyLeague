@@ -15,7 +15,19 @@ const firebaseConfig = {
   const db = getDatabase(app);
   const currentUser = JSON.parse(localStorage.getItem('usr'));
 
-  function stringHasTheWhiteSpaceOrNot(value){
+const starCountRef = ref(db, 'Cars');
+const starCountRef2 = ref(db, 'drivers');
+get(starCountRef).then((snapshot) => {
+    const data = snapshot.val();
+    localStorage.setItem('data', JSON.stringify(data));
+})
+
+get(starCountRef2).then((snapshot2) => {
+    const data2 = snapshot2.val();
+    localStorage.setItem('data2', JSON.stringify(data2));
+})
+
+function stringHasTheWhiteSpaceOrNot(value){
     return value.indexOf(' ') >= 0;
  }
 
@@ -27,66 +39,54 @@ function pointsGetter(value) {
         var draftCar = value[1];
         var draftDriver = value[0];
     }
-    console.log(draftCar)
-    console.log(draftDriver)
+    var totalPoints;
+    const dataa = JSON.parse(localStorage.getItem('data'));
+    totalPoints = dataa[draftCar]['Score'];
+    const dataa2 = JSON.parse(localStorage.getItem('data2'));
+    totalPoints += dataa2[draftDriver]['Score'];
+    return totalPoints;
+}
 
-    const starCountRef = ref(db, 'Cars');
-    const starCountRef2 = ref(db, 'drivers');
-
-    var totalPoints = 0;
-    get(starCountRef).then((snapshot) => {
-        const data = snapshot.val();
-        totalPoints += data[draftCar]['Score'];
-    })
-
-    get(starCountRef2).then((snapshot2) => {
-        const data2 = snapshot2.val();
-        totalPoints += data2[draftDriver]['Score'];
-        localStorage.setItem('scores', JSON.stringify(totalPoints));
-    })
-    const finalTP = JSON.parse(localStorage.getItem('scores'));
-    return finalTP;
-}  
 const starCountRefPair1 = ref(db, 'users/' + currentUser.uid + '/pair1');
 const starCountRefPair2 = ref(db, 'users/' + currentUser.uid + '/pair2');
+var arrayofScores = [];
 get(starCountRefPair1).then((snapshot3) => {
     const data = snapshot3.val();
-    var pair1 = []
+    const pair1 = []
   for (var key in data) {
       if (key == "nil") {
           continue;
       } else {
           pair1.push(key); 
       }
-  
   }
-  console.log('pair1: ' +pair1)
-  
- 
-  
-  var arrayofScores = [];
-  arrayofScores.push(pointsGetter(pair1));
+  console.log(pair1)
+  var scoreOfPair = pointsGetter(pair1);
+  console.log(scoreOfPair);
+  arrayofScores.push(scoreOfPair);
+  console.log(arrayofScores)
+})
 
-  get(starCountRefPair2).then((snapshot4) => {
-      const data2 = snapshot4.val();
-      var pair2 = [];
-      for (var key in data2) {
+get(starCountRefPair2).then((snapshot4) => {
+    const data2 = snapshot4.val();
+    const pair2 = [];
+    for (var key in data2) {
         if (key == "nil") {
             continue;
         } else {
             pair2.push(key); 
         }
     }
-    arrayofScores.push(pointsGetter(pair2));
-    localStorage.setItem('ArrayOfScores', JSON.stringify(arrayofScores));
-
-  })
+    var scoreOfPair2 = pointsGetter(pair2);
+    console.log(scoreOfPair2);
+    arrayofScores.push(scoreOfPair2);
+    console.log(arrayofScores)
 })
-console.log('pair 2:' + pair2)
-console.log(arrayofScores)
-var PairsForScores = JSON.parse(localStorage.getItem('ArrayOfScores'));
-console.log(PairsForScores)
 
+/*
+const PairsForScores = JSON.parse(localStorage.getItem('ArrayOfScores'));
+console.log(PairsForScores)
+*/
 //Function that decides if the user chooses the correc option or not
 //Get the race the user is currently at
 
@@ -125,27 +125,28 @@ const userConfigC = JSON.parse(localStorage.getItem('userConfigC'));
 const optimalCFR = JSON.parse(localStorage.getItem('optimalCFR'));
 var arrayOfTiming = [];
 if (userConfigC == optimalCFR) {
-    for (var s = 0; s < PairsForScores.length; s++) {
-        PairsForScores[s] += 10
-        var timingForAPair = lapTimingCalculator(PairsForScores[s]);
+    for (var s = 0; s < arrayofScores.length; s++) {
+        arrayofScores[s] += 10
+        var timingForAPair = lapTimingCalculator(arrayofScores[s]);
         arrayOfTiming.push(timingForAPair)
     }
     localStorage.setItem('arrayOfTiming', JSON.stringify(arrayOfTiming))
 } else {
     var random_boolean = Math.random() < 0.5;
+    console.log(random_boolean)
     if (random_boolean) {
         console.log("DNF")
     } else {
-        for (var s = 0; s < PairsForScores.length; s++) {
-            arrayOfTiming.push(lapTimingCalculator(PairsForScores[s]));
+        for (var s = 0; s < arrayofScores.length; s++) {
+            arrayOfTiming.push(lapTimingCalculator(arrayofScores[s]));
             localStorage.setItem('arrayOfTiming', JSON.stringify(arrayOfTiming))
         }
     }
 }
 var userRaceTimingDetails = {};
-for (var s = 0; s < PairsForScores.length; s++) {
+for (var s = 0; s < arrayofScores.length; s++) {
     var tempArray = [];
-    tempArray.push(PairsForScores[s]);
+    tempArray.push(arrayofScores[s]);
     tempArray.push(userConfigC);
     var teamName = s + 1;
     var randomTempName = "User's Driver " + `${teamName}`;
