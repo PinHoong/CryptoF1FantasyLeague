@@ -15,76 +15,98 @@ const firebaseConfig = {
   const db = getDatabase(app);
   const currentUser = JSON.parse(localStorage.getItem('usr'));
 
-  const starCountRef2 = ref(db, 'users/' + currentUser.uid + '/cars');
-  const starCountRef = ref(db, 'Cars');
-  get(starCountRef2).then((snapshot) => {
-      const data = snapshot.val();
-      var arry = [];
-      for (var key in data) {
-          if (key == "nil") {
-              continue;
-          } else {
-              arry.push(key);
-          }
+function pointsGetter(value) {
+    const draftCar = value[0];
+    const draftDriver = value[1];
+
+    const starCountRef = ref(db, 'Cars');
+    const starCountRef2 = ref(db, 'drivers');
+
+    var totalPoints = 0;
+    get(starCountRef).then((snapshot) => {
+        const data = snapshot.val();
+        totalPoints += data[draftCar]['Score'];
+    })
+
+    get(starCountRef2).then((snapshot2) => {
+        const data2 = snapshot2.val();
+        totalPoints += data2[draftDriver]['Score'];
+        localStorage.setItem('scores', JSON.stringify(totalPoints));
+    })
+    const finalTP = JSON.parse(localStorage.getItem('scores'));
+    return finalTP;
+}
+
+const starCountRefPair1 = ref(db, 'users/' + currentUser.uid + '/pair1');
+const starCountRefPair2 = ref(db, 'users/' + currentUser.uid + '/pair2');
+get(starCountRefPair1).then((snapshot3) => {
+    const data = snapshot3.val();
+    const pair1 = []
+  for (var key in data) {
+      if (key == "nil") {
+          continue;
+      } else {
+          pair1.push(key); 
       }
-      get(starCountRef).then((snapshot1) => {
-        const data2 = snapshot1.val();
-        var totalScore = [];
-        for (var i = 0; i < arry.length; i++) {
-            totalScore.push(data2[arry[i]]['Score']);
-        }
-        localStorage.setItem('points', JSON.stringify(totalScore))
-      })
+  
+  }
 
-  })
+  var arrayofScores = [];
+  arrayofScores.push(pointsGetter(pair1));
 
-
-const starCountRef3 = ref(db, 'users/' + currentUser.uid + '/drivers')
-const starCountRef4 = ref(db, 'drivers')
-
-get(starCountRef3).then((snapshot2) => {
-    const data3 = snapshot2.val();
-    var arry2 = [];
-    for (var key2 in data3) {
-        if (key2 == "nil") {
+  get(starCountRefPair2).then((snapshot4) => {
+      const data2 = snapshot4.val();
+      const pair2 = [];
+      for (var key in data2) {
+        if (key == "nil") {
             continue;
         } else {
-            arry2.push(key2);
+            pair2.push(key); 
         }
     }
-    get(starCountRef4).then((snapshot3) => {
-        const data4 = snapshot3.val();
-        var totalScore2 = [];
-        for (var j = 0; j < arry2.length; j++) {
-            totalScore2.push(data4[arry2[j]]['Score']);
-        }
-        localStorage.setItem('points2', JSON.stringify(totalScore2));
-    })
+    arrayofScores.push(pointsGetter(pair2));
+    localStorage.setItem('ArrayOfScores', JSON.stringify(arrayofScores));
+  })
 })
 
-function convertHMS(value) {
-    const sec = parseInt(value, 10); // convert value to number if it's string
-    let hours   = Math.floor(sec / 3600); // get hours
-    let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
-    let seconds = sec - (hours * 3600) - (minutes * 60); //  get seconds
-    // add 0 if value < 10; Example: 2 => 02
-    if (minutes < 10) {minutes = "0"+minutes;}
-    if (seconds < 10) {seconds = "0"+seconds;}
-    return minutes+':'+seconds; // Return is HH : MM : SS
-}
+const PairsForScores = JSON.parse(localStorage.getItem('ArrayOfScores'));
+console.log(PairsForScores)
 
-var carsPoints = JSON.parse(localStorage.getItem('points'));
-var driverPoints = JSON.parse(localStorage.getItem('points2'));
-var arry3 = [];
+//Function that decides if the user chooses the correc option or not
+//Get the race the user is currently at
 
-for (var z = 0; z < 2; z++) {
-    var TotalPoints = carsPoints[z] + driverPoints[z];
-    console.log(TotalPoints)
-    if (TotalPoints >= 130 && TotalPoints < 150) {
-        var raceTiming = ((Math.random() * 21) + 100).toFixed(2);
-        arry3.push(convertHMS(raceTiming))
-    } else {
-        var raceTiming = ((Math.random() * 11) + 100).toFixed(2);
-        arry3.push(convertHMS(raceTiming))
+const starCountRef3 = ref(db, 'users/' + currentUser.uid);
+
+get(starCountRef3).then((snapshot3) => {
+    const userData = snapshot3.val();
+    const UserCurrentRace = userData['currentRace'];
+    localStorage.setItem('userCurrentR', JSON.stringify(UserCurrentRace));
+    const userConfigurationChoice = userData['choice'];
+    localStorage.setItem('userConfigC', JSON.stringify(userConfigurationChoice));
+})
+
+const starCountRef4 = ref(db, 'races');
+get(starCountRef4).then((snapshot4) => {
+    const data3 = snapshot4.val();
+    console.log(data3)
+    const racesAvailable = [];
+    for (var key in data3) {
+        racesAvailable.push(key);
     }
+    const raceName= racesAvailable[JSON.parse(localStorage.getItem('userCurrentR'))];
+    const optimalChoiceForRace = data3[raceName]['Optimal'];
+    localStorage.setItem('optimalCFR', JSON.stringify(optimalChoiceForRace));
+})
+
+const userConfigC = JSON.parse(localStorage.getItem('userConfigC'));
+const optimalCFR = JSON.parse(localStorage.getItem('optimalCFR'));
+if (userConfigC == optimalCFR) {
+    console.log(1);
+} else {
+    console.log(2);
 }
+
+//If the person choose the correct option -- add 10 points
+//Else -- random generator of "yes" or "No"
+//If yes then car crash
+//If no then car come out random times
