@@ -64,6 +64,7 @@ var items = Object.keys(res).map(function(key) {
   });
   
 
+var total = 0
 var idx = 0
 const userListOfDrivers = JSON.parse(localStorage.getItem('userDriverNames'));
 for (var i = 0;i < 10;i++){
@@ -76,18 +77,23 @@ for (var i = 0;i < 10;i++){
         }
     } else if (userListOfDrivers.includes(items[i][0])) {
         document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + convertHMS(items[i][1])
+        total += parseInt(items[i][1])
+        idx += 1 
     } else {
         document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + convertHMS(items[i][1])
+        total += parseInt(items[i][1])
+        idx += 1 
     }
     //console.log("this is what is gonna show up: "+ '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + items[i][1])
     //document.getElementById(i.toString()).innerHTML = '<td>' + items[c] + '</td><td>' + dummies[items[c]][2] + '</td><td>' + items[c + 1]
     //idx += 2 
 }
 
+const ave = convertHMS(total /idx)
 document.getElementById('first').innerText =items[0][0]
 document.getElementById('second').innerText=items[1][0]
 document.getElementById('third').innerText=items[2][0]
-
+document.getElementById('ave').innerText =  ave;
 
   
 
