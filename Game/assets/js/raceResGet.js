@@ -17,7 +17,7 @@ function dummyRaceCalculator(value1, value2) {
     } else {
         var random_boolean = Math.random() < 0.5;
         if (random_boolean) {
-            return 0;
+            return 999;
         } else {
             if (value1 >= 141 & value1 < 165) {
                 return ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
@@ -28,6 +28,19 @@ function dummyRaceCalculator(value1, value2) {
             }
         }
     }
+}
+
+function convertHMS(value) {
+    const sec = parseInt(value, 10);
+    let hours   = Math.floor(sec / 3600); // get hours
+    let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
+    let seconds = sec - (hours * 3600) - (minutes * 60); //  get seconds
+    let subseconds = parseInt((value - ((minutes*60) + seconds)) * 1000);
+    // add 0 if value < 10; Example: 2 => 02
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return minutes+':'+seconds+':'+subseconds; // Return is HH : MM : SS
 }
 
 
@@ -46,17 +59,22 @@ var items = Object.keys(res).map(function(key) {
   
   // Sort the array based on the second element
   items.sort(function(first, second) {
-    return second[1] - first[1];
+    return first[1] - second[1];
   });
 
-
+console.log(items)
 var idx = 0
 for (var i = 0;i < 10;i++){
-    if (items[i][0].slice(0, 4) == 'User'){
-        document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f"> User team  </td><td style = "background: #f1fc8f">' + items[i][1]
-    }
-    else{
-        document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + items[i][1]
+    if (items[i][1] == 999) {
+        if (items[1][0].slice(0,4) == 'User') {
+            document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f"> User team  </td><td style = "background: #f1fc8f">' + 'DNF'
+        } else {
+            document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + 'DNF'
+        }
+    } else if (items[i][0].slice(0, 4) == 'User') {
+        document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f"> User team  </td><td style = "background: #f1fc8f">' + convertHMS(items[i][1])
+    } else {
+        document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + convertHMS(items[i][1])
     }
     //console.log("this is what is gonna show up: "+ '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + items[i][1])
     //document.getElementById(i.toString()).innerHTML = '<td>' + items[c] + '</td><td>' + dummies[items[c]][2] + '</td><td>' + items[c + 1]

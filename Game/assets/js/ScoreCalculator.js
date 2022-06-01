@@ -49,40 +49,42 @@ function pointsGetter(value) {
 
 const starCountRefPair1 = ref(db, 'users/' + currentUser.uid + '/pair1');
 const starCountRefPair2 = ref(db, 'users/' + currentUser.uid + '/pair2');
-var arrayofScores = [];
 get(starCountRefPair1).then((snapshot3) => {
-    const data = snapshot3.val();
-    const pair1 = []
-  for (var key in data) {
-      if (key == "nil") {
-          continue;
-      } else {
-          pair1.push(key); 
-      }
-  }
-  console.log(pair1)
-  var scoreOfPair = pointsGetter(pair1);
-  console.log(scoreOfPair);
-  arrayofScores.push(scoreOfPair);
-  console.log(arrayofScores)
+    const dataP1 = snapshot3.val();
+    localStorage.setItem('dataP1', JSON.stringify(dataP1));
 })
-
 get(starCountRefPair2).then((snapshot4) => {
-    const data2 = snapshot4.val();
-    const pair2 = [];
-    for (var key in data2) {
-        if (key == "nil") {
-            continue;
-        } else {
-            pair2.push(key); 
-        }
-    }
-    var scoreOfPair2 = pointsGetter(pair2);
-    console.log(scoreOfPair2);
-    arrayofScores.push(scoreOfPair2);
-    console.log(arrayofScores)
+    const dataP2 = snapshot4.val();
+    localStorage.setItem('dataP2', JSON.stringify(dataP2));
 })
-
+const dataaP1 = JSON.parse(localStorage.getItem('dataP1'));
+const dataaP2 = JSON.parse(localStorage.getItem('dataP2'));
+var arrayofScores = [];
+var pair1 = []
+for (var key in dataaP1) {
+    if (key == "nil") {
+        continue;
+    } else {
+        pair1.push(key); 
+    }
+}
+console.log(pair1)
+var scoreOfPair = pointsGetter(pair1);
+arrayofScores.push(scoreOfPair);
+console.log(arrayofScores)
+var pair2 = []
+for (var key in dataaP2) {
+    if (key == "nil") {
+        continue;
+    } else {
+        pair2.push(key); 
+    }
+}
+console.log(arrayofScores)
+var scoreOfPair2 = pointsGetter(pair2);
+console.log(scoreOfPair2);
+arrayofScores.push(scoreOfPair2);
+console.log(arrayofScores)
 /*
 const PairsForScores = JSON.parse(localStorage.getItem('ArrayOfScores'));
 console.log(PairsForScores)
@@ -143,6 +145,7 @@ if (userConfigC == optimalCFR) {
         }
     }
 }
+console.log(arrayofScores)
 var userRaceTimingDetails = {};
 for (var s = 0; s < arrayofScores.length; s++) {
     var tempArray = [];
@@ -154,6 +157,7 @@ for (var s = 0; s < arrayofScores.length; s++) {
     userRaceTimingDetails[randomTempName] = tempArray;
 }
 localStorage.setItem('UserRaceTimingD', JSON.stringify(userRaceTimingDetails));
+console.log(JSON.parse(localStorage.getItem('UserRaceTimingD')))
 function lapTimingCalculator(value) {
     const fastest = JSON.parse(localStorage.getItem('Fastest'));
     const fastestEver = JSON.parse(localStorage.getItem('FastestEver'));
