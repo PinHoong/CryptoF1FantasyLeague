@@ -95,18 +95,64 @@ get(starCountRef4).then((snapshot4) => {
     }
     const raceName= racesAvailable[JSON.parse(localStorage.getItem('userCurrentR'))];
     const optimalChoiceForRace = data3[raceName]['Optimal'];
+    const fastestTimeForRace = data3[raceName]['Fastest'];
+    const fastestEverTimeForRace = data3[raceName]['FastestEver'];
+    const averageTimeForRace = data3[raceName]['Average'];
+    const slowestTimeForRace = data3[raceName]['Slowest'];
+    localStorage.setItem('Fastest', JSON.stringify(fastestTimeForRace));
+    localStorage.setItem('FastestEver', JSON.stringify(fastestEverTimeForRace));
+    localStorage.setItem('Average', JSON.stringify(averageTimeForRace));
+    localStorage.setItem('Slowest', JSON.stringify(slowestTimeForRace));
     localStorage.setItem('optimalCFR', JSON.stringify(optimalChoiceForRace));
 })
 
 const userConfigC = JSON.parse(localStorage.getItem('userConfigC'));
 const optimalCFR = JSON.parse(localStorage.getItem('optimalCFR'));
-if (userConfigC == optimalCFR) {
-    console.log(1);
+if (userConfigC != optimalCFR) {
+    for (var s = 0; s < PairsForScores.length; s++) {
+        PairsForScores[s] += 10
+    }
+    lapTimingCalculator()
 } else {
-    console.log(2);
+    var random_boolean = Math.random() < 0.5;
+    if (random_boolean) {
+        console.log("DNF")
+    } else {
+        lapTimingCalculator()
+    }
 }
 
-//If the person choose the correct option -- add 10 points
-//Else -- random generator of "yes" or "No"
-//If yes then car crash
-//If no then car come out random times
+
+function lapTimingCalculator() {
+    const fastest = JSON.parse(localStorage.getItem('Fastest'));
+    const fastestEver = JSON.parse(localStorage.getItem('FastestEver'));
+    const average = JSON.parse(localStorage.getItem('Average'));
+    const slowest = JSON.parse(localStorage.getItem('Slowest'));
+    var totalScore = 0
+    for (var ts = 0; ts < PairsForScores.length; ts++) {
+        totalScore += PairsForScores[ts];
+    }
+    if (totalScore >= 286 & totalScore < 328) {
+        var timing = ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
+        console.log(convertHMS(timing));
+    } else if (totalScore >= 328 & totalScore < 337) {
+        var timing = ((Math.random() * (fastest - average + 1)) + average).toFixed(3);
+        console.log(convertHMS(timing));
+    } else {
+        var timing = ((Math.random() * (fastestEver - fastest + 1)) + fastest).toFixed(3);
+        console.log(convertHMS(timing));
+    }
+}
+
+function convertHMS(value) {
+    const sec = parseInt(value, 10);
+    let hours   = Math.floor(sec / 3600); // get hours
+    let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
+    let seconds = sec - (hours * 3600) - (minutes * 60); //  get seconds
+    let subseconds = parseInt((value - ((minutes*60) + seconds)) * 1000);
+    // add 0 if value < 10; Example: 2 => 02
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return minutes+':'+seconds+':'+subseconds; // Return is HH : MM : SS
+}
