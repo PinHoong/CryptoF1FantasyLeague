@@ -49,6 +49,7 @@ console.log('1: ' + usrtimings)
 const dummies = {'Button': [150, 2, 'Toyota GP'], 'Raikonnen': [160, 2, 'Lotus F1'], 'Kobayashi': [165, 1, 'Honda F1'], 'Tate': [182, 3, 'Bugatti F1'], 'Barichello': [156, 2, 'Brawn GP'], 'Massa': [172, 3, 'Williams Martini'], 'Lauda': [182, 3, 'Porsche'], 'Piquet': [191, 2, 'Piquet GP']}
 const dummies2 = Object.assign({}, dummies, usrtimings)
 const res = {}
+
 for ([key, value] of Object.entries(dummies2)){
     res[key] = dummyRaceCalculator(dummies2[key][0], dummies2[key][1])
 }
@@ -62,17 +63,18 @@ var items = Object.keys(res).map(function(key) {
     return first[1] - second[1];
   });
 
-console.log(items)
 var idx = 0
+const userListOfDrivers = JSON.parse(localStorage.getItem('userDriverNames'));
 for (var i = 0;i < 10;i++){
+    console.log(items[i][0])
     if (items[i][1] == 999) {
-        if (items[1][0].slice(0,4) == 'User') {
-            document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f"> User team  </td><td style = "background: #f1fc8f">' + 'DNF'
+        if (userListOfDrivers.includes(items[i][0])) {
+            document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + 'DNF'
         } else {
             document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + 'DNF'
         }
-    } else if (items[i][0].slice(0, 4) == 'User') {
-        document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f"> User team  </td><td style = "background: #f1fc8f">' + convertHMS(items[i][1])
+    } else if (userListOfDrivers.includes(items[i][0])) {
+        document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + convertHMS(items[i][1])
     } else {
         document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + convertHMS(items[i][1])
     }

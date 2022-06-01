@@ -29,7 +29,7 @@ get(starCountRef2).then((snapshot2) => {
 
 function stringHasTheWhiteSpaceOrNot(value){
     return value.indexOf(' ') >= 0;
- }
+}
 
 function pointsGetter(value) {
     if (stringHasTheWhiteSpaceOrNot(value[0])) {
@@ -68,7 +68,7 @@ for (var key in dataaP1) {
         pair1.push(key); 
     }
 }
-console.log(pair1)
+const driver1Name = stringHasTheWhiteSpaceOrNot(pair1[0]) ? pair1[1] : pair1[0];
 var scoreOfPair = pointsGetter(pair1);
 arrayofScores.push(scoreOfPair);
 console.log(arrayofScores)
@@ -80,6 +80,7 @@ for (var key in dataaP2) {
         pair2.push(key); 
     }
 }
+const driver2Name = stringHasTheWhiteSpaceOrNot(pair2[0]) ? pair2[1] : pair2[0];
 console.log(arrayofScores)
 var scoreOfPair2 = pointsGetter(pair2);
 console.log(scoreOfPair2);
@@ -96,6 +97,8 @@ const starCountRef3 = ref(db, 'users/' + currentUser.uid);
 
 get(starCountRef3).then((snapshot3) => {
     const userData = snapshot3.val();
+    const userLastName = userData['lastName'];
+    localStorage.setItem('userLastName', JSON.stringify(userLastName));
     const UserCurrentRace = userData['currentRace'];
     localStorage.setItem('userCurrentR', JSON.stringify(UserCurrentRace));
     const userConfigurationChoice = userData['choice'];
@@ -147,13 +150,19 @@ if (userConfigC == optimalCFR) {
 }
 console.log(arrayofScores)
 var userRaceTimingDetails = {};
+const userLN = JSON.parse(localStorage.getItem('userLastName'));
+var userDriverNames = [];
+userDriverNames.push(driver1Name);
+userDriverNames.push(driver2Name);
+localStorage.setItem('userDriverNames', JSON.stringify(userDriverNames));
+console.log(userLN)
 for (var s = 0; s < arrayofScores.length; s++) {
     var tempArray = [];
     tempArray.push(arrayofScores[s]);
     tempArray.push(userConfigC);
     var teamName = s + 1;
-    var randomTempName = "User's Driver " + `${teamName}`;
-    tempArray.push('Your Team');
+    var randomTempName = userDriverNames[s];
+    tempArray.push(`${userLN}'s` + ' Team');
     userRaceTimingDetails[randomTempName] = tempArray;
 }
 localStorage.setItem('UserRaceTimingD', JSON.stringify(userRaceTimingDetails));
