@@ -90,10 +90,12 @@ for (var i = 0;i < 10;i++){
 }
 
 const ave = convertHMS(total /idx)
+const fastest = convertHMS(items[0][1])
 document.getElementById('first').innerText =items[0][0]
 document.getElementById('second').innerText=items[1][0]
 document.getElementById('third').innerText=items[2][0]
-document.getElementById('ave').innerText =  ave;
+document.getElementById('ave').innerHTML =   ave + '<i class="fa-solid fa-stopwatch fa-2x" id = "stopwatch"></i>'
+document.getElementById('fast').innerHTML = fastest + '<i class="fa fa-bolt fa-2x" aria-hidden="true" id = "gauge"></i>'
 
   
 

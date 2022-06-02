@@ -1785,4 +1785,18 @@ button{
   font-size:large;
   font-family: "Poppins", sans-serif;
   font-weight:900;
+  padding-top:4px;
+  padding-left:10px;
+}
+
+#stopwatch{
+  float:right;
+  margin-right:15px;
+  margin-bottom:25px;
+}
+
+#gauge{
+  float:right;
+  margin-right:15px;
+  margin-bottom:25px;
 }
