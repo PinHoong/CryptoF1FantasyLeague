@@ -170,7 +170,6 @@
               if (dd != 'nil'){
                 mapping[btns[c]] = dd
                 mapping_dupe[btns2[c]] = dd
-                console.log('<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>');
                 pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="draftbtn" id='+ btns[c] +'>Draft</button>';
                 pid22[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="draftbtn" id='+ btns2[c] +'>Draft</button>';
 
@@ -212,7 +211,6 @@
                 mapping2_dupe[btns2[c]] = cc
                 console.log('this is cc' + cc)
 
-                console.log('<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>');
                 cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="draftbtn" id='+ btns[c] +'>Draft</button>';
                 cid22[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="draftbtn" id='+ btns2[c] +'>Draft</button>';
 
@@ -251,7 +249,30 @@
 
       var p2DCount = data['ptwoD'];
       var p2CCount = data['ptwoC'];
-      
+
+      const carimg = {'Alfa Romeo 2022': 'AlfaRomeo', 'Alpha Tauri 2022': 'AlphaTauri', 'Alpine 2022': 'Alpine', 'Aston Martin 2022': 'AstonMartin', 'Ferrari 2022': 'Ferrari', 'Haas 2022': 'Haas', 'Mclaren 2022': 'Mclaren', 'Mercedes 2022': 'Mercedes', 'Red Bull 2022': 'RedBull', 'Williams 2022': 'Williams'}
+
+      if (data['poneD'] == 1 && data['poneC'] == 1){
+        for (var elem in data['pair1']){
+          if ( elem.indexOf(' ') >= 0){
+            document.getElementById('car1').innerHTML = '<img  src="assets/img/' + carimg[elem]  + '.png" class="special"> '
+          }
+          else if (elem != 'nil'){
+            document.getElementById('driver1').innerHTML = '<img  src="assets/img/drivers/' +elem.toLowerCase()  + '.jpg" class="special"> '
+          }
+        }
+      }
+
+      if (data['ptwoD'] == 1 && data['ptwoC'] == 1){
+        for (var elem in data['pair2']){
+          if ( elem.indexOf(' ') >= 0){
+            document.getElementById('car2').innerHTML = '<img  src="assets/img/' + carimg[elem]  + '.png" class="special"> '
+          }
+          else if (elem != 'nil'){
+            document.getElementById('driver2').innerHTML = '<img  src="assets/img/drivers/' +elem.toLowerCase()  + '.jpg" class="special"> '
+          }
+        }
+      }
       for (var i = 0;i < 4;i++){
           (function() {
                 const elementt = btns1s[i]
@@ -275,6 +296,7 @@
                         'pair1': old,
                         'poneD': p1DCount
                       })
+                      document.getElementById('driver1').innerHTML = '<img  src="assets/img/drivers/' + mapping_combi[elementt].toLowerCase()  + '.jpg" class="special"> '
                       var buttonz = document.getElementById(elementt);
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
@@ -302,6 +324,9 @@
                         'pair1': old,
                         'poneC': p1CCount
                       })
+
+                      //console.log('<img src="assets/img/' + carimg[mapping_combi[elementt]]  + '.png" class="special"> ')
+                      document.getElementById('car1').innerHTML = '<img  src="assets/img/' + carimg[mapping_combi[elementt]]  + '.png" class="special">'
                       var buttonz = document.getElementById(elementt);
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
@@ -344,6 +369,8 @@
                         'pair2': old,
                         'ptwoD': p2DCount
                       })
+                      console.log('<img  src="assets/img/drivers/' + mapping_combi_dupe[elementt].toLowerCase()  + '.jpg" class="special"> ')
+                      document.getElementById('driver2').innerHTML = '<img  src="assets/img/drivers/' + mapping_combi_dupe[elementt].toLowerCase()  + '.jpg" class="special"> '
                       var buttonz = document.getElementById(elementt);
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
@@ -372,6 +399,8 @@
                         'pair2': old,
                         'ptwoC': p1CCount
                       })
+                      document.getElementById('car2').innerHTML = '<img  src="assets/img/' + carimg[mapping_combi_dupe[elementt]]  + '.png" class="special">'
+
                       var buttonz = document.getElementById(elementt);
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
@@ -466,6 +495,14 @@
     </div>
 
     </div>
+    <div class = 'card2'>
+      <p>Pair 1 Lineup/ Pair 2 Lineup</p>
+      <p class = 'lineup' id = 'driver1'></p>
+      <p class = 'lineup' id = "car1"></p>
+      <p class = 'lineup-r' id = 'driver2'></p>
+      <p class = 'lineup-r' id = 'car2'></p>
+    </div>
+    <a href = 'Configuration.html' class = 'btntoproceed'>Confirm</a>
 
 
 
