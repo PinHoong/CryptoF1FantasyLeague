@@ -1713,6 +1713,7 @@ button{
   margin-bottom: 15px;
   width: 45vw;
   display:inline-block;
+  float:left;
 }
 
 /*--------------------------------------------------------------
@@ -1721,12 +1722,11 @@ button{
 .pod{
   float:right;
   margin-top:20px;
-  margin-bottom: 30px;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
   width: 50%;
-  display:inline-block;
+  display:block;
   font-size:large;
   font-family: "Poppins", sans-serif;
   font-weight:900;
@@ -1799,4 +1799,18 @@ button{
   float:right;
   margin-right:15px;
   margin-bottom:25px;
+}
+
+.buttons{
+  float:right;
+  margin-top:20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  width: 50%;
+  display:block;
+  font-size:large;
+  font-family: "Poppins", sans-serif;
+  font-weight:900;
+  height: 27vh;
 }
