@@ -147,8 +147,13 @@
       const pid2 = ['d1', 'd2']
       const mapping = {}
       const mapping_dupe = {}
+      const mapping_b = {}
+      const mapping_dupe_b = {}
       const btns = ['b1', 'b2']
       const btns2 = ['b5', 'b6']
+
+      const btns_d = ['b9', 'b10']
+      const btns_d2 = ['b13', 'b14']
 
       const pid22 = [d12, d22]
       const pid222 = ['d12', 'd22']
@@ -170,16 +175,21 @@
               if (dd != 'nil'){
                 mapping[btns[c]] = dd
                 mapping_dupe[btns2[c]] = dd
-                pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="draftbtn" id='+ btns[c] +'>Draft</button>';
-                pid22[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="draftbtn" id='+ btns2[c] +'>Draft</button>';
+                mapping_b[btns_d[c]] = dd 
+                mapping_dupe_b[btns_d2[c]] = dd
+                pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="draftbtn" id='+ btns[c] +'>Draft</button>' + '<button class="benchbtn" id='+ btns_d[c] +'>Bench</button>';
+                pid22[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="draftbtn" id='+ btns2[c] +'>Draft</button>' + '<button class="benchbtn" id='+ btns_d2[c] +'>Bench</button>';
 
 
                 c++;
               }
             }
             console.log(mapping)
+            console.log(mapping_b)
             localStorage.setItem('mapping', JSON.stringify(mapping))
             localStorage.setItem('mapping_dupe', JSON.stringify(mapping_dupe))
+            localStorage.setItem('mapping_b', JSON.stringify(mapping_b))
+            localStorage.setItem('mapping_dupe_b', JSON.stringify(mapping_dupe_b))
 
             //START OF DRIVER DRAFT JS CODE
             //TO RE-IMPLEMENT DRAFTING REPLACE INNERHTML WITH '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>'
@@ -196,8 +206,13 @@
       const dictt2 = {'Red Bull 2022': 'RedBull', 'Ferrari 2022': 'Ferrari', 'Mercedes 2022': 'Mercedes', 'Mclaren 2022': 'Mclaren', 'Alfa Romeo 2022': 'AlfaRomeo','Alpha Tauri 2022':'AlphaTauri', 'Alpine 2022': 'Alpine','Aston Martin 2022':'AstonMartin', 'Haas 2022':'Haas','Williams 2022':'Williams' }                
       const mapping2 = {}
       const mapping2_dupe = {}
+      const mapping2_b = {}
+      const mapping2_dupe_b = {}
       const btns = ['b3', 'b4']
       const btns2 = ['b7', 'b8']
+      const btns_d = ['b11', 'b12']
+      const btns_d2 = ['b15', 'b16']
+
 
       const cid22 = [c12, c22]
       const cid222 = ['c12', 'c22']
@@ -209,17 +224,20 @@
               if (cc != 'nil'){
                 mapping2[btns[c]] = cc
                 mapping2_dupe[btns2[c]] = cc
-                console.log('this is cc' + cc)
+                mapping2_b[btns_d[c]] = cc 
+                mapping2_dupe_b[btns_d2[c]] = cc
 
-                cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="draftbtn" id='+ btns[c] +'>Draft</button>';
-                cid22[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="draftbtn" id='+ btns2[c] +'>Draft</button>';
+                cid[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="draftbtn" id='+ btns[c] +'>Draft</button>' + '<button class="benchbtn" id='+ btns_d[c] +'>Bench</button>';
+                cid22[c].innerHTML = '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="draftbtn" id='+ btns2[c] +'>Draft</button>' + '<button class="benchbtn" id='+ btns_d2[c] +'>Bench</button>';
 
                 c++;
               }
             }
-        console.log(mapping2);
+        console.log(mapping2_b);
         localStorage.setItem('mapping2', JSON.stringify(mapping2))
         localStorage.setItem('mapping2_dupe', JSON.stringify(mapping2_dupe))
+        localStorage.setItem('mapping2_b', JSON.stringify(mapping2_b))
+        localStorage.setItem('mapping2_dupe_b', JSON.stringify(mapping2_dupe_b))
         //START OF CAR DRAFTING JS CODE 
         //TO RE-IMPLEMENT DRAFTING, REPLACE INNERHTML WITH '<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>'
 
@@ -233,6 +251,10 @@
       const mapping_dupe = JSON.parse(localStorage.getItem('mapping_dupe'))
       const mapping2_dupe = JSON.parse(localStorage.getItem('mapping2_dupe'))
       const mapping2 = JSON.parse(localStorage.getItem('mapping2'))
+      const mapping_b = JSON.parse(localStorage.getItem('mapping_b'))
+      const mapping_dupe_b = JSON.parse(localStorage.getItem('mapping_dupe_b'))
+      const mapping2_b = JSON.parse(localStorage.getItem('mapping2_b'))
+      const mapping2_dupe_b = JSON.parse(localStorage.getItem('mapping2_dupe_b'))
 
       const pair1 = [d1, d2, c1, c2]
       const pair1s = ['d1', 'd2', 'c1', 'c2']
@@ -240,12 +262,17 @@
       const pair2s = ['d12', 'd22', 'c12', 'c22']
       const mapping_combi = Object.assign({}, mapping, mapping2)
       const mapping_combi_dupe = Object.assign({}, mapping_dupe, mapping2_dupe)
+      const mapping_combi_b = Object.assign({}, mapping_b, mapping2_b)
+      const mapping_combi_dupe_b = Object.assign({}, mapping_dupe_b, mapping2_dupe_b)
       var p1DCount = data['poneD'];
       var p1CCount = data['poneC'];
       const btns1 = [b1, b2,b3,b4, b5, b6,b7,b8]
       const btns1s = ['b1', 'b2', 'b3', 'b4']
       const btns2 = [b5, b6,b7,b8]
       const btns2s = ['b5', 'b6', 'b7', 'b8']
+
+      const btns_b1s = ['b9','b10', 'b11', 'b12']
+      const btns_b2s = ['b13', 'b14' ,'b15' ,'b16']
 
       var p2DCount = data['ptwoD'];
       var p2CCount = data['ptwoC'];
@@ -284,7 +311,7 @@
                       alert("Driver has already been drafted in Pair 2")
                     }
 
-                    else if (p1DCount == 1){
+                    else if (data['poneD'] == 1){
                       alert("Pair 1 already has a driver")
                     }
 
@@ -298,11 +325,9 @@
                       })
                       document.getElementById('driver1').innerHTML = '<img  src="assets/img/drivers/' + mapping_combi[elementt].toLowerCase()  + '.jpg" class="special"> '
                       var buttonz = document.getElementById(elementt);
-                      console.log(buttonz);
                       buttonz.style.opacity = 0.5;
 
                       var buttonz2 = document.getElementById(elementt2);
-                      console.log(buttonz2);
                       buttonz2.style.opacity = 0.5;
                     }
                   }
@@ -312,7 +337,7 @@
                       alert("Car has already been drafted in Pair 2")
                     }
 
-                    else if (p1CCount == 1){
+                    else if (data['poneC'] == 1){
                       alert("Pair 1 already has a car")
                     }
 
@@ -351,13 +376,13 @@
           (function() {
                 const elementt = btns2s[i]
                 const elementt2 = btns1s[i]
-                btns2[i].addEventListener('click', (e) => { 
+                btns2[i].addEventListener('click', (e) => {
                   if (mapping_combi_dupe[elementt] in data['drivers']){
                     if (mapping_combi_dupe[elementt] in data['pair1']){
                       alert("Driver has already been drafted in Pair 1")
                     }
 
-                    else if (p2DCount == 1){
+                    else if (data['ptwoD'] == 1){
                       alert("Pair 2 already has a driver")
                     }
 
@@ -387,7 +412,7 @@
                       alert("Car has already been drafted in Pair 1")
                     }
 
-                    else if (p2CCount == 1){
+                    else if (data['ptwoC'] == 1){
                       alert("Pair 2 already has a car")
                     }
 
@@ -419,6 +444,81 @@
 
               }())//SECOND FUNCTION 
                 }//SECOND FOR LOOP
+                for (var i = 0 ;i < 4;i++){
+                  (function(){
+                    const elementt = btns_b1s[i]
+                    document.getElementById(btns_b1s[i]).addEventListener('click', (e) => {
+                      if (mapping_combi_b[elementt] in data['drivers']){
+                        if (mapping_combi_b[elementt] in data['pair1']){
+                          var old = data['pair1']
+                          delete old[mapping_combi_b[elementt]]
+                          update(ref(db, 'users/' + Usr.uid), {
+                            'pair1': old,
+                            'poneD': 0
+                          })
+                          alert('Driver Benched')
+                        }
+                        else{
+                          alert("Draft before benching driver")
+                        }
+                      }//if in drivers
+
+                      else if (mapping_combi_b[elementt] in data['cars']){
+                        if (mapping_combi_b[elementt] in data['pair1']){
+                          var old = data['pair1']
+                          delete old[mapping_combi_b[elementt]]
+                          update(ref(db, 'users/' + Usr.uid), {
+                            'pair1': old,
+                            'poneC': 0
+                          })
+                          alert('Car Benched')
+                        }
+                        else{
+                          alert("Draft before benching car")
+                        }
+                      }
+
+                    })//end of event listener
+                  }())//end of closure function
+                }//third for loop
+
+                for (var i = 0 ;i < 4;i++){
+                  (function(){
+                    const elementt = btns_b2s[i]
+                    document.getElementById(btns_b2s[i]).addEventListener('click', (e) => {
+                      if (mapping_combi_dupe_b[elementt] in data['drivers']){
+                        if (mapping_combi_dupe_b[elementt] in data['pair2']){
+                          var old = data['pair2']
+                          delete old[mapping_combi_dupe_b[elementt]]
+                          update(ref(db, 'users/' + Usr.uid), {
+                            'pair2': old,
+                            'ptwoD': 0
+                          })
+                          alert('Driver Benched')
+                        }
+                        else{
+                          alert("Draft before benching driver")
+                        }
+                      }//if in drivers
+
+                      else if (mapping_combi_dupe_b[elementt] in data['cars']){
+                        if (mapping_combi_dupe_b[elementt] in data['pair2']){
+                          var old = data['pair2']
+                          delete old[mapping_combi_dupe_b[elementt]]
+                          update(ref(db, 'users/' + Usr.uid), {
+                            'pair2': old,
+                            'ptwoC': 0
+                          })
+                          alert('Car Benched')
+                        }
+                        else{
+                          alert("Draft before benching car")
+                        }
+                      }
+
+                    })//end of event listener
+                  }())//end of closure function
+                }//third for loop
               
               })// SNAPSHOT
 
