@@ -44,51 +44,125 @@ function convertHMS(value) {
 }
 
 
-const usrtimings = JSON.parse(localStorage.getItem('UserRaceTimingD'))
-console.log('1: ' + usrtimings)
-const dummies = {'Button': [150, 2, 'Toyota GP'], 'Raikonnen': [160, 2, 'Lotus F1'], 'Kobayashi': [165, 1, 'Honda F1'], 'Tate': [182, 3, 'Bugatti F1'], 'Barichello': [156, 2, 'Brawn GP'], 'Massa': [172, 3, 'Williams Martini'], 'Lauda': [182, 3, 'Porsche'], 'Piquet': [191, 2, 'Piquet GP']}
-const dummies2 = Object.assign({}, dummies, usrtimings)
-const res = {}
+import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
 
-for ([key, value] of Object.entries(dummies2)){
-    res[key] = dummyRaceCalculator(dummies2[key][0], dummies2[key][1])
-}
+const firebaseConfig = {
+    apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+    authDomain: "f1-crypto.firebaseapp.com",
+    databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "f1-crypto",
+    storageBucket: "f1-crypto.appspot.com",
+    messagingSenderId: "512980395232",
+    appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+  };
 
-var items = Object.keys(res).map(function(key) {
-    return [key, res[key]];
-  });
-  
-  // Sort the array based on the second element
-  items.sort(function(first, second) {
-    return first[1] - second[1];
-  });
-  
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const currentUser = JSON.parse(localStorage.getItem('usr'));
 
-var total = 0
-var idx = 0
+const starCountRef = ref(db, 'users/' + currentUser.uid + '/raceResults');
+get(starCountRef).then((snapshot) => {
+    const data = snapshot.val();
+    localStorage.setItem('userRaceResults', JSON.stringify(data));
+})
+
+const raceRR = JSON.parse(localStorage.getItem('userRaceResults'));
+console.log(raceRR)
 const userListOfDrivers = JSON.parse(localStorage.getItem('userDriverNames'));
-for (var i = 0;i < 10;i++){
-    console.log(items[i][0])
-    if (items[i][1] == 999) {
-        if (userListOfDrivers.includes(items[i][0])) {
-            document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + 'DNF'
+const usrtimings = JSON.parse(localStorage.getItem('UserRaceTimingD'))
+var key;
+var value;
+if (raceRR == 1) {
+    const items = JSON.parse(localStorage.getItem('PrevItems'));
+    const dummies = {'Button': [150, 2, 'Toyota GP'], 'Raikonnen': [160, 2, 'Lotus F1'], 'Kobayashi': [165, 1, 'Honda F1'], 'Tate': [182, 3, 'Bugatti F1'], 'Barichello': [156, 2, 'Brawn GP'], 'Massa': [172, 3, 'Williams Martini'], 'Lauda': [182, 3, 'Porsche'], 'Piquet': [191, 2, 'Piquet GP']}
+    const dummies2 = Object.assign({}, dummies, usrtimings)
+    console.log(items)
+    var total = 0
+    var idx = 0
+    for (var i = 0;i < 10;i++){
+        console.log(items[i][0])
+        if (items[i][1] == 999) {
+            if (userListOfDrivers.includes(items[i][0])) {
+                document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + 'DNF'
+            } else {
+                document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + 'DNF'
+            }
+        } else if (userListOfDrivers.includes(items[i][0])) {
+            document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + convertHMS(items[i][1])
+            total += parseInt(items[i][1])
+            idx += 1 
         } else {
-            document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + 'DNF'
+            document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + convertHMS(items[i][1])
+            total += parseInt(items[i][1])
+            idx += 1 
         }
-    } else if (userListOfDrivers.includes(items[i][0])) {
-        document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + convertHMS(items[i][1])
-        total += parseInt(items[i][1])
-        idx += 1 
-    } else {
-        document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + convertHMS(items[i][1])
-        total += parseInt(items[i][1])
-        idx += 1 
     }
-    //console.log("this is what is gonna show up: "+ '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + items[i][1])
-    //document.getElementById(i.toString()).innerHTML = '<td>' + items[c] + '</td><td>' + dummies[items[c]][2] + '</td><td>' + items[c + 1]
-    //idx += 2 
+const ave = convertHMS(total /idx)
+const fastest = convertHMS(items[0][1])
+document.getElementById('first').innerText =items[0][0]
+document.getElementById('second').innerText=items[1][0]
+document.getElementById('third').innerText=items[2][0]
+document.getElementById('ave').innerHTML =   ave + '<i class="fa-solid fa-stopwatch fa-2x" id = "stopwatch"></i>'
+document.getElementById('fast').innerHTML = fastest + '<i class="fa fa-bolt fa-2x" aria-hidden="true" id = "gauge"></i>'
+} else {
+    const usrtimings = JSON.parse(localStorage.getItem('UserRaceTimingD'))
+    console.log('1: ' + usrtimings)
+    const dummies = {'Button': [150, 2, 'Toyota GP'], 'Raikonnen': [160, 2, 'Lotus F1'], 'Kobayashi': [165, 1, 'Honda F1'], 'Tate': [182, 3, 'Bugatti F1'], 'Barichello': [156, 2, 'Brawn GP'], 'Massa': [172, 3, 'Williams Martini'], 'Lauda': [182, 3, 'Porsche'], 'Piquet': [191, 2, 'Piquet GP']}
+    const dummies2 = Object.assign({}, dummies, usrtimings)
+    const res = {}
+    for ([key, value] of Object.entries(dummies2)){
+        res[key] = dummyRaceCalculator(dummies2[key][0], dummies2[key][1])
+    }
+    
+    var items = Object.keys(res).map(function(key) {
+        return [key, res[key]];
+      });
+      
+      // Sort the array based on the second element
+      items.sort(function(first, second) {
+        return first[1] - second[1];
+      });
+      
+    localStorage.setItem('PrevItems',JSON.stringify(items));
+    var total = 0
+    var idx = 0
+    for (var i = 0;i < 10;i++){
+        console.log(items[i][0])
+        if (items[i][1] == 999) {
+            if (userListOfDrivers.includes(items[i][0])) {
+                document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + 'DNF'
+            } else {
+                document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + 'DNF'
+            }
+        } else if (userListOfDrivers.includes(items[i][0])) {
+            document.getElementById((i + 1).toString()).innerHTML = '<td style = "background: #f1fc8f">' + items[i][0] + '</td><td style = "background: #f1fc8f">' + dummies2[items[i][0]][2] + '</td><td style = "background: #f1fc8f">' + convertHMS(items[i][1])
+            total += parseInt(items[i][1])
+            idx += 1 
+        } else {
+            document.getElementById((i + 1).toString()).innerHTML = '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + convertHMS(items[i][1])
+            total += parseInt(items[i][1])
+            idx += 1 
+        }
+        //console.log("this is what is gonna show up: "+ '<td>' + items[i][0] + '</td><td>' + dummies[items[i][0]][2] + '</td><td>' + items[i][1])
+        //document.getElementById(i.toString()).innerHTML = '<td>' + items[c] + '</td><td>' + dummies[items[c]][2] + '</td><td>' + items[c + 1]
+        //idx += 2 
+    }
+    const starCountRef2 = ref(db, 'users/' + currentUser.uid);
+    get(starCountRef2).then((snapshot2) => {
+        const data2 = snapshot2.val();
+        update(ref(db, 'users/' + currentUser.uid), {
+            'raceResults': 1,
+          })//end of update
+    })
+    const ave = convertHMS(total /idx)
+const fastest = convertHMS(items[0][1])
+document.getElementById('first').innerText =items[0][0]
+document.getElementById('second').innerText=items[1][0]
+document.getElementById('third').innerText=items[2][0]
+document.getElementById('ave').innerHTML =   ave + '<i class="fa-solid fa-stopwatch fa-2x" id = "stopwatch"></i>'
+document.getElementById('fast').innerHTML = fastest + '<i class="fa fa-bolt fa-2x" aria-hidden="true" id = "gauge"></i>'
 }
-
 const ave = convertHMS(total /idx)
 const fastest = convertHMS(items[0][1])
 document.getElementById('first').innerText =items[0][0]
