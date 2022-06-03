@@ -59,19 +59,6 @@
     </div>
   </div>
   <script>
-    var money = JSON.parse(localStorage.getItem('Amt'));
-    var driverc = JSON.parse(localStorage.getItem('dc'));
-    console.log(money)
-    console.log(driverc)
-    let funded = localStorage.getItem('funded');
-    console.log(funded)
-    if (funded == "yes") {
-      document.getElementById('popUpmain').style.display = "none";
-    } else {
-      window.addEventListener('load', (event) => {
-        document.getElementById('popUpmain').style.display = 'block';
-      })
-    }
     function closeWindow() {
       document.getElementById('popUpmain').remove();
       document.getElementById('popUpmain2').style.display = 'block';
@@ -81,6 +68,36 @@
       document.getElementById('popUpmain2').remove();
       //window.location.href = "components-badges.html"
     }
+  </script>
+  <script type= "module">
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+    import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+        authDomain: "f1-crypto.firebaseapp.com",
+        databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "f1-crypto",
+        storageBucket: "f1-crypto.appspot.com",
+        messagingSenderId: "512980395232",
+        appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const currentUser = JSON.parse(localStorage.getItem('usr'));
+    const starCountRef = ref(db, 'users/' + currentUser.uid + '/funded');
+    get(starCountRef).then((snapshot) => {
+      const funded = snapshot.val();
+      console.log(funded)
+      if (funded == 1) {
+        document.getElementById('popUpmain').style.display = "none";
+      } else {
+        window.addEventListener('load', (event) => {
+          document.getElementById('popUpmain').style.display = 'block';
+        })
+      }
+    })
   </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">

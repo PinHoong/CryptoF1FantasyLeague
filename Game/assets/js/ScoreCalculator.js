@@ -11,9 +11,9 @@ const firebaseConfig = {
     appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const currentUser = JSON.parse(localStorage.getItem('usr'));
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const currentUser = JSON.parse(localStorage.getItem('usr'));
 
 const starCountRef = ref(db, 'Cars');
 const starCountRef2 = ref(db, 'drivers');
@@ -53,10 +53,12 @@ get(starCountRefPair1).then((snapshot3) => {
     const dataP1 = snapshot3.val();
     localStorage.setItem('dataP1', JSON.stringify(dataP1));
 })
+
 get(starCountRefPair2).then((snapshot4) => {
     const dataP2 = snapshot4.val();
     localStorage.setItem('dataP2', JSON.stringify(dataP2));
 })
+
 const dataaP1 = JSON.parse(localStorage.getItem('dataP1'));
 const dataaP2 = JSON.parse(localStorage.getItem('dataP2'));
 var arrayofScores = [];
@@ -86,6 +88,7 @@ var scoreOfPair2 = pointsGetter(pair2);
 console.log(scoreOfPair2);
 arrayofScores.push(scoreOfPair2);
 console.log(arrayofScores)
+localStorage.getItem('arrayofScoress', JSON.stringify(arrayofScores));
 /*
 const PairsForScores = JSON.parse(localStorage.getItem('ArrayOfScores'));
 console.log(PairsForScores)

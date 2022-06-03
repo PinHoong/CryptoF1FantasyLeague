@@ -19,7 +19,9 @@ const currentUser = JSON.parse(localStorage.getItem('usr'));
 const starCountRef = ref(db, 'users/' + currentUser.uid + '/currentRace');
 get(starCountRef).then((snapshot) => {
     const raceNo = snapshot.val();
+    console.log(raceNo)
     localStorage.setItem('raceNo', JSON.stringify(raceNo));
+    changingWebsiteDetails();
 })
 
 //Next is to get the key (AKA Saudi Arabia etc)
@@ -31,42 +33,45 @@ get(starCountRef2).then((snapshot2) => {
     for (var key in raceDetails) {
         arry.push(key);
     }
+    console.log(arry)
     localStorage.setItem('raceDetails', JSON.stringify(raceDetails));
     localStorage.setItem('raceNames', JSON.stringify(arry));
 })
 
 //Now is time to set the variables
-var currentRacenum = JSON.parse(localStorage.getItem('raceNo'));
-localStorage.setItem('currentRaceNum', JSON.stringify(currentRacenum));
-var currentRace = JSON.parse(localStorage.getItem('raceNames'))[currentRacenum];
-localStorage.setItem('currentRaceC', JSON.stringify(currentRace))
-var currentRaceDetails = JSON.parse(localStorage.getItem('raceDetails'))[currentRace];
-const currentCircuitName = currentRaceDetails['Circuit'];
-const currentCircuitLength = currentRaceDetails['Circuit Length'];
-const currentCircuitImg = currentRaceDetails['Img'];
-const currentCircuitLR = currentRaceDetails['Lap Record'];
-const currentCircuitLaps = currentRaceDetails['Laps'];
-const currentCircuitLRH = currentRaceDetails['Record'];
-const currentRaceHighlights = currentRaceDetails['Highlights'];
-
-
-//Time to automate the process
-//First is CircuitLength
-document.getElementById('CircuitLength').innerText = currentCircuitLength;
-//Lap Record
-document.getElementById('LapRecord').innerText = currentCircuitLR;
-//Lap
-document.getElementById('Lap').innerText = currentCircuitLaps;
-//Lap Record Holder
-document.getElementById('LapRecordHlder').innerText = currentCircuitLRH;
-//Circuit Image
-document.getElementById('circuitImg').innerHTML = `<img src = '${currentCircuitImg}'>`;
-//Circuit Name
-document.getElementById('RaceName').innerText = currentCircuitName;
-//Country
-document.getElementById('TextOverImg').innerText = currentRace;
-//Race Num
-const correctRN = currentRacenum + 1;
-document.getElementById('raceNum').innerText = 'race' + ' ' + `${correctRN}`; 
-//race Highlights
-document.getElementById('raceHighlights').innerHTML = `<a href = '${currentRaceHighlights}'>Race Highlights</a>`;
+function changingWebsiteDetails() {
+    var currentRacenum = JSON.parse(localStorage.getItem('raceNo'));
+    localStorage.setItem('currentRaceNum', JSON.stringify(currentRacenum));
+    var currentRace = JSON.parse(localStorage.getItem('raceNames'))[currentRacenum];
+    localStorage.setItem('currentRaceC', JSON.stringify(currentRace))
+    var currentRaceDetails = JSON.parse(localStorage.getItem('raceDetails'))[currentRace];
+    const currentCircuitName = currentRaceDetails['Circuit'];
+    const currentCircuitLength = currentRaceDetails['Circuit Length'];
+    const currentCircuitImg = currentRaceDetails['Img'];
+    const currentCircuitLR = currentRaceDetails['Lap Record'];
+    const currentCircuitLaps = currentRaceDetails['Laps'];
+    const currentCircuitLRH = currentRaceDetails['Record'];
+    const currentRaceHighlights = currentRaceDetails['Highlights'];
+    
+    console.log(currentCircuitName)
+    //Time to automate the process
+    //First is CircuitLength
+    document.getElementById('CircuitLength').innerText = currentCircuitLength;
+    //Lap Record
+    document.getElementById('LapRecord').innerText = currentCircuitLR;
+    //Lap
+    document.getElementById('Lap').innerText = currentCircuitLaps;
+    //Lap Record Holder
+    document.getElementById('LapRecordHlder').innerText = currentCircuitLRH;
+    //Circuit Image
+    document.getElementById('circuitImg').innerHTML = `<img src = '${currentCircuitImg}'>`;
+    //Circuit Name
+    document.getElementById('RaceName').innerText = currentCircuitName;
+    //Country
+    document.getElementById('TextOverImg').innerText = currentRace;
+    //Race Num
+    const correctRN = currentRacenum + 1;
+    document.getElementById('raceNum').innerText = 'race' + ' ' + `${correctRN}`; 
+    //race Highlights
+    document.getElementById('raceHighlights').innerHTML = `<a href = '${currentRaceHighlights}'>Race Highlights</a>`;
+}

@@ -60,24 +60,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const currentUser = JSON.parse(localStorage.getItem('usr'));
-
+localStorage.clear();
 const starCountRef = ref(db, 'users/' + currentUser.uid + '/raceResults');
 get(starCountRef).then((snapshot) => {
     const data = snapshot.val();
     localStorage.setItem('userRaceResults', JSON.stringify(data));
 })
 
+const userListOfDrivers = JSON.parse(localStorage.getItem('userDriverNames'));
+console.log(userListOfDrivers);
 const raceRR = JSON.parse(localStorage.getItem('userRaceResults'));
 console.log(raceRR)
+/*
 const userListOfDrivers = JSON.parse(localStorage.getItem('userDriverNames'));
+console.log(userListOfDrivers)
+*/
+//Here is the problem
 const usrtimings = JSON.parse(localStorage.getItem('UserRaceTimingD'))
+console.log(usrtimings)
 var key;
 var value;
 if (raceRR == 1) {
     const items = JSON.parse(localStorage.getItem('PrevItems'));
     fillingupTable(items);
 } else {
-
     const dummies = {'Button': [150, 2, 'Toyota GP'], 'Raikonnen': [160, 2, 'Lotus F1'], 'Kobayashi': [165, 1, 'Honda F1'], 'Tate': [182, 3, 'Bugatti F1'], 'Barichello': [156, 2, 'Brawn GP'], 'Massa': [172, 3, 'Williams Martini'], 'Lauda': [182, 3, 'Porsche'], 'Piquet': [191, 2, 'Piquet GP']}
     const dummies2 = Object.assign({}, dummies, usrtimings)
     const res = {}
@@ -93,7 +99,7 @@ if (raceRR == 1) {
       items.sort(function(first, second) {
         return first[1] - second[1];
       });
-      
+    console.log(items)
     localStorage.setItem('PrevItems',JSON.stringify(items));
     fillingupTable(items);
     const starCountRef2 = ref(db, 'users/' + currentUser.uid);
@@ -110,6 +116,7 @@ if (raceRR == 1) {
 function fillingupTable(items) {
     const dummies = {'Button': [150, 2, 'Toyota GP'], 'Raikonnen': [160, 2, 'Lotus F1'], 'Kobayashi': [165, 1, 'Honda F1'], 'Tate': [182, 3, 'Bugatti F1'], 'Barichello': [156, 2, 'Brawn GP'], 'Massa': [172, 3, 'Williams Martini'], 'Lauda': [182, 3, 'Porsche'], 'Piquet': [191, 2, 'Piquet GP']}
     const dummies2 = Object.assign({}, dummies, usrtimings)
+    console.log(dummies2)
     var total = 0
     var idx = 0
     for (var i = 0;i < 10;i++){

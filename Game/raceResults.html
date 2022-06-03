@@ -26,8 +26,6 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/3772469bf7.js" crossorigin="anonymous"></script>
-
-
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -129,25 +127,19 @@
 </div>
 
 <div class = buttons>
+<script type = "module" src = "./assets/js/transitionBetweenRaces.js"></script>
 <p id = 'Usrcumulativepoints'> Season Points: None</p> 
-<a href = '#' class="lastbtn">Next</a>  
+<a href = './racePage.html' class="lastbtn" id = "proceedNextRace">Proceed</a>  
 <a href = 'index-2' class="lastbtn">Home</a>
 </div>
-
-
-
-
-
 <script>
     const countryName = JSON.parse(localStorage.getItem('currentRaceC'))
     document.getElementById('TextOverImg').innerText = countryName
     const raceNum = JSON.parse(localStorage.getItem('currentRaceNum')) + 1
     document.getElementById('raceNum').innerText = 'Race' + ' ' + `${raceNum}`;
   </script>
-  <script  type = 'module' src = 'assets/js/raceResGet.js'></script>
-  <script type = 'module' src = 'assets/js/ScoreCalculator.js'></script>
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>-->
 
 </body>
-
+<script type = 'module' src = 'assets/js/ScoreCalculator2.js'></script>
 </html>
