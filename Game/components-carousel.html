@@ -182,7 +182,7 @@
       for (var key in data) {
         
         var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
-        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td><i class="fa-solid fa-wallet fa-1x" ></i>' +  data[key]['Price'] +'</td><td style = "width:50px"><button  type="button" id=' + drivers2[c]+ ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td><td><i class="fa-solid fa-wallet fa-1x" ></i>' +  (data[key]['Price'] - 1) +'</td><td><button  type="button" id=' + drivers2sell[c]+ ' name="submitData" class="sellbtn">Sell</button></td>';  
+        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td><i class="fa-solid fa-wallet fa-1x" ></i>' +  ' ' + data[key]['Price'] +'</td><td style = "width:50px"><button  type="button" id=' + drivers2[c]+ ' ' + ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td><td><i class="fa-solid fa-wallet fa-1x" ></i>' +  ' ' + (data[key]['Price'] - 1) +'</td><td><button  type="button" id=' + drivers2sell[c]+ ' name="submitData" class="sellbtn">Sell</button></td>';  
         c++;
       }
       
@@ -233,6 +233,15 @@
     var currcash = data['currency'];
     var bp = JSON.parse(localStorage.getItem('bp'))
     var sp = JSON.parse(localStorage.getItem('sp'))
+    function highlighter(){
+      for (const [key, value] of Object.entries(data['drivers'])) {
+        if (!(key == 'nil')){
+          document.getElementById(key).style.backgroundColor = '#ffb3c2'
+        }
+      }
+    }
+
+    highlighter()
     for (var i = 0 ;i < drivers.length;i++){
     (function () {
     const elementttt = drivers3[i];
@@ -289,8 +298,9 @@
         update(ref(db, 'users/' + Usr.uid), {
                   'drivers': old,
               })
-        titlecount.innerHTML = '<h1 style = "font-size: xx-large" id = "title-count">Drivers ' +  (data['driverCount'] + 1) + '/2</h1>';
+        titlecount.innerHTML = '<h1 style = "font-size: xx-large" id = "title-count">Drivers ' +  (curr) + '/2</h1>';
         document.getElementById(JSON.parse(localStorage.getItem('btnid'))).style.opacity = 0.5;
+        highlighter()
 
         
 
@@ -311,7 +321,7 @@
       }
       else{
         var old = data['drivers']
-        delete old[sellmap[elementy]]
+          delete old[sellmap[elementy]]
         currcash += parseInt(sp[sellmap[elementy]])
         curr -= 1 
         update(ref(db, 'users/' + Usr.uid), {
@@ -320,6 +330,29 @@
           'driverCount': curr,
         })
         alert(sellmap[elementy] + ' has been sold')
+        titlecount.innerHTML = '<h1 style = "font-size: xx-large" id = "title-count">Drivers ' +  (curr) + '/2</h1>';
+        document.getElementById(sellmap[elementy]).style.backgroundColor = '#e2e1e2'
+
+        //to delete if element pre exists in draft1 or draft2
+        if (sellmap[elementy] in data['pair1']){
+          var oldp1 = data['pair1']
+          delete oldp1[sellmap[elementy]]
+          update(ref(db, 'users/'  + Usr.uid),{
+            'pair1' : oldp1,
+            'poneD': 0
+          })
+        }
+
+        if (sellmap[elementy] in data['pair2']){
+          var oldp2 = data['pair2']
+          delete oldp2[sellmap[elementy]]
+          update(ref(db, 'users/'  + Usr.uid),{
+            'pair2' : oldp2,
+            'ptwoD': 0
+          })
+        }
+        //to delete if element pre exists in draft1 or draft2
+
       }
     })//end of eventlistener 
     }())//end of closure function
@@ -328,8 +361,6 @@
   })//end of outer get 
     
   });
-
-  const starCountRef5 = ref(db, 'users/' + Usr.uid);
   
 
   /*get(starCountRef5).then((snapshot) => {
@@ -359,9 +390,6 @@
     }())//end of closure function
   }//end of for loop
   })//end of get statement*/
-  
-
-
 </script>
 
 
