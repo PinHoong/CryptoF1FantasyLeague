@@ -128,7 +128,37 @@
 
 <div class = buttons>
 <script type = "module" src = "./assets/js/transitionBetweenRaces.js"></script>
-<p id = 'Usrcumulativepoints'> Season Points: None</p> 
+<span style="margin-left: 20%; font-size: 20px;">Score 50 > Points Over The Season To win</span>
+<div id = 'Usrcumulativepoints' style="margin-top: 2%; margin-left: 13%; margin-bottom: 1%;"></div>
+<span style="position: relative; top: -2.7em; margin-left: 20%; color: whitesmoke;" id = "ProgressStatus"></span>
+<!--<p id = 'ProgressStatus'></p>-->
+<script type = "module">
+  import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+  import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+      authDomain: "f1-crypto.firebaseapp.com",
+      databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "f1-crypto",
+      storageBucket: "f1-crypto.appspot.com",
+      messagingSenderId: "512980395232",
+      appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+    };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const currentUser = JSON.parse(localStorage.getItem('usr'));
+
+  const starCountRef = ref(db, 'users/' + currentUser.uid + '/seasonPoints');
+  get(starCountRef).then((snapshot) => {
+    const sp = snapshot.val();
+    const sp2 = `"${sp}"`;
+    const sp3 = (sp/50) * 100;
+    document.getElementById('Usrcumulativepoints').innerHTML = '<progress id = "Usrcumulativepoints" value =' + sp2 + 'max = "50"></progress>';
+    document.getElementById('ProgressStatus').innerHTML = '<span>' + sp3 + '%' + '</span>'
+  })
+</script> 
 <a href = './racePage.html' class="lastbtn" id = "proceedNextRace">Proceed</a>  
 <a href = 'index-2' class="lastbtn">Home</a>
 </div>

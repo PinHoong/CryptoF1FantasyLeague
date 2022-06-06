@@ -1,4 +1,3 @@
-console.log('scoreCalculator is being run here')
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
 import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
 
@@ -169,6 +168,7 @@ get(starCountRef5).then((snapshot5) => {
           var data7 = snapshot7.val();
           console.log(data7)
           const userListOfDrivers = data7['users'][currentUser.uid]['driverNames'];
+          console.log(userListOfDrivers)
           //console.log(data7['driverNames'])
           const usrTimings = data7['users'][currentUser.uid]['test'];
           //console.log(usrTimings)
@@ -194,6 +194,15 @@ get(starCountRef5).then((snapshot5) => {
               return first[1] - second[1];
           });
           console.log(items);
+          var topThree = [];
+          for (var z =0; z < 3; z++) {
+              topThree.push(items.slice(0,3)[z][0]);
+          }
+          var pointsRace =pointsCal(topThree, userListOfDrivers);
+          const userCP = data5['seasonPoints'];
+          update(ref(db, 'users/' + currentUser.uid ), {
+            'seasonPoints': pointsRace + userCP,
+        })
           localStorage.setItem('prevItems', JSON.stringify(items))
           var total = 0
           var idx = 0
@@ -271,119 +280,31 @@ get(starCountRef5).then((snapshot5) => {
                 }
             }
         }
+
+        function pointsCal(arr1, arr2) {
+            console.log(arr1);
+            console.log(arr2)
+            var totalPoints = 0;
+            for (var s = 0; s < arr1.length; s++) {
+                if (s == 0 && arr2.includes(arr1[s])) {
+                    totalPoints += 8;
+                    console.log('8')
+                } else if (s == 1 && arr2.includes(arr1[s])) {
+                    totalPoints += 7;
+                    console.log('7')
+                } else if (s == 2 && arr2.includes(arr1[s])) {
+                    totalPoints += 6
+                    console.log('6')
+                } else {
+                    continue;
+                }
+            }
+            return totalPoints;
+        }
       })      
     }
 })
-/*
-function dummyRaceCalculator(value1, value2) {
-    const starCountRef8 = ref(db);
-    get(starCountRef8).then((snapshot8) => {
-        const data8 = snapshot8.val();
-        var userCRI = data8['users'][currentUser.uid]['currentRace'];
-        console.log(userCRI)
-        var racesName = data8['users'][currentUser.uid]['raceNames'][userCRI];
-        console.log(racesName)
-        console.log(data8)
-        const fastest = data8['races'][racesName]['Fastest'];
-        console.log(fastest)
-        //localStorage.setItem('Fastest', JSON.stringify(fastest));
-        const fastestEver = data8['races'][racesName]['FastestEver'];
-        //localStorage.setItem('FastestEver', JSON.stringify(fastestEver));
-        const average = data8['races'][racesName]['Average'];
-        //localStorage.setItem('Average', JSON.stringify(average));
-        const slowest = data8['races'][racesName]['Slowest'];
-        //localStorage.setItem('Slowest', JSON.stringify(slowest));
-        const optimalC = data8['races'][racesName]['Optimal']
-        //localStorage.setItem('optimalC', JSON.stringify(optimalC));
-        if (value2 == optimalC) {
-            value1 += 10;
-            if (value1 >= 141 & value1 < 165) {
-                return ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
-            } else if (value1 >= 165 & value1 < 172) {
-                return ((Math.random() * (fastest - average + 1)) + average).toFixed(3);
-            } else {
-                return ((Math.random() * (fastestEver - fastest + 1)) + fastest).toFixed(3);
-            }
-        } else {
-            var random_boolean = Math.random() < 0.5;
-            console.log(random_boolean)
-            if (random_boolean) {
-                return 999;
-            } else {
-                if (value1 >= 141 & value1 < 165) {
-                    return ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
-                } else if (value1 >= 165 & value1 < 172) {
-                    return ((Math.random() * (fastest - average + 1)) + average).toFixed(3);
-                } else {
-                    return ((Math.random() * (fastestEver - fastest + 1)) + fastest).toFixed(3);
-                }
-            }
-        }
-    })
-    /*
-    const fastest = JSON.parse(localStorage.getItem('Fastest'));
-    const fastestEver = JSON.parse(localStorage.getItem('FastestEver'));
-    const average = JSON.parse(localStorage.getItem('Average'));
-    const slowest = JSON.parse(localStorage.getItem('Slowest'));
-    const optimalC = JSON.parse(localStorage.getItem('optimalC'));
-    if (value2 == optimalC) {
-        value1 += 10;
-        if (value1 >= 141 & value1 < 165) {
-            return ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
-        } else if (value1 >= 165 & value1 < 172) {
-            return ((Math.random() * (fastest - average + 1)) + average).toFixed(3);
-        } else {
-            return ((Math.random() * (fastestEver - fastest + 1)) + fastest).toFixed(3);
-        }
-    } else {
-        var random_boolean = Math.random() < 0.5;
-        console.log(random_boolean)
-        if (random_boolean) {
-            return 999;
-        } else {
-            if (value1 >= 141 & value1 < 165) {
-                return ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
-            } else if (value1 >= 165 & value1 < 172) {
-                return ((Math.random() * (fastest - average + 1)) + average).toFixed(3);
-            } else {
-                return ((Math.random() * (fastestEver - fastest + 1)) + fastest).toFixed(3);
-            }
-        }
-    }
-}
-*/
-/*
-    const fastest = JSON.parse(localStorage.getItem('Fastest'));
-    const fastestEver = JSON.parse(localStorage.getItem('FastestEver'));
-    const average = JSON.parse(localStorage.getItem('Average'));
-    const slowest = JSON.parse(localStorage.getItem('Slowest'));
-    const optimalCFR = JSON.parse(localStorage.getItem('optimalCFR'));
 
-    if (value2 == optimalCFR) {
-        value1 += 10;
-        if (value1 >= 141 & value1 < 165) {
-            return ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
-        } else if (value1 >= 165 & value1 < 172) {
-            return ((Math.random() * (fastest - average + 1)) + average).toFixed(3);
-        } else {
-            return ((Math.random() * (fastestEver - fastest + 1)) + fastest).toFixed(3);
-        }
-    } else {
-        var random_boolean = Math.random() < 0.5;
-        if (random_boolean) {
-            return 999;
-        } else {
-            if (value1 >= 141 & value1 < 165) {
-                return ((Math.random() * (average - slowest + 1)) + slowest).toFixed(3);
-            } else if (value1 >= 165 & value1 < 172) {
-                return ((Math.random() * (fastest - average + 1)) + average).toFixed(3);
-            } else {
-                return ((Math.random() * (fastestEver - fastest + 1)) + fastest).toFixed(3);
-            }
-        }
-    }
-}
-*/
 function convertHMS(value) {
     const sec = parseInt(value, 10);
     let hours   = Math.floor(sec / 3600); // get hours
