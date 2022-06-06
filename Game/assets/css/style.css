@@ -1922,3 +1922,13 @@ button{
   text-align: center;
   height: 40px;
 }
+
+#Usrcumulativepoints {
+  width: 85%;
+  height: 50px;
+  accent-color: #32CD32;
+}
+
+#ProgressStatus {
+  padding-bottom: 1%;
+}
