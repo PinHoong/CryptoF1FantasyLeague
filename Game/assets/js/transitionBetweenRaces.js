@@ -21,6 +21,14 @@ get(starCountRef).then((snapshot) => {
     const userCurrentRR = data['raceResults'];
     localStorage.setItem('userCurrentR', JSON.stringify(userCurrentR));
     localStorage.setItem('userCurrentRR', JSON.stringify(userCurrentRR));
+    if (userCurrentR == 4) {
+        document.getElementById('proceedNextRace').innerText = 'collect';
+        document.getElementById('proceedNextRace').href = './index-2.html'
+        update(ref(db, 'users/' + currentUser.uid), {
+            'currentRace': 4,
+            'raceResults': 1,
+        })
+    }
 })
 
 proceedNextRace.addEventListener('click', (e) => {
@@ -28,5 +36,6 @@ proceedNextRace.addEventListener('click', (e) => {
     update(ref(db, 'users/' + currentUser.uid), {
         'currentRace': userNextR,
         'raceResults': 0,
+        'choice': 0,
     })
 })
