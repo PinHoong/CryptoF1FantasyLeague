@@ -74,6 +74,23 @@
         <button class="twoBtns" id ="Redeem">Redeem</button>
         <button class="twoBtns" id="quit">Quit</button>
     </div>
+    <script>
+        document.getElementById("Redeem").addEventListener('click', () => {
+            window.ethereum.request({
+                method:'eth_signTransaction',
+                params: [{
+                    from: "0xdca59f0Bb2E4E429024181f2C75720B13178108c",
+                    to: "0x1ef815f06bE27E10f0f4EDBb772E5bD68Ce3FCBF",
+                    gas: Number(21000).toString(16),
+                    gasPrice: Number(1500000000).toString(16),
+                    value: Number(30000000000000000).toString(16),
+                }]
+            })
+            .then((txHash) => console.log(txHash))
+            .catch((error) => console.log(error));
+        })
+        //, 'd60cfabaa680aaa475e009b5f64ba96d6dd14e3733ef7312fb4db14a41e176cd'
+    </script>
     <button class = "button" id = "book-a-table-btn" style="position: fixed; margin-top: 6%;">Spin</button>
 
     <script src="./assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>

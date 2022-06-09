@@ -23,7 +23,7 @@ get(starCountRef).then((snapshot) => {
     localStorage.setItem('userCurrentRR', JSON.stringify(userCurrentRR));
     if (userCurrentR == 4) {
         document.getElementById('proceedNextRace').innerText = 'collect';
-        document.getElementById('proceedNextRace').href = './index-2.html'
+        document.getElementById('proceedNextRace').href = './luckyWheel.html'
         update(ref(db, 'users/' + currentUser.uid), {
             'currentRace': 4,
             'raceResults': 1,
