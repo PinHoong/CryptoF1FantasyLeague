@@ -59,7 +59,7 @@
           <i class="fa-solid fa-wallet fa-1x" style="color: #cda45e;"></i>
           <li id="VirtualCurrency" style="color: #cda45e; margin-right: 200px; margin-left: 10px; font-size: 20px;" ></li>
           <li><i class = "fa-solid fa-user" id="UserName" style="color: #cda45e; margin-right: 200px;"></i></li>
-          <li><button class="book-a-table-btn scrollto d-none d-lg-flex" onclick="Signout()">Sign Out</button></li>
+          <li><button class="signOut" onclick="Signout()">Sign Out</button></li>
         </ul>
         <script type = "module" src = "./assets/js/VirtualCurrency.js"></script>
         <script>
@@ -172,32 +172,30 @@
           const app = initializeApp(firebaseConfig);
           const db = getDatabase(app);
           const currentUser = JSON.parse(localStorage.getItem('usr'));
-          const starCountRef2 = ref(db, 'users/' + currentUser.uid + '/carCount');
+          const starCountRef2 = ref(db, 'users/' + currentUser.uid);
           get(starCountRef2).then((snapshot) => {
             const data2 = snapshot.val();
-            const lengthOfArr = data2;
+            const lengthOfArr = data2['carCount'];
             //Slight lag here 
             document.getElementById('NumOfVeh').innerHTML = `${lengthOfArr}/2`;
-            if (lengthOfArr == 2) {
-              alert("Sell one of your cars before purchasing a new one!")
-              var k = document.getElementsByClassName("book-a-table-btn scrollto d-none d-lg-flex");
-              for (var i = 0; i < k.length; i++) {
-                k[i].style.opacity = 0.4;
-                k[i].disabled = true;
+
+            const dataCars = data2['cars'];
+            var listofCars = [];
+            for (var key in dataCars) {
+              if (key == "nil") {
+                continue; 
+              } else {
+                listofCars.push(key);
               }
-            } else {
-              const starCountRef3 = ref(db, 'users/' + currentUser.uid + '/cars');
-              get(starCountRef3).then((snapshot) => {
-                const data3 = snapshot.val();
-                for (var key in data3) {
-                  if (key == "nil") {
-                    continue;
-                  } else {
-                    document.getElementById(key).style.opacity = 0.4;
-                    document.getElementById(key).disabled = true;
-                  }
-                }
-              })
+            }
+
+            for (var c = 0; c < listofCars.length; c++) {
+              const slicedCarName = listofCars[c].slice(0,-1);
+              document.getElementById(slicedCarName).style.backgroundColor = '#AA336A';
+              document.getElementById(listofCars[c]).style.pointerEvents = 'none';
+              document.getElementById(listofCars[c]).innerText = 'PURCHASED';
+              document.getElementById(listofCars[c]).style.opacity = '0.4';
+              document.getElementById(listofCars[c]).style.fontSize = '11px';
             }
           })
         </script>
@@ -228,6 +226,7 @@
       const tms3 = [alfa_romeo3, alpha_tauri3, alpine3, aston_martin3, ferrari3, haas3, mclaren3, mercedes3, red_bull3, williams3];
       const tms4 = [alfa_romeo4, alpha_tauri4, alpine4, aston_martin4, ferrari4, haas4, mclaren4, mercedes4, red_bull4, williams4];
       const tms5 = [alfa_romeo5, alpha_tauri5, alpine5, aston_martin5, ferrari5, haas5, mclaren5, mercedes5, red_bull5, williams5];
+      const tms6 = [alfa_romeo6, alpha_tauri6, alpine6, aston_martin6, ferrari6, haas6, mclaren6, mercedes6, red_bull6, williams6];
       var c = 0;
       onValue(starCountRef, (snapshot) => {
           var data = snapshot.val();
@@ -239,6 +238,7 @@
             tms3[c].innerText = data[key]['Aerodynamics'];
             tms4[c].innerText = data[key]['Score'];
             tms5[c].innerText = data[key]['Price'];
+            tms6[c].innerText = data[key]['Sell'];
             c++;
           }
         });
@@ -252,10 +252,12 @@
       <th>Score</th>
       <th>Price</th>
       <th>Action</th>
+      <th>Sell</th>
+      <th>Action</th>
     </tr>
 
     <!--Red Bull-->
-    <tr>
+    <tr id="Red Bull 202">
       <td class = "Car_Images">
         <img src = "assets/img/RedBull.png">
       </td>
@@ -267,12 +269,16 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "red_bull5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id= "Red Bull 2022">Puchase</button></td>
-      <script src="./assets/js/Race.js" type="module"></script>
+      <td><button class = "purchaseBtn" id= "Red Bull 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "red_bull6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Red Bull 20222">Sell</button></td>
     </tr>
 
     <!-- Ferrari -->
-    <tr>
+    <tr id="Ferrari 202">
       <td class = "Car_Images">
         <img src = "assets/img/Ferrari.png">
       </td>
@@ -284,15 +290,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "ferrari5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Ferrari 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Ferrari 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "ferrari6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Ferrari 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Ferrari 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!-- Mercedes Car Image-->
-    <tr>
+    <tr id="Mercedes 202">
       <td class = "Car_Images">
         <img src = "assets/img/Mercedes.png">
       </td>
@@ -304,15 +314,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "mercedes5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Mercedes 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Mercedes 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "mercedes6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Mercedes 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Mercedes 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Mclaren-->
-    <tr>
+    <tr id="Mclaren 202">
       <td class = "Car_Images">
         <img src = "assets/img/Mclaren.png">
       </td>
@@ -324,15 +338,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "mclaren5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Mclaren 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Mclaren 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "mclaren6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Mclaren 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Mclaren 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Alfa Romeo-->
-    <tr>
+    <tr id="Alfa Romeo 202">
       <td class = "Car_Images">
         <img src = "assets/img/AlfaRomeo.png">
       </td>
@@ -344,15 +362,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "alfa_romeo5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Alfa Romeo 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Alfa Romeo 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alfa_romeo6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Alfa Romeo 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Alfa Romeo 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Alpha Tauri-->
-    <tr>
+    <tr id="Alpha Tauri 202">
       <td class = "Car_Images">
         <img src = "assets/img/AlphaTauri.png">
       </td>
@@ -364,15 +386,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "alpha_tauri5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Alpha Tauri 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Alpha Tauri 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alpha_tauri6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Alpha Tauri 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Alpha Tauri 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Alpine-->
-    <tr>
+    <tr id="Alpine 202">
       <td class = "Car_Images">
         <img src = "assets/img/Alpine.png">
       </td>
@@ -384,15 +410,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "alpine5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Alpine 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Alpine 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alpine6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Alpine 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Alpine 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Aston Martin-->
-    <tr>
+    <tr id="Aston Martin 202">
       <td class = "Car_Images">
         <img src = "assets/img/AstonMartin.png">
       </td>
@@ -404,15 +434,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "aston_martin5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Aston Martin 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Aston Martin 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "aston_martin6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Aston Martin 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Aston Martin 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Haas-->
-    <tr>
+    <tr id="Haas 202">
       <td class = "Car_Images">
         <img src = "assets/img/Haas.png">
       </td>
@@ -424,15 +458,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "haas5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Haas 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Haas 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "haas6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Haas 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Haas 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
 
     <!--Williams-->
-    <tr>
+    <tr id="William 202">
       <td class = "Car_Images">
         <img src = "assets/img/Williams.png">
       </td>
@@ -444,14 +482,19 @@
         <i class="fa-solid fa-wallet fa-1x"></i>
         <span id = "williams5"></span>
       </td>
-      <td><button class = "book-a-table-btn scrollto d-none d-lg-flex" id="Williams 2022">Puchase</button></td>
+      <td><button class = "purchaseBtn" id="Williams 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "williams6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Williams 20222">Sell</button></td>
       <script>
         var Name_Vehicle = "Williams 2022"
       </script>
-      <script src="./assets/js/Race.js" type="module"></script>
     </tr>
   </table>
-  
+  <script src="./assets/js/race2.js" type="module"></script>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
