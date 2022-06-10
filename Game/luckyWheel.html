@@ -93,10 +93,36 @@
         //, 'd60cfabaa680aaa475e009b5f64ba96d6dd14e3733ef7312fb4db14a41e176cd'
     </script>
     -->
-    <button class = "button" id = "book-a-table-btn" style="position: fixed; margin-top: 6%;">Spin</button>
+    <button class = "button" id = "book-a-table-btn2" style="position: fixed; margin-top: 6%;">Spin</button>
 
     <script src="./assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <script src="./assets/js/luckyWheel.js"></script>
-    <script src="./assets/js/luckyWheel.js"></script>
+    <script type = "module" src="./assets/js/luckyWheel2.js"></script>
+    <script type="module">
+      import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+      import {getDatabase, ref, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+      const firebaseConfig = {
+          apiKey: "AIzaSyDZY8ufwFMkPhzOY-dNJm9bGXqv9okoW5g",
+          authDomain: "f1-crypto.firebaseapp.com",
+          databaseURL: "https://f1-crypto-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "f1-crypto",
+          storageBucket: "f1-crypto.appspot.com",
+          messagingSenderId: "512980395232",
+          appId: "1:512980395232:web:9d81bc5d7c58bc5a13dc85"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const currentUser = JSON.parse(localStorage.getItem('usr')); 
+      const starCountRef = ref(db, 'users/' + currentUser.uid + '/visited');
+      get(starCountRef).then((snapshot) => {
+        const data = snapshot.val();
+        console.log(data)
+        if (data == 1) {
+          document.getElementById('book-a-table-btn2').style.pointerEvents = 'none';
+          document.getElementById('Redeem').style.pointerEvents = 'none';
+        }
+      })
+    </script>
   </body>
 </html>

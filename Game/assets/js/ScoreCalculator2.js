@@ -211,11 +211,14 @@ get(starCountRef5).then((snapshot5) => {
           if (userCurrentR == 4 && sp >= 50) {
             document.getElementById('proceedNextRace').innerText = 'collect';
             document.getElementById('proceedNextRace').href = './luckyWheel.html'
-            update(ref(db, 'users/' + currentUser.uid), {
-                'currentRace': 0,
-                'raceResults': 0,
-                'seasonPoints': 0,
-                'choice':0,
+            document.getElementById('proceedNextRace').addEventListener('click', (e) => {
+                /*KIV if want to put this section into the luckyWheel2.js*/
+                update(ref(db, 'users/' + currentUser.uid), {
+                    'currentRace': 0,
+                    'raceResults': 0,
+                    'seasonPoints': 0,
+                    'choice':0,
+                })
             })
         } else if (userCurrentR == 4 && sp < 50) {
             document.getElementById('proceedNextRace').innerText = 'New';

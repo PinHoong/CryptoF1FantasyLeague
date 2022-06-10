@@ -1,4 +1,3 @@
-console.log('raceResGet is being run here')
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
 import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
 
