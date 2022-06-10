@@ -87,6 +87,19 @@ for (var s = 0; s < arry2.length; s++) {
                         'carCount': carAmt,
                     })
                     remove(ref(db, 'users/' + currentUser.uid + '/cars' + '/' + veh));
+                    const pair1 = carVal['users'][currentUser.uid]['pair1'];
+                    const pair2 = carVal['users'][currentUser.uid]['pair2']
+                    if (veh in pair1) {
+                      remove(ref(db,'users/' + currentUser.uid + '/pair1' + '/' + veh));
+                      update(ref(db, 'users/' + currentUser.uid), {
+                        'poneC' : 0
+                      })
+                    } else {
+                      remove(ref(db,'users/' + currentUser.uid + '/pair2' + '/' + veh));
+                      update(ref(db, 'users/' + currentUser.uid), {
+                        'ptwoC' : 0
+                      })
+                    }
                     document.getElementById('NumOfVeh').innerHTML = `${carAmt}/2`;
                     const slicedCarName = veh.slice(0,-1);
                     document.getElementById(slicedCarName).style.backgroundColor = 'transparent';
