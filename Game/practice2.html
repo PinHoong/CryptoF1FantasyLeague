@@ -122,6 +122,15 @@
   document.getElementById('TextOverImg').innerText = countryName
   const raceNum = JSON.parse(localStorage.getItem('currentRaceNum')) + 1
   document.getElementById('raceNum').innerText = 'Race' + ' ' + `${raceNum}`;
+  if (countryName == 'Spain') {
+        //document.getElementById('TextOverImg').style.fontSize = '120px';
+        document.getElementById('TextOverImg').style.left = '40%';
+        //document.getElementById('TextOverImg').style.top = '25%';
+    } else if (countryName == 'Italy') {
+      document.getElementById('TextOverImg').style.left = '42%';
+    } else if (countryName == "Singapore") {
+        document.getElementById('TextOverImg').style.left = '33%';
+    }
 </script>
   <div class="col-12">
     <!--JS FOR DRAFT SELECTION!-->
