@@ -195,15 +195,42 @@ get(starCountRef5).then((snapshot5) => {
           update(ref(db, 'users/' + currentUser.uid ), {
             'seasonPoints': pointsRace + userCP,
         })
-        const starCountRef9 = ref(db, 'users/' + currentUser.uid + '/seasonPoints');
+        const starCountRef9 = ref(db, 'users/' + currentUser.uid);
         get(starCountRef9).then((snapshot9) => {
-          const sp = snapshot9.val();
+          const data9 = snapshot9.val();
+          const sp = data9['seasonPoints']
           console.log(sp)
           const sp2 = `"${sp}"`;
           console.log(sp2)
           const sp3 = ((sp/50) * 100).toFixed(0);
           document.getElementById('Usrcumulativepoints').innerHTML = '<progress id = "Usrcumulativepoints" value = ' + sp2  + 'max = "50"></progress>';
           document.getElementById('ProgressStatus').innerHTML = '<span>' + sp3 + '%' + '</span>'
+
+          /*This will check if the user goes into lucky wheel or not*/
+          const userCurrentR = data9['currentRace']
+          if (userCurrentR == 4 && sp >= 50) {
+            document.getElementById('proceedNextRace').innerText = 'collect';
+            document.getElementById('proceedNextRace').href = './luckyWheel.html'
+            update(ref(db, 'users/' + currentUser.uid), {
+                'currentRace': 0,
+                'raceResults': 0,
+                'seasonPoints': 0,
+                'choice':0,
+            })
+        } else if (userCurrentR == 4 && sp < 50) {
+            document.getElementById('proceedNextRace').innerText = 'New';
+            document.getElementById('proceedNextRace').href = './index-2.html'
+            /*Ugly fix here*/
+            document.getElementById('proceedNextRace').addEventListener('click', (e) => {
+                alert('Try Again Next Season! You Will Be Redirected Back To The Home Page Now!')
+                update(ref(db, 'users/' + currentUser.uid), {
+                    'currentRace': 0,
+                    'raceResults': 0,
+                    'seasonPoints': 0,
+                    'choice': 0,
+                })
+            })
+        }
         })
           localStorage.setItem('prevItems', JSON.stringify(items))
           var total = 0
