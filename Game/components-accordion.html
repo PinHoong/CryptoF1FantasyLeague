@@ -191,6 +191,7 @@
 
             for (var c = 0; c < listofCars.length; c++) {
               const slicedCarName = listofCars[c].slice(0,-1);
+              console.log(slicedCarName)
               document.getElementById(slicedCarName).style.backgroundColor = '#AA336A';
               document.getElementById(listofCars[c]).style.pointerEvents = 'none';
               document.getElementById(listofCars[c]).innerText = 'PURCHASED';
@@ -470,7 +471,7 @@
     </tr>
 
     <!--Williams-->
-    <tr id="William 202">
+    <tr id="Williams 202">
       <td class = "Car_Images">
         <img src = "assets/img/Williams.png">
       </td>

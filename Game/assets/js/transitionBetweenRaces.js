@@ -28,7 +28,7 @@ get(starCountRef).then((snapshot) => {
         document.getElementById('proceedNextRace').href = './luckyWheel.html'
         update(ref(db, 'users/' + currentUser.uid), {
             'currentRace': 0,
-            'raceResults': 1,
+            'raceResults': 0,
             'seaonPoints': 0,
             'choice':0,
         })
@@ -40,7 +40,7 @@ get(starCountRef).then((snapshot) => {
             alert('Try Again Next Season! You Will Be Redirected Back To The Home Page Now!')
             update(ref(db, 'users/' + currentUser.uid), {
                 'currentRace': 0,
-                'raceResults': 1,
+                'raceResults': 0,
                 'seasonPoints': 0,
                 'choice': 0,
             })
