@@ -54,6 +54,7 @@ function changingWebsiteDetails() {
     const currentRaceHighlights = currentRaceDetails['Highlights'];
     
     console.log(currentCircuitName)
+    console.log(currentRaceDetails)
     //Time to automate the process
     //First is CircuitLength
     document.getElementById('CircuitLength').innerText = currentCircuitLength;
