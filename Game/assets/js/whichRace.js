@@ -69,6 +69,15 @@ function changingWebsiteDetails() {
     document.getElementById('RaceName').innerText = currentCircuitName;
     //Country
     document.getElementById('TextOverImg').innerText = currentRace;
+    if (currentRace == 'Spain') {
+        //document.getElementById('TextOverImg').style.fontSize = '120px';
+        document.getElementById('TextOverImg').style.left = '40%';
+        //document.getElementById('TextOverImg').style.top = '25%';
+    } else if (currentRace == 'Italy') {
+        document.getElementById('TextOverImg').style.left = '42%';
+    } else if (currentRace == "Singapore") {
+        document.getElementById('TextOverImg').style.left = '33%';
+    }
     //Race Num
     const correctRN = currentRacenum + 1;
     document.getElementById('raceNum').innerText = 'race' + ' ' + `${correctRN}`; 
