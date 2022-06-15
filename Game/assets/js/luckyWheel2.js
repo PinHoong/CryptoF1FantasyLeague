@@ -1,6 +1,8 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
 import {getDatabase, ref, update} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
 
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
   authDomain: "f1cft-493d1.firebaseapp.com",
@@ -83,7 +85,7 @@ wheel.addEventListener('transitionend', () => {
   update(ref(db, 'users/' + currentUser.uid), {
       'pointsRedeemed': winningTkt,
       'visited': 1,
-})
+  })
 document.getElementById('book-a-table-btn2').style.pointerEvents = 'none';
 });
 
