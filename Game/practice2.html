@@ -312,8 +312,18 @@
         const hashy = {'b9': 'driver1', 'b10':'driver1', 'b11':'car1', 'b12': 'car1', 'b13': 'driver2', 'b14': 'driver2' ,'b15':'car2' ,'b16':'car2'}
         document.getElementById(hashy[btn_id]).innerHTML = '<div></div>'
       }
+
+      function cfmation(){
+        if ((p2DCount == 1 && p2CCount == 1) || (p1CCount == 1 && p1DCount == 1)){
+          document.getElementById('cfmation').innerHTML = "<a href = 'Configuration.html' class = 'btntoproceed'>Confirm</a>"
+        }
+        else{
+          document.getElementById('cfmation').innerHTML = "<a href = '#' class = 'btntoproceed'>Confirm</a>"
+        }
+      }
       
       lineup_display()
+      cfmation()
     
       
 
@@ -345,6 +355,7 @@
                       })
                       console.log("this is poneD: "+ p1DCount)
                       lineup_display()
+                      cfmation()
                       var buttonz = document.getElementById(elementt);
                       buttonz.style.opacity = 0.5;
 
@@ -373,6 +384,7 @@
 
                       //console.log('<img src="assets/img/' + carimg[mapping_combi[elementt]]  + '.png" class="special"> ')
                       lineup_display()
+                      cfmation()
                       var buttonz = document.getElementById(elementt);
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
@@ -416,6 +428,7 @@
                         'ptwoD': p2DCount
                       })
                       lineup_display()
+                      cfmation()
                       var buttonz = document.getElementById(elementt);
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
@@ -445,6 +458,7 @@
                         'ptwoC': p2CCount
                       })
                       lineup_display()
+                      cfmation()
                       var buttonz = document.getElementById(elementt);
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
@@ -478,6 +492,7 @@
                           p1DCount = 0
                           alert('Driver Benched')
                           clear_lineup_display(elementt)
+                          cfmation()
                         }
                         else{
                           alert("Draft before benching driver")
@@ -492,9 +507,10 @@
                             'pair1': old,
                             'poneC': 0
                           })
+                          p1CCount = 0
                           alert('Car Benched')
                           clear_lineup_display(elementt)
-                          p1CCount = 0
+                          cfmation()
                         }
                         else{
                           alert("Draft before benching car")
@@ -517,9 +533,11 @@
                             'pair2': old,
                             'ptwoD': 0
                           })
+                          p2DCount = 0
                           alert('Driver Benched')
                           clear_lineup_display(elementt)
-                          p2DCount = 0
+                          cfmation()
+                          
 
                         }
                         else{
@@ -535,9 +553,10 @@
                             'pair2': old,
                             'ptwoC': 0
                           })
+                          p2CCount = 0
                           alert('Car Benched')
                           clear_lineup_display(elementt)
-                          p2CCount = 0
+                          cfmation()
                         }
                         else{
                           alert("Draft before benching car")
@@ -549,15 +568,7 @@
                 }//third for loop
               
               })// SNAPSHOT
-
-
-                   
-      
-
-
-
-
-
+    
 
     </script>
 
@@ -630,7 +641,7 @@
       <p class = 'lineup-r' id = 'driver2'></p>
       <p class = 'lineup-r' id = 'car2'></p>
     </div>
-    <a href = 'Configuration.html' class = 'btntoproceed'>Confirm</a>
+    <div id = "cfmation" style = 'display:inline'><a href = '#' class = 'btntoproceed'>Confirm</a></div>
 
 
 
