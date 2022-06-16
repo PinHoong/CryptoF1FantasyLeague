@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Car Market</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/F1 Logo.jpeg" rel="icon">
+  <!--<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">-->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3772469bf7.js" crossorigin="anonymous"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+      <!--<h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>-->
+      <a href="index-2.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
+      <script>
+        function Signout() {
+          sessionStorage.removeItem('user');
+          localStorage.removeItem('user');
+          localStorage.removeItem('keepLoggedIn');
+          window.location = '/';
+        }
+      </script>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <i class="fa-solid fa-wallet fa-1x" style="color: #cda45e;"></i>
+          <li id="VirtualCurrency" style="color: #cda45e; margin-right: 200px; margin-left: 10px; font-size: 20px;" ></li>
+          <li><i class = "fa-solid fa-user" id="UserName" style="color: #cda45e; margin-right: 200px;"></i></li>
+          <li><button class="signOut" onclick="Signout()">Sign Out</button></li>
+        </ul>
+        <script type = "module" src = "./assets/js/VirtualCurrency.js"></script>
+        <script>
+          const currentUser = JSON.parse(localStorage.getItem('user'));
+          document.getElementById("UserName").innerText = currentUser;
+        </script>
+          <!--
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#why-us">How To Play</a></li>
+          <li><a class="nav-link scrollto" href="#events">Rewards</a></li>
+          <li><a class="nav-link scrollto" href="#menu">Drivers</a></li>
+          <li><a class="nav-link scrollto" href="#specials">Store</a></li>
+          <li><a class="nav-link scrollto" href="#testimonials">Reviews</a></li>
+          -->
+        <!--
+                  <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        -->
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+
+    </div>
+  </header><!-- End Header -->
+
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar" style="margin-top:38px">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index-2.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <!--Car Mart-->
+      <li class="nav-item">
+        <a class="nav-link" href="components-accordion.html">
+          <i class = "fa fa-car"></i>
+          <span>Car Market</span>
+        </a>
+      </li>
+
+      <!--Driver Mart-->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="components-carousel.html">
+          <i class = "fa-solid fa-people-group"></i>
+          <span>Driver Market</span>
+        </a>
+      </li>
+
+      <!--Funding-->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="components-badges.html">
+          <i class = "fa-brands fa-ethereum"></i>
+          <span>Store</span>
+        </a>
+      </li>
+
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1 style="font-size: xx-large">CarMart <span id = "NumOfVeh">0/2</span></h1>
+        <script type="module">
+          import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+          import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+          const firebaseConfig = {
+            apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
+            authDomain: "f1cft-493d1.firebaseapp.com",
+            databaseURL: "https://f1cft-493d1-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "f1cft-493d1",
+            storageBucket: "f1cft-493d1.appspot.com",
+            messagingSenderId: "414144945872",
+            appId: "1:414144945872:web:4926d78a5a38ae78b908d5",
+            measurementId: "G-WNE15MGBR0"
+          };
+          const app = initializeApp(firebaseConfig);
+          const db = getDatabase(app);
+          const currentUser = JSON.parse(localStorage.getItem('usr'));
+          const starCountRef2 = ref(db, 'users/' + currentUser.uid);
+          get(starCountRef2).then((snapshot) => {
+            const data2 = snapshot.val();
+            const lengthOfArr = data2['carCount'];
+            //Slight lag here 
+            document.getElementById('NumOfVeh').innerHTML = `${lengthOfArr}/2`;
+
+            const dataCars = data2['cars'];
+            var listofCars = [];
+            for (var key in dataCars) {
+              if (key == "nil") {
+                continue; 
+              } else {
+                listofCars.push(key);
+              }
+            }
+
+            for (var c = 0; c < listofCars.length; c++) {
+              const slicedCarName = listofCars[c].slice(0,-1);
+              console.log(slicedCarName)
+              document.getElementById(slicedCarName).style.backgroundColor = '#AA336A';
+              document.getElementById(listofCars[c]).style.pointerEvents = 'none';
+              document.getElementById(listofCars[c]).innerText = 'PURCHASED';
+              document.getElementById(listofCars[c]).style.opacity = '0.4';
+              document.getElementById(listofCars[c]).style.fontSize = '11px';
+            }
+          })
+        </script>
+    </div><!-- End Page Title -->
+
+  
+  <!--Table-->
+    <script type ="module">
+    const firebaseConfig = {
+        apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
+        authDomain: "f1cft-493d1.firebaseapp.com",
+        databaseURL: "https://f1cft-493d1-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "f1cft-493d1",
+        storageBucket: "f1cft-493d1.appspot.com",
+        messagingSenderId: "414144945872",
+        appId: "1:414144945872:web:4926d78a5a38ae78b908d5",
+        measurementId: "G-WNE15MGBR0"
+      };
+
+      import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+      import { getDatabase, ref, onValue} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      const starCountRef = ref(db, 'Cars/');
+      const tms = [alfa_romeo, alpha_tauri, alpine, aston_martin, ferrari, haas, mclaren, mercedes, red_bull, williams];
+      const tms2 = [alfa_romeo2, alpha_tauri2, alpine2, aston_martin2, ferrari2, haas2, mclaren2, mercedes2, red_bull2, williams2];
+      const tms3 = [alfa_romeo3, alpha_tauri3, alpine3, aston_martin3, ferrari3, haas3, mclaren3, mercedes3, red_bull3, williams3];
+      const tms4 = [alfa_romeo4, alpha_tauri4, alpine4, aston_martin4, ferrari4, haas4, mclaren4, mercedes4, red_bull4, williams4];
+      const tms5 = [alfa_romeo5, alpha_tauri5, alpine5, aston_martin5, ferrari5, haas5, mclaren5, mercedes5, red_bull5, williams5];
+      const tms6 = [alfa_romeo6, alpha_tauri6, alpine6, aston_martin6, ferrari6, haas6, mclaren6, mercedes6, red_bull6, williams6];
+      var c = 0;
+      onValue(starCountRef, (snapshot) => {
+          var data = snapshot.val();
+          window.firebaseData = data
+          localStorage.fbd = window.firebaseData;
+          for (var key in data) {
+            tms[c].innerText = key;
+            tms2[c].innerText = data[key]['Speed'];
+            tms3[c].innerText = data[key]['Aerodynamics'];
+            tms4[c].innerText = data[key]['Score'];
+            tms5[c].innerText = data[key]['Price'];
+            tms6[c].innerText = data[key]['Sell'];
+            c++;
+          }
+        });
+  </script>
+  <table class="Market_Table">
+    <tr>
+      <th></th>
+      <th>F1 Car Model</th>
+      <th>Speed</th>
+      <th>Aerodynamics</th>
+      <th>Score</th>
+      <th>Price</th>
+      <th>Action</th>
+      <th>Sell</th>
+      <th>Action</th>
+    </tr>
+
+    <!--Red Bull-->
+    <tr id="Red Bull 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/RedBull.png">
+      </td>
+      <td id="red_bull"></td>
+      <td id="red_bull2"></td>
+      <td id="red_bull3"></td>
+      <td id="red_bull4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "red_bull5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id= "Red Bull 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "red_bull6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Red Bull 20222">Sell</button></td>
+    </tr>
+
+    <!-- Ferrari -->
+    <tr id="Ferrari 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/Ferrari.png">
+      </td>
+      <td id="ferrari"></td>
+      <td id="ferrari2"></td>
+      <td id="ferrari3"></td>
+      <td id="ferrari4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "ferrari5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Ferrari 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "ferrari6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Ferrari 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Ferrari 2022"
+      </script>
+    </tr>
+
+    <!-- Mercedes Car Image-->
+    <tr id="Mercedes 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/Mercedes.png">
+      </td>
+      <td id="mercedes"></td>
+      <td id="mercedes2"></td>
+      <td id="mercedes3"></td>
+      <td id="mercedes4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "mercedes5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Mercedes 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "mercedes6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Mercedes 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Mercedes 2022"
+      </script>
+    </tr>
+
+    <!--Mclaren-->
+    <tr id="Mclaren 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/Mclaren.png">
+      </td>
+      <td id="mclaren"></td>
+      <td id="mclaren2"></td>
+      <td id="mclaren3"></td>
+      <td id="mclaren4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "mclaren5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Mclaren 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "mclaren6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Mclaren 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Mclaren 2022"
+      </script>
+    </tr>
+
+    <!--Alfa Romeo-->
+    <tr id="Alfa Romeo 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/AlfaRomeo.png">
+      </td>
+      <td id="alfa_romeo"></td>
+      <td id="alfa_romeo2"></td>
+      <td id="alfa_romeo3"></td>
+      <td id="alfa_romeo4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alfa_romeo5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Alfa Romeo 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alfa_romeo6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Alfa Romeo 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Alfa Romeo 2022"
+      </script>
+    </tr>
+
+    <!--Alpha Tauri-->
+    <tr id="Alpha Tauri 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/AlphaTauri.png">
+      </td>
+      <td id="alpha_tauri"></td>
+      <td id="alpha_tauri2"></td>
+      <td id="alpha_tauri3"></td>
+      <td id="alpha_tauri4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alpha_tauri5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Alpha Tauri 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alpha_tauri6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Alpha Tauri 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Alpha Tauri 2022"
+      </script>
+    </tr>
+
+    <!--Alpine-->
+    <tr id="Alpine 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/Alpine.png">
+      </td>
+      <td id="alpine"></td>
+      <td id="alpine2"></td>
+      <td id="alpine3"></td>
+      <td id="alpine4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alpine5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Alpine 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "alpine6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Alpine 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Alpine 2022"
+      </script>
+    </tr>
+
+    <!--Aston Martin-->
+    <tr id="Aston Martin 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/AstonMartin.png">
+      </td>
+      <td id="aston_martin"></td>
+      <td id="aston_martin2"></td>
+      <td id="aston_martin3"></td>
+      <td id="aston_martin4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "aston_martin5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Aston Martin 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "aston_martin6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Aston Martin 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Aston Martin 2022"
+      </script>
+    </tr>
+
+    <!--Haas-->
+    <tr id="Haas 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/Haas.png">
+      </td>
+      <td id="haas"></td>
+      <td id='haas2'></td>
+      <td id='haas3'></td>
+      <td id='haas4'></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "haas5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Haas 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "haas6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Haas 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Haas 2022"
+      </script>
+    </tr>
+
+    <!--Williams-->
+    <tr id="Williams 202">
+      <td class = "Car_Images">
+        <img src = "assets/img/Williams.png">
+      </td>
+      <td id="williams"></td>
+      <td id ="williams2"></td>
+      <td id ="williams3"></td>
+      <td id ="williams4"></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "williams5"></span>
+      </td>
+      <td><button class = "purchaseBtn" id="Williams 2022">Puchase</button></td>
+      <td>
+        <i class="fa-solid fa-wallet fa-1x"></i>
+        <span id = "williams6"></span>
+      </td>
+      <td><button class = "sellBtn" id= "Williams 20222">Sell</button></td>
+      <script>
+        var Name_Vehicle = "Williams 2022"
+      </script>
+    </tr>
+  </table>
+  <script src="./assets/js/race2.js" type="module"></script>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.min.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

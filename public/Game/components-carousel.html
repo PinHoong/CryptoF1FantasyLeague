@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Driver Mart</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/F1 Logo.jpeg" rel="icon">
+  <!--<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">-->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3772469bf7.js" crossorigin="anonymous"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+   <!-- ======= Header ======= -->
+   <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+      <!--<h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>-->
+      <a href="index-2.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
+      <script>
+        function Signout() {
+          sessionStorage.removeItem('user');
+          localStorage.removeItem('user');
+          localStorage.removeItem('keepLoggedIn');
+          window.location = '/';
+        }
+      </script>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <i class="fa-solid fa-wallet fa-1x" style="color: #cda45e;"></i>
+          <li id="VirtualCurrency" style="color: #cda45e; margin-right: 200px; margin-left: 10px; font-size: 20px;" ></li>
+          <li><i class = "fa-solid fa-user" id="UserName" style="color: #cda45e; margin-right: 200px;"></i></li>
+          <li><button class="book-a-table-btn scrollto d-none d-lg-flex" onclick="Signout()">Sign Out</button></li>
+        </ul>
+        <script type = "module" src = "./assets/js/VirtualCurrency.js"></script>
+        <script>
+          const currentUser = JSON.parse(localStorage.getItem('user'));
+          document.getElementById("UserName").innerText = currentUser;
+        </script>
+          <!--
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#why-us">How To Play</a></li>
+          <li><a class="nav-link scrollto" href="#events">Rewards</a></li>
+          <li><a class="nav-link scrollto" href="#menu">Drivers</a></li>
+          <li><a class="nav-link scrollto" href="#specials">Store</a></li>
+          <li><a class="nav-link scrollto" href="#testimonials">Reviews</a></li>
+          -->
+        <!--
+                  <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        -->
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+
+    </div>
+  </header><!-- End Header -->
+
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar" style="margin-top:38px">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index-2.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <!--Car Mart-->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="components-accordion.html">
+          <i class = "fa fa-car"></i>
+          <span>Car Market</span>
+        </a>
+      </li>
+
+      <!--Driver Mart-->
+      <li class="nav-item">
+        <a class="nav-link" href="components-carousel.html">
+          <i class = "fa-solid fa-people-group"></i>
+          <span>Driver Market</span>
+        </a>
+      </li>
+
+      <!--Funding-->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="components-badges.html">
+          <i class = "fa-brands fa-ethereum"></i>
+          <span>Store</span>
+        </a>
+      </li>
+
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <script type="module">
+  const firebaseConfig = {
+      apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
+      authDomain: "f1cft-493d1.firebaseapp.com",
+      databaseURL: "https://f1cft-493d1-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "f1cft-493d1",
+      storageBucket: "f1cft-493d1.appspot.com",
+      messagingSenderId: "414144945872",
+      appId: "1:414144945872:web:4926d78a5a38ae78b908d5",
+      measurementId: "G-WNE15MGBR0"
+    };
+  import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+  import { getDatabase, ref, onValue, update, get, set} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const starCountRef = ref(db, 'drivers/');
+  const Usr = JSON.parse(localStorage.getItem('usr'));
+  const anotherref = ref(db, 'users/' + Usr.uid);
+  const drivers = [Albon, Alonso, Bottas, Gasly, Hamiliton, Lafti, Leclerc, Magussen, Norris, Ocon, Perez, Ricardo, Russell, Sainz, Schumacher, Stroll, Tsunoda, Verstappen, Vettel, Zhou];
+  const drivers2 = ['albon', 'alonso', 'bottas', 'gasly', 'hamiliton', 'lafti', 'leclerc', 'magussen', 'norris', 'ocon', 'perez', 'ricardo', 'russell', 'sainz', 'schumacher', 'stroll', 'tsunoda', 'verstappen', 'vettel', 'zhou'];
+  const drivers3 = ['Albon', 'Alonso', 'Bottas', 'Gasly', 'Hamiliton', 'Lafti', 'Leclerc', 'Magussen', 'Norris', 'Ocon', 'Perez', 'Ricardo', 'Russell', 'Sainz', 'Schumacher', 'Stroll', 'Tsunoda', 'Verstappen', 'Vettel', 'Zhou'];
+  const drivers2sell = ['albonS', 'alonsoS', 'bottasS', 'gaslyS', 'hamilitonS', 'laftiS', 'leclercS', 'magussenS', 'norrisS', 'oconS', 'perezS', 'ricardoS', 'russellS', 'sainzS', 'schumacherS', 'strollS', 'tsunodaS', 'verstappenS', 'vettelS', 'zhouS'];
+  const sellmap = {'albonS': 'Albon', 'alonsoS': 'Alonso', 'bottasS': 'Bottas', 'gaslyS': 'Gasly', 'hamilitonS': 'Hamiliton', 'laftiS': 'Lafti', 'leclercS': 'Leclerc', 'magussenS': 'Magussen', 'norrisS': 'Norris', 'oconS': 'Ocon', 'perezS': 'Perez', 'ricardoS': 'Ricardo', 'russellS': 'Russell', 'sainzS': 'Sainz', 'schumacherS': 'Schumacher', 'strollS': 'Stroll', 'tsunodaS': 'Tsunoda', 'verstappenS': 'Verstappen', 'vettelS': 'Vettel', 'zhouS': 'Zhou'}
+  //const drivers4 = [albon, alonso, bottas, gasly, hamiliton,lafti, leclerc, magussen, norris, ocon, perez, ricardo, russell, sainz, schumacher, stroll, tsunoda, verstappen, vettel, zhou];
+  var c = 0;
+
+  onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+      console.log(snapshot.val())
+      for (var key in data) {
+        
+        var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
+        drivers[c].innerHTML = '<td><img src=' + link + '></td><td>' + key + '</td><td>' + data[key]["Country"] + '</td><td>' + data[key]["Age"] + '</td><td>' + data[key]["Score"] + '</td><td><i class="fa-solid fa-wallet fa-1x" ></i>' +  ' ' + data[key]['Price'] +'</td><td style = "width:50px"><button  type="button" id=' + drivers2[c]+ ' ' + ' name="submitData" class="book-a-table-btn scrollto d-none d-lg-flex">Purchase</button></td><td><i class="fa-solid fa-wallet fa-1x" ></i>' +  ' ' + (data[key]['Price'] - 1) +'</td><td><button  type="button" id=' + drivers2sell[c]+ ' name="submitData" class="sellbtn">Sell</button></td>';  
+        c++;
+      }
+      
+    //INITIALISING SOME FUNCTIONS
+    //function sellbtndimmer(){
+
+    //}
+
+    
+    //INITIALISING SOME FUNCTIONS
+  
+  //const drivers4 = [albon,alonso, bottas, gasly, hamiliton, lafti, leclerc, magussen, norris, ocon, perez, ricardo, russell, sainz, schumacher, stroll, tsunoda, verstappen, vettel, zhou];
+    /*
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    import { collection, query, where } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+    const teamsRef = collection(database, "teams");
+    const Ferrari = query(teamsRef, where("teams", "==", "ferrari"));
+    console.log(Ferrari)
+    */
+  get(anotherref).then((snapshot) =>{
+    const d2 = snapshot.val();
+    if (d2['driverCount'] == 2){
+      alert("You already have 2 Drivers");
+      titlecount.innerText = '2/2 Drivers';
+    }
+  })
+  const starCountRef2 = ref(db, 'drivers/');
+  get(starCountRef2).then((snapshot) => {
+        const drvdata = snapshot.val();
+        var sp = {}
+        var bp = {}
+        var drvrname = JSON.parse(localStorage.getItem('drvrname'));
+        console.log("og prce:" + drvdata[drvrname]['Price']);
+        localStorage.answer = JSON.stringify(drvdata[drvrname]['Price'].toString());
+        for (var name of drivers3){
+          sp[name] = drvdata[name]['Price'] - 1
+          bp[name] = drvdata[name]['Price']
+        }
+        localStorage.setItem('sp', JSON.stringify(sp))
+        localStorage.setItem('bp', JSON.stringify(bp))
+      })
+  
+  const starCountRef = ref(db, 'users/' + Usr.uid);
+  get(starCountRef).then((snapshot) => {
+    const data = snapshot.val();
+    var curr = data['driverCount'];
+    var currcash = data['currency'];
+    var bp = JSON.parse(localStorage.getItem('bp'))
+    var sp = JSON.parse(localStorage.getItem('sp'))
+    function highlighter(){
+      for (const [key, value] of Object.entries(data['drivers'])) {
+        if (!(key == 'nil')){
+          document.getElementById(key).style.backgroundColor = '#ffb3c2'
+        }
+      }
+    }
+
+    highlighter()
+    for (var i = 0 ;i < drivers.length;i++){
+    (function () {
+    const elementttt = drivers3[i];
+    const Usr = JSON.parse(localStorage.getItem('usr'));
+    const e2 = drivers2[i];
+    
+    document.getElementById(drivers2[i]).addEventListener('click', (e) => {
+      localStorage.setItem('btnid', JSON.stringify(e2));
+    localStorage.setItem('drvrname', JSON.stringify(elementttt));
+    /*get(starCountRef2).then((snapshot) => {
+        const drvdata = snapshot.val();
+        var sp = {}
+        var drvrname = JSON.parse(localStorage.getItem('drvrname'));
+        console.log("og prce:" + drvdata[drvrname]['Price']);
+        localStorage.answer = JSON.stringify(drvdata[drvrname]['Price'].toString());
+        for (var name of drivers3){
+          sp[name] = drvdata[name]['Price'] - 1
+        }
+        localStorage.setItem('sp', JSON.stringify(sp))
+      })*/
+      var old = data['drivers'];
+      var drvrname = JSON.parse(localStorage.getItem('drvrname'));
+      var sp = JSON.parse(localStorage.getItem('sp'))
+      
+
+      //to get driver price 
+      let drvPrice2 = JSON.parse(localStorage.answer);
+      //end of getting driver price 
+      
+      if (curr == 2){
+        alert("You already have 2 Drivers");
+      }
+      else if (drvrname in old){
+        alert("You already own this driver");
+      }
+
+      else if (parseInt(bp[drvrname]) > currcash){
+        alert('Insufficient Funds');
+      }
+
+
+      else{
+        //var curr = data['driverCount'];
+        //var currcash = data['currency'];
+        curr += 1 ;
+        currcash -= parseInt(bp[drvrname]);
+        var drvrname = JSON.parse(localStorage.getItem('drvrname'));
+        update(ref(db, 'users/' + Usr.uid), {
+                  'driverCount': curr,
+                  'currency': currcash
+              });
+        var old = data['drivers'];
+        old[drvrname] = 1;
+        update(ref(db, 'users/' + Usr.uid), {
+                  'drivers': old,
+              })
+        titlecount.innerHTML = '<h1 style = "font-size: xx-large" id = "title-count">Drivers ' +  (curr) + '/2</h1>';
+        document.getElementById(JSON.parse(localStorage.getItem('btnid'))).style.opacity = 0.5;
+        highlighter()
+
+        
+
+      }
+
+      
+  
+
+    })//end of addeventlistener
+   }());
+    }//end of outer for loop
+    for (var i = 0; i < drivers2sell.length;i++){
+    (function (){
+      var elementy = drivers2sell[i]
+      document.getElementById(elementy).addEventListener('click', (e) => { 
+      if (!(sellmap[elementy]  in data['drivers'])){
+        alert("You do not own " + sellmap[elementy])
+      }
+      else{
+        var old = data['drivers']
+          delete old[sellmap[elementy]]
+        currcash += parseInt(sp[sellmap[elementy]])
+        curr -= 1 
+        update(ref(db, 'users/' + Usr.uid), {
+          'currency' : currcash,
+          'drivers': old,
+          'driverCount': curr,
+        })
+        alert(sellmap[elementy] + ' has been sold')
+        titlecount.innerHTML = '<h1 style = "font-size: xx-large" id = "title-count">Drivers ' +  (curr) + '/2</h1>';
+        document.getElementById(sellmap[elementy]).style.backgroundColor = '#e2e1e2'
+
+        //to delete if element pre exists in draft1 or draft2
+        if (sellmap[elementy] in data['pair1']){
+          var oldp1 = data['pair1']
+          delete oldp1[sellmap[elementy]]
+          update(ref(db, 'users/'  + Usr.uid),{
+            'pair1' : oldp1,
+            'poneD': 0
+          })
+        }
+
+        if (sellmap[elementy] in data['pair2']){
+          var oldp2 = data['pair2']
+          delete oldp2[sellmap[elementy]]
+          update(ref(db, 'users/'  + Usr.uid),{
+            'pair2' : oldp2,
+            'ptwoD': 0
+          })
+        }
+        //to delete if element pre exists in draft1 or draft2
+
+      }
+    })//end of eventlistener 
+    }())//end of closure function
+  }//end of for nested loop
+
+  })//end of outer get 
+    
+  });
+  
+
+  /*get(starCountRef5).then((snapshot) => {
+  const data = snapshot.val();
+  var sp = JSON.parse(localStorage.getItem('sp'))
+  for (var i = 0; i < drivers2sell.length;i++){
+    (function (){
+      var elementy = drivers2sell[i]
+      document.getElementById(elementy).addEventListener('click', (e) => { 
+      if (!(sellmap[elementy]  in data['drivers'])){
+        alert("You do not own " + sellmap[elementy])
+      }
+      else{
+        var old2 = data['drivers']
+        var curr = data['driverCount']
+        delete old2[sellmap[elementy]]
+        currcash += parseInt(sp[sellmap[elementy]])
+        dc -= 1 
+        update(ref(db, 'users/' + Usr.uid), {
+          'currency' : currcash,
+          'drivers': old,
+          'driverCount': curr,
+        })
+        alert(sellmap[elementy] + ' has been sold')
+      }
+    })//end of eventlistener 
+    }())//end of closure function
+  }//end of for loop
+  })//end of get statement*/
+</script>
+
+
+
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1 style = "font-size: xx-large" id = "titlecount">Drivers 0/2</h1>
+    </div><!-- End Page Title -->
+
+    <table>
+      <tr><th>Picture</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Age</th>
+        <th>Score</th>
+        <th>Price</th>
+        <th>Action</th>
+        <th>Sell</th>
+        <th>Action</th></tr>
+      <tr id = 'Albon'></tr>
+      <tr id = 'Alonso'></tr>
+      <tr id = 'Bottas'></tr>
+      <tr id = 'Gasly'></tr>
+      <tr id = 'Hamiliton'></tr>
+      <tr id = 'Lafti'></tr>
+      <tr id = 'Leclerc'></tr>
+      <tr id = 'Magussen'></tr>
+      <tr id = 'Norris'></tr>
+      <tr id = 'Ocon'></tr>
+      <tr id = 'Perez'></tr>
+      <tr id = 'Ricardo'></tr>
+      <tr id = 'Russell'></tr>
+      <tr id = 'Sainz'></tr>
+      <tr id = 'Schumacher'></tr>
+      <tr id = 'Stroll'></tr>
+      <tr id = 'Tsunoda'></tr>
+      <tr id = 'Verstappen'></tr>
+      <tr id = 'Vettel'></tr>
+      <tr id = 'Zhou'></tr>
+    </table>
+
+    
+
+    
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.min.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
