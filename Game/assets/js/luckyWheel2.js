@@ -95,4 +95,5 @@ quit.addEventListener('click', () => {
         'pointsRedeemed': 0,
         'visited': 0,
     })
+    window.location.href = "./index-2.html";
 })
