@@ -208,7 +208,6 @@
   get(anotherref).then((snapshot) =>{
     const d2 = snapshot.val();
     if (d2['driverCount'] == 2){
-      alert("You already have 2 Drivers");
       titlecount.innerText = '2/2 Drivers';
     }
   })
@@ -239,9 +238,19 @@
       for (const [key, value] of Object.entries(data['drivers'])) {
         if (!(key == 'nil')){
           document.getElementById(key).style.backgroundColor = '#ffb3c2'
+          document.getElementById(key.toLowerCase()).innerText = 'Purchased'
+          document.getElementById(key.toLowerCase()).style.opacity = 0.5;
         }
       }
     }
+
+    function reverse_highlighter(key){
+      var new_key = key.slice(0, -1);
+      console.log('this is the new key : '+ new_key)
+      document.getElementById(new_key.toLowerCase()).innerText = 'Purchase'
+      document.getElementById(new_key.toLowerCase()).style.opacity = 1
+    }
+
 
     highlighter()
     for (var i = 0 ;i < drivers.length;i++){
@@ -334,6 +343,8 @@
         alert(sellmap[elementy] + ' has been sold')
         titlecount.innerHTML = '<h1 style = "font-size: xx-large" id = "title-count">Drivers ' +  (curr) + '/2</h1>';
         document.getElementById(sellmap[elementy]).style.backgroundColor = '#e2e1e2'
+        highlighter()
+        reverse_highlighter(elementy)
 
         //to delete if element pre exists in draft1 or draft2
         if (sellmap[elementy] in data['pair1']){
