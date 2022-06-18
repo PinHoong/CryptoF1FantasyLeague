@@ -31,7 +31,7 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
       
           <!--<h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>-->
-          <a href="index-2.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
+          <a href="" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
           <script>
             function Signout() {
               sessionStorage.removeItem('user');
@@ -72,12 +72,12 @@
     <div style="display: inline-block; margin-left: 43%; margin-top: 10%;">
         <p id="congrats">Congratulations! You Won:</p>
         <div class="display">-</div>
-        <button class="twoBtns" id ="Redeem">Redeem</button>
-        <button class="twoBtns" id="quit">Quit</button>
+        <button class="twoBtns" id ="Redeem" style="pointer-events: none;">Redeem</button>
+        <button class="twoBtns" id="quit" style="pointer-events: none;">Forfeit</button>
     </div>
     <!--<script type = "module" src = "./assets/js/payUsers.js"></script>-->
     <script src = "./assets/js/NFT.js"></script>
-    <button class = "button" id = "book-a-table-btn2" style="position: fixed; margin-top: 6%;">Spin</button>
+    <button class = "button" id = "book-a-table-btn2" style="margin-top: 4%; position: fixed;">Spin</button>
 
     <script src="./assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script type = "module" src="./assets/js/luckyWheel2.js"></script>

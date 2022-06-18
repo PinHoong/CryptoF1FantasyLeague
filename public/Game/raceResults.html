@@ -43,7 +43,7 @@
   <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
     <!--<h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>-->
-    <a href="index-2.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
+    <a href="" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
     <script>
       function Signout() {
         sessionStorage.removeItem('user');
@@ -77,10 +77,10 @@
     <button class="raceButton" disabled><span id="raceNum"></span></button>
     <div class = "topnav">
         <ul>
-          <li><a href="racePage.html" style = "pointer-events: none;">Circuit</a></li>
-          <li><a href = "practice2.html" style = "pointer-events: none;">Draft</a></li>
-          <li><a href = "Configuration.html" style = "pointer-events: none;">Configuration</a></li>
-          <li><a class = "active" href = "">Race Results</a></li>
+          <li><a href="racePage.html" style = "pointer-events: none;">1. Circuit</a></li>
+          <li><a href = "practice2.html" style = "pointer-events: none;">2. Draft</a></li>
+          <li><a href = "Configuration.html" style = "pointer-events: none;">3. Configuration</a></li>
+          <li><a class = "active" href = "">4. Race Results</a></li>
         </ul>
     </div>
 </div>
@@ -106,9 +106,9 @@
 <div class = pod>
 
 <div class = left>
-<div class = bar id = 'first'>Person</div>
-<div class = bar id = 'second'>Person</div>
-<div class = bar id = 'third'>Person</div>
+<div class = bar id = 'first'></div>
+<div class = bar id = 'second'></div>
+<div class = bar id = 'third'></div>
 </div>
 
 <div class = stats>
@@ -182,10 +182,10 @@
   get(starCountRef).then((snapshot) => {
     const data = snapshot.val();
     const raceNum = data['currentRace'];
-    const raceCountry = data['raceNames'][raceNum];
+    const countryName = data['raceNames'][raceNum];
     const plus1RaceNum = raceNum + 1;
     document.getElementById('raceNum').innerText = 'Race' + ' ' + `${plus1RaceNum}`;
-    document.getElementById('TextOverImg').innerText = raceCountry;
+    document.getElementById('TextOverImg').innerText = countryName;
     if (countryName == 'Spain') {
         //document.getElementById('TextOverImg').style.fontSize = '120px';
         document.getElementById('TextOverImg').style.left = '40%';

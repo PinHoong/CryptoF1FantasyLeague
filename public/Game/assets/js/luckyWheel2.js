@@ -22,7 +22,7 @@ const startButton = document.querySelector('.button');
 const display = document.querySelector('.display');
 
 let deg = 0;
-let zoneSize = 46; // deg
+let zoneSize = 45.2; // deg
 
 // Counter clockwise
 const symbolSegments = {
@@ -49,7 +49,7 @@ startButton.addEventListener('click', () => {
   // Disable button during spin
   startButton.style.pointerEvents = 'none';
   // Calculate a new rotation between 5000 and 10 000
-  deg = Math.floor(5000 + Math.random() * 5000);
+  deg = Math.floor(10000 + Math.random() * 5000);
   // Set the transition on the wheel
   wheel.style.transition = 'all 10s ease-out';
   // Rotate the wheel
@@ -80,6 +80,8 @@ wheel.addEventListener('transitionend', () => {
       'visited': 1,
   })
 document.getElementById('book-a-table-btn2').style.pointerEvents = 'none';
+document.getElementById('quit').style.pointerEvents = '';
+document.getElementById('Redeem').style.pointerEvents = '';
 });
 
 quit.addEventListener('click', () => {

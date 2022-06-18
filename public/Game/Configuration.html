@@ -79,10 +79,10 @@
     <button class="raceButton" disabled><span id="raceNum"></span></button>
     <div class = "topnav">
         <ul>
-          <li><a href="racePage.html">Circuit</a></li>
-          <li><a href = "practice2.html" href = "">Draft</a></li>
-          <li><a class = "active">Configuration</a></li>
-          <li><a href = "raceResults.html" style="pointer-events: none">Race Results</a></li>
+          <li><a href="racePage.html">1. Circuit</a></li>
+          <li><a href = "practice2.html" href = "">2. Draft</a></li>
+          <li><a class = "active">3. Configuration</a></li>
+          <li><a href = "raceResults.html" style="pointer-events: none">4. Race Results</a></li>
         </ul>
     </div>
 </div>
@@ -242,10 +242,10 @@
   get(starCountRef).then((snapshot) => {
     const data = snapshot.val();
     const raceNum = data['currentRace'];
-    const raceCountry = data['raceNames'][raceNum];
+    const countryName = data['raceNames'][raceNum];
     const plus1RaceNum = raceNum + 1;
     document.getElementById('raceNum').innerText = 'Race' + ' ' + `${plus1RaceNum}`;
-    document.getElementById('TextOverImg').innerText = raceCountry;
+    document.getElementById('TextOverImg').innerText = countryName;
     if (countryName == 'Spain') {
         //document.getElementById('TextOverImg').style.fontSize = '120px';
         document.getElementById('TextOverImg').style.left = '40%';

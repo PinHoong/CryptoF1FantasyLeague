@@ -147,9 +147,9 @@ get(starCountRef5).then((snapshot5) => {
         }
         const ave = convertHMS(total /idx)
         const fastest = convertHMS(items[0][1])
-        document.getElementById('first').innerText =items[0][0]
-        document.getElementById('second').innerText=items[1][0]
-        document.getElementById('third').innerText=items[2][0]
+        document.getElementById('first').innerHTML ='<i class="fa-solid fa-crown" style="margin-right: 3%;"></i>' + items[0][0]
+        document.getElementById('second').innerHTML= '<i class="fa-solid fa-2" style="margin-right: 3%;"></i>' + items[1][0]
+        document.getElementById('third').innerHTML= '<i class="fa-solid fa-3" style="margin-right: 3%;"></i>' + items[2][0]
         document.getElementById('ave').innerHTML =   ave + '<i class="fa-solid fa-stopwatch fa-2x" id = "stopwatch"></i>'
         document.getElementById('fast').innerHTML = fastest + '<i class="fa fa-bolt fa-2x" aria-hidden="true" id = "gauge"></i>'
         const starCountRef10 = ref(db, 'users/' + currentUser.uid + '/seasonPoints');
@@ -209,6 +209,7 @@ get(starCountRef5).then((snapshot5) => {
 
           /*This will check if the user goes into lucky wheel or not*/
           const userCurrentR = data9['currentRace']
+          console.log(userCurrentR)
           if (userCurrentR == 4 && sp >= 50) {
             document.getElementById('proceedNextRace').innerText = 'collect';
             document.getElementById('proceedNextRace').href = './luckyWheel.html'
@@ -222,6 +223,7 @@ get(starCountRef5).then((snapshot5) => {
                 })
             })
         } else if (userCurrentR == 4 && sp < 50) {
+            console.log('New')
             document.getElementById('proceedNextRace').innerText = 'New';
             document.getElementById('proceedNextRace').href = './index-2.html'
             /*Ugly fix here*/

@@ -2,7 +2,7 @@ function toggleButton() {
     const loginButton = document.getElementById('connect')
     if (!window.ethereum) {
         loginButton.addEventListener('click', () => {
-            window.open('https://metamask.io/download', '_blank')
+            window.open('https://metamask.io/download', '_blank');
         });
     }
 
