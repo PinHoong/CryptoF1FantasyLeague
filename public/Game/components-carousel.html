@@ -175,6 +175,7 @@
   const drivers3 = ['Albon', 'Alonso', 'Bottas', 'Gasly', 'Hamiliton', 'Lafti', 'Leclerc', 'Magussen', 'Norris', 'Ocon', 'Perez', 'Ricardo', 'Russell', 'Sainz', 'Schumacher', 'Stroll', 'Tsunoda', 'Verstappen', 'Vettel', 'Zhou'];
   const drivers2sell = ['albonS', 'alonsoS', 'bottasS', 'gaslyS', 'hamilitonS', 'laftiS', 'leclercS', 'magussenS', 'norrisS', 'oconS', 'perezS', 'ricardoS', 'russellS', 'sainzS', 'schumacherS', 'strollS', 'tsunodaS', 'verstappenS', 'vettelS', 'zhouS'];
   const sellmap = {'albonS': 'Albon', 'alonsoS': 'Alonso', 'bottasS': 'Bottas', 'gaslyS': 'Gasly', 'hamilitonS': 'Hamiliton', 'laftiS': 'Lafti', 'leclercS': 'Leclerc', 'magussenS': 'Magussen', 'norrisS': 'Norris', 'oconS': 'Ocon', 'perezS': 'Perez', 'ricardoS': 'Ricardo', 'russellS': 'Russell', 'sainzS': 'Sainz', 'schumacherS': 'Schumacher', 'strollS': 'Stroll', 'tsunodaS': 'Tsunoda', 'verstappenS': 'Verstappen', 'vettelS': 'Vettel', 'zhouS': 'Zhou'}
+  const pricemap = {}
   //const drivers4 = [albon, alonso, bottas, gasly, hamiliton,lafti, leclerc, magussen, norris, ocon, perez, ricardo, russell, sainz, schumacher, stroll, tsunoda, verstappen, vettel, zhou];
   var c = 0;
 
@@ -279,7 +280,7 @@
       
 
       //to get driver price 
-      let drvPrice2 = JSON.parse(localStorage.answer);
+      let drvPrice2 = bp[drvrname];
       //end of getting driver price 
       
       if (curr == 2){
