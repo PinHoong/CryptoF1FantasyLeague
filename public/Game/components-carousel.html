@@ -181,7 +181,6 @@
 
   onValue(starCountRef, (snapshot) => {
       var data = snapshot.val();
-      console.log(snapshot.val())
       for (var key in data) {
         
         var link ="assets/img/drivers/" + drivers2[c] + ".jpg";
@@ -212,25 +211,27 @@
       titlecount.innerText = '2/2 Drivers';
     }
   })
+  const main_starCountRef = ref(db)
   const starCountRef2 = ref(db, 'drivers/');
-  get(starCountRef2).then((snapshot) => {
-        const drvdata = snapshot.val();
+  get(main_starCountRef).then((snapshot) => {
+        const main = snapshot.val()
+        const drvdata = main['drivers'];
         var sp = {}
         var bp = {}
         var drvrname = JSON.parse(localStorage.getItem('drvrname'));
-        console.log("og prce:" + drvdata[drvrname]['Price']);
-        localStorage.answer = JSON.stringify(drvdata[drvrname]['Price'].toString());
+        //console.log("og prce:" + drvdata[drvrname]['Price']);
+        //localStorage.answer = JSON.stringify(drvdata[drvrname]['Price'].toString());
         for (var name of drivers3){
           sp[name] = drvdata[name]['Price'] - 1
           bp[name] = drvdata[name]['Price']
         }
+        console.log(bp)
         localStorage.setItem('sp', JSON.stringify(sp))
         localStorage.setItem('bp', JSON.stringify(bp))
-      })
+      
   
   const starCountRef = ref(db, 'users/' + Usr.uid);
-  get(starCountRef).then((snapshot) => {
-    const data = snapshot.val();
+    const data = main['users'][Usr.uid]
     var curr = data['driverCount'];
     var currcash = data['currency'];
     var bp = JSON.parse(localStorage.getItem('bp'))
