@@ -74,14 +74,7 @@ wheel.addEventListener('transitionend', () => {
   // Calculate and display the winning symbol
   handleWin(actualDeg);
   const winningTkt = JSON.parse(localStorage.getItem('winningTicket'))
-  Swal.fire({
-    title: 'Sweet!',
-    html: 'You Won ' + winningTkt + ' | ' + '<a href="#"> Claim Now </a>',
-    imageUrl: 'https://unsplash.it/400/200',
-    imageWidth: 400,
-    imageHeight: 200,
-    imageAlt: 'Custom image',
-  })
+
   update(ref(db, 'users/' + currentUser.uid), {
       'pointsRedeemed': winningTkt,
       'visited': 1,

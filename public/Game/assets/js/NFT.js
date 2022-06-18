@@ -30,7 +30,6 @@ async function redeem() {
 "0x28c7924f4bee6ded27ca39b7aa0c52bee059e2cc839e8a5463bcfd143637701e24a98549cf1137c7c770e5d662bfbfdcf5de4a46cbdad2f22d72cd3fe558af061c",
 "0x3749687d1266698007d6ee81df304b08347e076e056acf433ea9b33b7bbbb1ce4857559bf84cc97a427264291d115c8216a5514c99ef726e0b80e0547a97bb731b"]
     let index = pointsAvail.indexOf(localStorage.getItem('winningTicket'));
-    console.log(index)
     let options = {
         contractAddress: "0x4c73F4214d36ff12eE35438EC18e6BD97759db64",
         functionName: "close",
