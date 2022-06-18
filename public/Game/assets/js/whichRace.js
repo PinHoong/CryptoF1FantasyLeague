@@ -64,7 +64,7 @@ get(starCountRef).then((snapshot) => {
             document.getElementById('TextOverImg').style.left = '33%';
         }
         //Race Num
-        const correctRN = currentRacenum + 1;
+        const correctRN = currentRace + 1;
         document.getElementById('raceNum').innerText = 'race' + ' ' + `${correctRN}`; 
         //race Highlights
         document.getElementById('raceHighlights').innerHTML = `<a href = '${currentRaceHighlights}'>Race Highlights</a>`;
