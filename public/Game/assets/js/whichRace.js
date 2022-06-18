@@ -17,19 +17,20 @@ const db = getDatabase(app);
 const currentUser = JSON.parse(localStorage.getItem('usr'));
 
 //First is to get which race the user is at.
-const starCountRef = ref(db, 'users/' + currentUser.uid + '/currentRace');
-const starCountRef2 = ref(db, 'races');
-
+const starCountRef = ref(db)
 get(starCountRef).then((snapshot) => {
-    const raceNo = snapshot.val();
-    get(starCountRef2).then((snapshot2) => {
-        const raceDetails = snapshot2.val();
-        var raceNames = [];
-        for (var key in raceDetails) {
-            raceNames.push(key);
-        }
-        var currentRace = raceNames[raceNo];
-        var currentRaceDetails = raceDetails[currentRace];
+    const data = snapshot.val();
+    var raceNo = data['users'][currentUser.uid]['currentRace'];
+    var raceDetails = data['races'];
+    var raceNames = [];
+    for (var key in raceDetails) {
+        raceNames.push(key);
+    }
+    console.log(raceNo)
+    var currentRace = raceNames[raceNo];
+    console.log(currentRace)
+    var currentRaceDetails = raceDetails[currentRace];
+        console.log(currentRaceDetails)
         const currentCircuitName = currentRaceDetails['Circuit'];
         const currentCircuitLength = currentRaceDetails['Circuit Length'];
         const currentCircuitImg = currentRaceDetails['Img'];
@@ -64,13 +65,12 @@ get(starCountRef).then((snapshot) => {
             document.getElementById('TextOverImg').style.left = '33%';
         }
         //Race Num
-        const correctRN = currentRace + 1;
+        const correctRN = raceNo + 1;
+        console.log(correctRN)
         document.getElementById('raceNum').innerText = 'race' + ' ' + `${correctRN}`; 
         //race Highlights
         document.getElementById('raceHighlights').innerHTML = `<a href = '${currentRaceHighlights}'>Race Highlights</a>`;
-
     })
-})
 /*
     
     console.log(currentCircuitName)
