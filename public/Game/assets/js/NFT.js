@@ -32,7 +32,7 @@ async function redeem() {
     let index = pointsAvail.indexOf(localStorage.getItem('winningTicket'));
     console.log(index)
     let options = {
-        contractAddress: "0x1Fc8b8845668BD3A66Ba0470d0eF124C17Ce1137",
+        contractAddress: "0x4c73F4214d36ff12eE35438EC18e6BD97759db64",
         functionName: "close",
         abi: [{
             "inputs": [
