@@ -145,6 +145,16 @@
   const auth = getAuth();
   const database = getDatabase(app);
 
+  document.getElementById('contact-form').addEventListener("keypress", function(event) {
+      // If the user presses the "Enter" key on the keyboard
+      if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      document.getElementById("submitData").click();
+      }
+      });
+
   submitData.addEventListener('click', (e) => {
 
       var email = document.getElementById('email').value;
@@ -196,6 +206,7 @@
                   .then(() => {
                       // Data saved successfully!
                       alert('user created successfully');
+                      window.location.href = "sign-in.html";
       
                   })
                   .catch((error) => {
