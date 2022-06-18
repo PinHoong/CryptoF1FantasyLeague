@@ -18,11 +18,92 @@ const currentUser = JSON.parse(localStorage.getItem('usr'));
 
 //First is to get which race the user is at.
 const starCountRef = ref(db, 'users/' + currentUser.uid + '/currentRace');
+const starCountRef2 = ref(db, 'races');
+
 get(starCountRef).then((snapshot) => {
     const raceNo = snapshot.val();
-    console.log(raceNo)
-    localStorage.setItem('raceNo', JSON.stringify(raceNo));
-    changingWebsiteDetails();
+    get(starCountRef2).then((snapshot2) => {
+        const raceDetails = snapshot2.val();
+        var raceNames = [];
+        for (var key in raceDetails) {
+            raceNames.push(key);
+        }
+        var currentRace = raceNames[raceNo];
+        var currentRaceDetails = raceDetails[currentRace];
+        const currentCircuitName = currentRaceDetails['Circuit'];
+        const currentCircuitLength = currentRaceDetails['Circuit Length'];
+        const currentCircuitImg = currentRaceDetails['Img'];
+        const currentCircuitLR = currentRaceDetails['Lap Record'];
+        const currentCircuitLaps = currentRaceDetails['Laps'];
+        const currentCircuitLRH = currentRaceDetails['Record'];
+        const currentRaceHighlights = currentRaceDetails['Highlights'];
+        console.log(currentCircuitName)
+        console.log(currentRaceDetails)
+        //Time to automate the process
+        //First is CircuitLength
+        document.getElementById('CircuitLength').innerText = currentCircuitLength;
+        //Lap Record
+        document.getElementById('LapRecord').innerText = currentCircuitLR;
+        //Lap
+        document.getElementById('Lap').innerText = currentCircuitLaps;
+        //Lap Record Holder
+        document.getElementById('LapRecordHlder').innerText = currentCircuitLRH;
+        //Circuit Image
+        document.getElementById('circuitImg').innerHTML = `<img src = '${currentCircuitImg}'>`;
+        //Circuit Name
+        document.getElementById('RaceName').innerText = currentCircuitName;
+        //Country
+        document.getElementById('TextOverImg').innerText = currentRace;
+        if (currentRace == 'Spain') {
+            //document.getElementById('TextOverImg').style.fontSize = '120px';
+            document.getElementById('TextOverImg').style.left = '40%';
+            //document.getElementById('TextOverImg').style.top = '25%';
+        } else if (currentRace == 'Italy') {
+            document.getElementById('TextOverImg').style.left = '42%';
+        } else if (currentRace == "Singapore") {
+            document.getElementById('TextOverImg').style.left = '33%';
+        }
+        //Race Num
+        const correctRN = currentRacenum + 1;
+        document.getElementById('raceNum').innerText = 'race' + ' ' + `${correctRN}`; 
+        //race Highlights
+        document.getElementById('raceHighlights').innerHTML = `<a href = '${currentRaceHighlights}'>Race Highlights</a>`;
+
+    })
+})
+/*
+    
+    console.log(currentCircuitName)
+    console.log(currentRaceDetails)
+    //Time to automate the process
+    //First is CircuitLength
+    document.getElementById('CircuitLength').innerText = currentCircuitLength;
+    //Lap Record
+    document.getElementById('LapRecord').innerText = currentCircuitLR;
+    //Lap
+    document.getElementById('Lap').innerText = currentCircuitLaps;
+    //Lap Record Holder
+    document.getElementById('LapRecordHlder').innerText = currentCircuitLRH;
+    //Circuit Image
+    document.getElementById('circuitImg').innerHTML = `<img src = '${currentCircuitImg}'>`;
+    //Circuit Name
+    document.getElementById('RaceName').innerText = currentCircuitName;
+    //Country
+    document.getElementById('TextOverImg').innerText = currentRace;
+    if (currentRace == 'Spain') {
+        //document.getElementById('TextOverImg').style.fontSize = '120px';
+        document.getElementById('TextOverImg').style.left = '40%';
+        //document.getElementById('TextOverImg').style.top = '25%';
+    } else if (currentRace == 'Italy') {
+        document.getElementById('TextOverImg').style.left = '42%';
+    } else if (currentRace == "Singapore") {
+        document.getElementById('TextOverImg').style.left = '33%';
+    }
+    //Race Num
+    const correctRN = currentRacenum + 1;
+    document.getElementById('raceNum').innerText = 'race' + ' ' + `${correctRN}`; 
+    //race Highlights
+    document.getElementById('raceHighlights').innerHTML = `<a href = '${currentRaceHighlights}'>Race Highlights</a>`;
 })
 
 //Next is to get the key (AKA Saudi Arabia etc)
@@ -86,3 +167,4 @@ function changingWebsiteDetails() {
     //race Highlights
     document.getElementById('raceHighlights').innerHTML = `<a href = '${currentRaceHighlights}'>Race Highlights</a>`;
 }
+*/
