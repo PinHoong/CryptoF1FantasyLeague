@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Store</title>
+  <title>Game</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -27,7 +27,6 @@
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/3772469bf7.js" crossorigin="anonymous"></script>
 
-
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -40,14 +39,67 @@
 </head>
 
 <body>
-  <div id = "poppingForPurchase" style="display: none;">
+  <!--<script type="module" src="./assets/js/ScoreCalculator.js"></script>-->
+  <script type="module" src = "assets/js/UserFunded.js"></script>
+  <div id="popUpmain" style="display: block;">
     <div class="popup">
-      <div id="ProcessingIcon">
-        <i class="fa fa-refresh fa-spin" style="font-size:150px; margin-top: 60px; color: #fff;"></i>
-      </div>
-      <h1 class="newsHeading" id = "Processing">Processing.....</h1>
+      <h1 class="newsHeading" style="font-weight: bold; margin-bottom: 5%; margin-top: 10%">Welcome Team Managers!</h1>
+      <h2 class = "newsHeading" style="font-style: italic">Do you have the skills to the best?</h2>
+      <button class="popup_buttons" onclick="closeWindow()">Get Started</button>
     </div>
   </div>
+  <div id= "popUpmain2" style="display: none;">
+    <div  class = "popup">
+      <h1 class = "newsHeading" style="font-weight: bold;">Rules Of The Game</h1>
+      <p class="threeStages"><i class="fa fa-check-square fa-5x"></i><br>Choose Your Budget Level</p>
+      <!--<i class="fa-solid fa-user" ><p class = "threeStages">Choose the level of difficuly.</p></i>-->
+      <p class="threeStages"><i class="fa fa-handshake-o fa-5x"></i><br>Purchase 2 Drivers & Cars Respectively</p>
+      <p class="threeStages"><i class="fa fa-money fa-5x"></i><br>Prepare your team and get rewarded</p><br>
+      <button class="popup_buttons" style = "margin-top:60px;" onclick = "closeWindow2()">I'M Ready</button>
+    </div>
+  </div>
+  <script>
+    function closeWindow() {
+      document.getElementById('popUpmain').remove();
+      document.getElementById('popUpmain2').style.display = 'block';
+    }
+
+    function closeWindow2() {
+      document.getElementById('popUpmain2').remove();
+      //window.location.href = "components-badges.html"
+    }
+  </script>
+  <script type= "module">
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+    import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
+      authDomain: "f1cft-493d1.firebaseapp.com",
+      databaseURL: "https://f1cft-493d1-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "f1cft-493d1",
+      storageBucket: "f1cft-493d1.appspot.com",
+      messagingSenderId: "414144945872",
+      appId: "1:414144945872:web:4926d78a5a38ae78b908d5",
+      measurementId: "G-WNE15MGBR0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const currentUser = JSON.parse(localStorage.getItem('usr'));
+    const starCountRef = ref(db, 'users/' + currentUser.uid + '/funded');
+    get(starCountRef).then((snapshot) => {
+      const funded = snapshot.val();
+      console.log(funded)
+      if (funded == 1) {
+        document.getElementById('popUpmain').style.display = "none";
+      } else {
+        window.addEventListener('load', (event) => {
+          document.getElementById('popUpmain').style.display = 'block';
+        })
+      }
+    })
+  </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
@@ -70,28 +122,6 @@
           <li><button class="book-a-table-btn scrollto d-none d-lg-flex" onclick="Signout()">Sign Out</button></li>
         </ul>
         <script type = "module" src = "./assets/js/VirtualCurrency.js"></script>
-        <script type="module">
-          import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-          import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
-
-          const firebaseConfig = {
-            apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
-            authDomain: "f1cft-493d1.firebaseapp.com",
-            databaseURL: "https://f1cft-493d1-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "f1cft-493d1",
-            storageBucket: "f1cft-493d1.appspot.com",
-            messagingSenderId: "414144945872",
-            appId: "1:414144945872:web:4926d78a5a38ae78b908d5",
-            measurementId: "G-WNE15MGBR0"
-          };
-
-          const app = initializeApp(firebaseConfig);
-          const db = getDatabase(app);
-          const currentUser = JSON.parse(localStorage.getItem('usr'));
-          update(ref(db, 'users/' + currentUser.uid), {
-            'funded': 1,
-          })
-        </script>
         <script>
           const currentUser = JSON.parse(localStorage.getItem('user'));
           document.getElementById("UserName").innerText = currentUser;
@@ -133,7 +163,6 @@
     </div>
   </header><!-- End Header -->
 
-
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar" style="margin-top:38px">
 
@@ -145,9 +174,10 @@
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
+    
+      <!--Tutorial Page-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tutorial.html">
+        <a class="nav-link" href="tutorial.html">
           <i class="fa-solid fa-circle-question"></i>
           <span>How to Play</span>
         </a>
@@ -171,7 +201,7 @@
 
       <!--Funding-->
       <li class="nav-item">
-        <a class="nav-link" href="components-badges.html">
+        <a class="nav-link collapsed" href="components-badges.html">
           <i class = "fa-brands fa-ethereum"></i>
           <span>Store</span>
         </a>
@@ -191,52 +221,104 @@
 
   <main id="main" class="main">
 
-    <section id="why-us" class="why-us" >
-      <div class="container" data-aos="fade-up">
+    <div class="pagetitle">
+      <h1>How to Play</h1>
+    </div><!-- End Page Title -->
 
-        <div class="section-title">
-          <h3>Store</h3>
-        </div>
+    <section class="section dashboard">
+      <div class="row">
 
-        <div class="row">
+        <!-- Left side columns -->
+        <div class="col-lg-12">
 
-          <div class="col-lg-4">
-            <div class="box" data-aos="zoom-in" data-aos-delay="100">
-              <span><i class="bi bi-coin fa-3x"></i></span>
-              <h4>30 Coins</h4>
-              <p><span class="words_in_htp"><button class="table-btn" ><i class="fa-brands fa-ethereum fa-2x" onclick="PurchaseProcedure('b1')">0.03</i></button></span></p>
-              <script src = "assets/js/PurchaseMethods.js"></script>
-              <script id = "purchasingGold"></script>
-            </div>
-          </div>
 
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="100">
-              <span><i class="bi bi-cash fa-3x"></i></span>
-              <h4>40 Coins</h4>
+            <!-- Reports -->
+            <div class="col-12">
+
+              <div class="card3">
+                <img src = 'assets/img/store_ss.png' class = 'howtopics'>
+                <div class="card-body" style = 'width:500px'>
+                  <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
+                  <h5 class = 'card-title'>Step 1: Funding Your Account</h5>
+                  <ul>
+                    <li>Top up your in game wallet in the store page</li>
+                    <li>Choose from the 3 funding options</li>
+                    <li>Follow the metamask prompt to fund your wallet</li>
+                  </ul>
+                </div>
+              </div>
               
 
-              <p><span class="words_in_htp"><button class="table-btn"><i class="fa-brands fa-ethereum fa-2x" onclick = "PurchaseProcedure('b2')">0.04</i></button></span></p>
+              <div class="card3">
+                <img src = 'assets/img/driver2_ss.png' class = 'howtopics'>
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft">0/2 Drivers</h5>-->
+                  <h5 class = 'card-title'>Step 2: Buying your Drivers</h5>
+                  <ul>
+                    <li>Go to the Driver Market</li>
+                    <li>Choose and purchase your preferred 2 Drivers</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card3">
+                <img src = 'assets/img/car3_ss.png' class = 'howtopics'>
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
+                  <h5 class = 'card-title'>Step 3: Buying your Cars</h5>
+                  <ul>
+                    <li>Go to the Car Market</li>
+                    <li>Choose and purchase your preferred 2 Cars</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card3">
+                <img src = 'assets/img/draft_ss.png' class = 'howtopics'>
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
+                  <h5 class = 'card-title'>Step 4: Drafting your Team</h5>
+                  <ul>
+                    <li>Proceed to the Draft page after starting a race</li>
+                    <li>Allocate 1 Driver and 1 Car to each of your<br> 2 race pairs</li>
+                  </ul>
+              </div>
             </div>
-          </div>
 
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="100">
-              <span><i class="bi bi-cash-stack fa-3x"></i>
-              </span>
-              <h4>50 Coins</h4>
-              
-
-              <p><span class="words_in_htp"><button class="table-btn" ><i class="fa-brands fa-ethereum fa-2x" onclick="PurchaseProcedure('b3')">0.05</i></button></span></p>
+            <div class="card3">
+                <img src = 'assets/img/config_ss.png' class = 'howtopics'>
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
+                  <h5 class = 'card-title'>Step 5:Select your Config</h5>
+                  <ul>
+                    <li>Proceed to the Config page after starting a race</li>
+                    <li>Choose one of the 3 configs based on <br>the race conditions</li>
+                  </ul>
+              </div>
             </div>
-          </div>
 
-        </div>
+            <div class="card3">
+                <img src = 'assets/img/results_ss.png' class = 'howtopics'>
+                <div class="card-body">
+                  <!--<h5 class="card-title" id="titledraft2">0/2 Cars</h5>-->
+                  <h5 class = 'card-title'>Step 6:Results</h5>
+                  <ul>
+                    <li>View results and strategise your next race!</li>
+                  </ul>
+              </div>
+            </div>
+
+
+
+
+
+
 
       </div>
-    </section><!-- End Why Us Section -->
-    <script type="module" src = "./assets/js/UserFunded.js"></script>
+    </section>
+
   </main><!-- End #main -->
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

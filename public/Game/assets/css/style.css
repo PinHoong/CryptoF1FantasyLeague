@@ -1984,24 +1984,63 @@ button{
 
 .tooltip {
   position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
+  display: inline;  
+  padding: 20px 0 15px 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #012970;
+  font-family: "Poppins", sans-serif;
 }
 
-.tooltip .tooltiptext {
+#tooltiptext {
   visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
+  width: 300px;
+  background-color: rgb(184, 183, 183);
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
+  font-size: small;
+  margin-left: 5px;
 
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
 }
 
-.tooltip:hover .tooltiptext {
+
+
+#information{
+  margin-left:3px;
+}
+
+.card-title2{
+  padding: 20px 0 15px 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #012970;
+  font-family: "Poppins", sans-serif;
+  width: 30vw;
+}
+
+.card-title2:hover #tooltiptext {
   visibility: visible;
+}
+
+.card3{
+  width: 70vw;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  display:block;
+  margin-left:15px;
+  font-size:large;
+  font-family: "Poppins", sans-serif;
+  height: 200px;
+}
+
+.howtopics{
+  float: right;
+  display:inline;
+  width: 430px;
 }
