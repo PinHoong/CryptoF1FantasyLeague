@@ -198,3 +198,5 @@ function convertHMS(value) {
     if (seconds < 10) {seconds = "0"+seconds;}
     return minutes+':'+seconds+':'+subseconds; // Return is HH : MM : SS
 }
+
+module.exports = ScoreCalculator;
