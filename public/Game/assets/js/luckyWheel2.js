@@ -22,7 +22,7 @@ const startButton = document.querySelector('.button');
 const display = document.querySelector('.display');
 
 let deg = 0;
-let zoneSize = 45.2; // deg
+let zoneSize = 45; // deg
 
 // Counter clockwise
 const symbolSegments = {
