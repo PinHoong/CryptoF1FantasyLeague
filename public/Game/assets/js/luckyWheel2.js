@@ -58,6 +58,21 @@ startButton.addEventListener('click', () => {
   wheel.classList.add('blur');
 });
 
+wheel.addEventListener('click', () => {
+  // Reset display
+  display.innerHTML = "-";
+  // Disable button during spin
+  startButton.style.pointerEvents = 'none';
+  // Calculate a new rotation between 5000 and 10 000
+  deg = Math.floor(10000 + Math.random() * 5000);
+  // Set the transition on the wheel
+  wheel.style.transition = 'all 10s ease-out';
+  // Rotate the wheel
+  wheel.style.transform = `rotate(${deg}deg)`;
+  // Apply the blur
+  wheel.classList.add('blur');
+});
+
 wheel.addEventListener('transitionend', () => {
   // Remove blur
   wheel.classList.remove('blur');
