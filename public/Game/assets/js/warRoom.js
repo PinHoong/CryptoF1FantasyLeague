@@ -57,7 +57,7 @@ get(meetingID).then((snapshot) => {
         const userLN = snapshot.val();
         onChildAdded(newMag, (data) => {
             var divData = 
-            '<div class="commenterImage"><i class="fa-solid fa-circle-user" style = "margin-left: 20%"></i></div><div class="commentText"><p class="">' + data.val().message + '</p> <span class="date sub-text">' + 'Sent By ' + userLN + '</span></div>'
+            '<div class="commenterImage"><i class="fa-solid fa-circle-user" style = "margin-left: 20%"></i></div><div class="commentText"><p class="">' + data.val().message + '</p> <span class="date sub-text">' + 'Sent By ' + data.val().name + '</span></div>'
             var d1 = document.getElementById('bodyContent');
             d1.insertAdjacentHTML('beforebegin', divData);
         })
