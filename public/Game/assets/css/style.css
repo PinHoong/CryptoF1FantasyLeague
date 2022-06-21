@@ -2223,6 +2223,7 @@ display:inline-block;
 }
 
 .multi_card{
+  margin-top: 30px;
   margin-bottom: 30px;
   border: none;
   border-radius: 35px;
@@ -2233,5 +2234,5 @@ display:inline-block;
   font-size:large;
   font-family: "Poppins", sans-serif;
   font-weight:900;
-  background-color: red;
+  background-color: DC143C;
 }
