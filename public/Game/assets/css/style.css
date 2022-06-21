@@ -2221,3 +2221,17 @@ display:inline-block;
 .date { 
   margin-left: 8%;
 }
+
+.multi_card{
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 35px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  width: 48%;
+  display:inline-block;
+  margin-left:15px;
+  font-size:large;
+  font-family: "Poppins", sans-serif;
+  font-weight:900;
+  background-color: red;
+}
