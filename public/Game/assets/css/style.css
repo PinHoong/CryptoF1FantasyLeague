@@ -2062,3 +2062,162 @@ button{
   display:inline;
   width: 430px;
 }
+
+.multiCard{
+  width: 40vw;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  display:block;
+  margin-left:20px;
+  font-size:large;
+  font-family: "Poppins", sans-serif;
+  height: 340px;
+  background-color: #DC143C;
+  margin-top: 15%;
+}
+
+#btn1 {
+  margin: 0 0 0 0px;
+  border: white;
+  color: #18d26e;
+  border-radius: 50px;
+  padding: 3px 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  font-size: 26px;
+  font-weight: bold;
+  background: white;
+  width: 250px;
+  text-align: center;
+  height: 40px;
+}
+
+#btn2 {
+  margin: 0 0 0 0px;
+  border: white;
+  color: #18d26e;
+  border-radius: 50px;
+  padding: 4px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  font-size: 18px;
+  font-weight: bold;
+  background: white;
+  width: 120px;
+  text-align: center;
+  height: 40px;
+}
+
+.multiCardOG{
+  width: 20vw;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  display:block;
+  margin-left:10px;
+  font-size:large;
+  font-family: "Poppins", sans-serif;
+  height: 200px;
+  background-color: #DC143C;
+  margin-top: 10%;
+}
+
+.wordsinOG {
+  font-family: sans-serif;
+  color: white;
+  font-size: 30px;
+  margin-left: 10%;
+  font-weight: bold;
+}
+
+.detailBox {
+  width:380px;
+  border:1px solid #bbb;
+  margin-top: 9%;
+}
+
+.titleBox {
+  background-color:#fdfdfd;
+  padding:10px;
+}
+
+.titleBox label{
+color: #DC143C;
+font-weight: bold;
+font-size: 20px;
+margin:0;
+display:inline-block;
+}
+
+
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+  width:18%;
+}
+.actionBox .form-group * {
+  width:70%;
+  display: inline-block;
+}
+.taskDescription {
+  margin-top:10px 0;
+}
+.commentList {
+  padding:0;
+  list-style:none;
+  max-height:200px;
+  overflow:auto;
+}
+.commentList li {
+  margin:0;
+  margin-top:10px;
+}
+.commentList li > div {
+  display:table-cell;
+}
+.commenterImage {
+  width:30px;
+  margin-right:5px;
+  height:100%;
+  float:left;
+}
+.commenterImage img {
+  width:100%;
+  border-radius:50%;
+}
+.commentText p {
+  margin:0;
+}
+.sub-text {
+  color:#aaa;
+  font-family:verdana;
+  font-size:11px;
+}
+.actionBox {
+  border-top:1px dotted #bbb;
+  padding:10px;
+}
+
+#sendBtn {
+  display: inline-block;
+  border: white;
+  color: white;
+  width: 20%;
+  padding: 4px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-weight: bold;
+  background: #18d26e;
+  text-align: center;
+  height: 40px;
+  border-radius: 15%;
+  margin-left: 5%;
+}
+
+.date { 
+  margin-left: 8%;
+}
