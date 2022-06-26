@@ -23,10 +23,9 @@ const anotherref = ref(db, 'users/' + Usr.uid);
 
 get(anotherref).then((snapshot) =>{
   const data = snapshot.val()
-  localStorage.setItem('username', JSON.stringify(data['firstName']))
-})
-const username = JSON.parse(localStorage.getItem('username'))
-function sendMessage(e) {
+  const username = data['firstName']
+
+  function sendMessage(e) {
     e.preventDefault();
   
     // get values to be submitted
@@ -47,18 +46,20 @@ function sendMessage(e) {
         username,
         message,
       })
-  
-
   }
 
-document.getElementById("message-form").addEventListener("submit", sendMessage);
+  document.getElementById("message-form").addEventListener("submit", sendMessage);
+})
 
-const fetchChat = ref(db, 'messages/');
+
+
+const fetchChat = ref(db);
 
 onValue(fetchChat, (snapshot) => {
   document.getElementById("messages").innerHTML = ``;
-  const messages = snapshot.val()
-  console.log(messages)
+  const main = snapshot.val()
+  const messages = main['messages']
+  const username = main['users'][Usr.uid]['firstName']
   for (const [key, value] of Object.entries(messages)) {
     console.log(value);
     const message = `<li class=${
