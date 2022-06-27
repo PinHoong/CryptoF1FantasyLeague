@@ -15,7 +15,7 @@ header {
 li {
     list-style-type: none;
     margin-bottom: 10px;
-    background-color: #6929ca;
+    background-color: #2069d6;
     padding: 5px;
     border-radius: 10px;
     color: white;
@@ -25,7 +25,7 @@ li {
 li span {
     font-style: italic;
     font-weight: bolder;
-    color: #b5b0b9;
+    color: #ffffff;
 }
 
 #chat {
@@ -54,11 +54,19 @@ button {
 
 .sent {
     text-align: right;
-    background-color: #a79cb3;
+    background-color: #36d859;
     margin-left: 50%;
 }
 
 .sent span {
     margin-left: 5px;
-    color: #6929ca;
+    color: #ffffff;
 }
+
+.card-title {
+    padding: 20px 0 15px 0;
+    font-size: 18px;
+    font-weight: 550;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+  }

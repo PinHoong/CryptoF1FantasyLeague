@@ -2243,14 +2243,14 @@ display:inline-block;
 }
 
 .card4{
-  width: 45vw;
-  margin-bottom: 30px;
+  width: 95vw;
   border: none;
   border-radius: 5px;
-  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-  display:block;
+  box-shadow: 0px 0 10px rgba(1, 41, 112, 0.1);
+  display:inline-block;
   margin-left:15px;
   font-size:large;
   font-family: "Poppins", sans-serif;
-  height: 200px;
+  height: 300px;
 }
+
