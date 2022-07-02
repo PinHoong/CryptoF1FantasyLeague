@@ -161,6 +161,34 @@ get(starCountRef5).then((snapshot5) => {
           const spp3 = ((spp/50) * 100).toFixed(0);
           document.getElementById('Usrcumulativepoints').innerHTML = '<progress id = "Usrcumulativepoints" value = ' + spp2  + 'max = "50"></progress>';
           document.getElementById('ProgressStatus').innerHTML = '<span>' + spp3 + '%' + '</span>'
+        
+          var userrrr = data5['currentRace']
+          if (spp >= 50 && userrrr == 4) {
+            document.getElementById('proceedNextRace').innerText = 'collect';
+            document.getElementById('proceedNextRace').href = './luckyWheel.html'
+            document.getElementById('proceedNextRace').addEventListener('click', (e) => {
+                /*KIV if want to put this section into the luckyWheel2.js*/
+                update(ref(db, 'users/' + currentUser.uid), {
+                    'currentRace': 0,
+                    'raceResults': 0,
+                    'seasonPoints': 0,
+                    'choice':0,
+                })
+            })
+          } else {
+            document.getElementById('proceedNextRace').innerText = 'New';
+            document.getElementById('proceedNextRace').href = './index-2.html'
+            /*Ugly fix here*/
+            document.getElementById('proceedNextRace').addEventListener('click', (e) => {
+                alert('Try Again Next Season! You Will Be Redirected Back To The Home Page Now!')
+                update(ref(db, 'users/' + currentUser.uid), {
+                    'currentRace': 0,
+                    'raceResults': 0,
+                    'seasonPoints': 0,
+                    'choice': 0,
+                })
+            })
+          }
         })
       } else {
       const starCountRef7 = ref(db);
@@ -211,6 +239,7 @@ get(starCountRef5).then((snapshot5) => {
           const userCurrentR = data9['currentRace']
           console.log(userCurrentR)
           if (userCurrentR == 4 && sp >= 50) {
+            console.log('Here baby!')
             document.getElementById('proceedNextRace').innerText = 'collect';
             document.getElementById('proceedNextRace').href = './luckyWheel.html'
             document.getElementById('proceedNextRace').addEventListener('click', (e) => {
