@@ -301,10 +301,11 @@
     }
 
     function cfmation(){
-      if ((p2DCount == 1 && p2CCount == 1) || (p1CCount == 1 && p1DCount == 1)){
-        document.getElementById('cfmation').innerHTML = "<a href = 'Configuration.html' class = 'btntoproceed'>Confirm</a>"
+      if ((p2DCount == 1 && p2CCount == 1) && (p1CCount == 1 && p1DCount == 1)){
+        document.getElementById('cfmation').innerHTML = "<a href = './waitingRoom.html' class = 'btntoproceed'>Confirm</a>"
       }
       else{
+        console.log('B')
         document.getElementById('cfmation').innerHTML = "<a href = '#' class = 'btntoproceed'>Confirm</a>"
       }
     }
