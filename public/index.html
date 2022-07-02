@@ -104,7 +104,7 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="sign-in.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:35px" id="userlink">Log-in</a>
+      <div id = 'userlink'><a href="sign-in.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:35px">Log-in</a></div>
       <a href="registration.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:30px" id="signoutlink">Sign-Up</a>
 
     </div>
@@ -135,14 +135,14 @@
       getUsername();
       console.log('this is the current user' + currentUser);
       if (currentUser == null){
-        userlink.innerText = 'Log In';
-        userlink.classList.replace('nav-link', 'btn');
-        userlink.classList.add('btn-primary');
+        //userlink.innerText = 'Log In';
+        //userlink.classList.replace('nav-link', 'btn');
+        //userlink.classList.add('btn-primary');
         userlink.href = 'sign-in.html';
 
       } 
       else{
-        userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px"></i> ' + currentUser;
+        userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px;color:#CDA45E">' + currentUser + '</i>';
         userlink.classList.remove('book-a-table-btn');
         document.getElementById("playnow").remove();
         document.getElementById("dependantlogin").remove();
