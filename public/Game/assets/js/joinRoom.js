@@ -38,7 +38,9 @@ document.getElementById('btn1').addEventListener('click', () => {
                 memberCount: 1,
                 readymembers: 0,
                 messages: '',
-                memberUID: {1: currentUser.uid}
+                memberUID: {1: currentUser.uid},
+                scoreboard: {1: 0},
+                //scoreboard: {},
             }
             update(ref(db), updates);
             update(ref(db, 'users/' + currentUser.uid), {

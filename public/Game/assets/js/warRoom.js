@@ -52,23 +52,7 @@ get(meetingID).then((snapshot) => {
             document.getElementById(newid).innerText = 'Ready';
         }
     })
-    /*
-        for (var k in data4) {
-            console.log(k)
-            var indivUID = data4[k];
-            console.log(indivUID)
-            var starCountRef4 = ref(db, 'users/' + indivUID + '/draftConfirm');
-            get(starCountRef4).then((snapshot5) => {
-                const draftConfirms = snapshot5.val();
-                console.log(draftConfirms)
-                console.log(k)
-                var newid = parseInt(k) + 5;
-                console.log(newid)
-                document.getElementById(newid).innerText = draftConfirms;
-            })
-        }
-    })
-    */
+
     //This to reflect the number of participants accurately
     const starCountRef3 = ref(db, 'Rooms/' + mid+ '/memberCount');
     onValue(starCountRef3, (snapshot3) => {
@@ -76,6 +60,9 @@ get(meetingID).then((snapshot) => {
         document.getElementById('numofP').innerText = `${data3}` + '/5';
     })
 
+
+
+    /* This is to reflect the drivers car
     /*
     //This is for onDisconnect
     const numofU = ref(db, 'Rooms/' + mid + '/memberCount');
