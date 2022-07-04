@@ -27,6 +27,7 @@ get(meetingID).then((snapshot) => {
             arryofI.push(k);
         }
         console.log(arryofI)
+        //This is to display the name properly
         for (var j = 1; j <=5; j++) {
             if (arryofI.includes(j.toString())) {
                 var numBefore = j.toString() - 1;
@@ -42,7 +43,32 @@ get(meetingID).then((snapshot) => {
         }
     });
 
-
+    //This is to determine the status
+    const whatsmemberready = ref(db, 'Rooms/' + mid + '/readymembers');
+    onValue(whatsmemberready, (snapshot4) => {
+        const data4 = snapshot4.val();
+        for (var i = 1; i <= data4; i++) {
+            const newid = i + 5;
+            document.getElementById(newid).innerText = 'Ready';
+        }
+    })
+    /*
+        for (var k in data4) {
+            console.log(k)
+            var indivUID = data4[k];
+            console.log(indivUID)
+            var starCountRef4 = ref(db, 'users/' + indivUID + '/draftConfirm');
+            get(starCountRef4).then((snapshot5) => {
+                const draftConfirms = snapshot5.val();
+                console.log(draftConfirms)
+                console.log(k)
+                var newid = parseInt(k) + 5;
+                console.log(newid)
+                document.getElementById(newid).innerText = draftConfirms;
+            })
+        }
+    })
+    */
     //This to reflect the number of participants accurately
     const starCountRef3 = ref(db, 'Rooms/' + mid+ '/memberCount');
     onValue(starCountRef3, (snapshot3) => {
@@ -51,34 +77,7 @@ get(meetingID).then((snapshot) => {
     })
 
     /*
-    //THIS IS TO SEND MESSAGE
-    document.getElementById('sendBtn').addEventListener('click', (e) => {
-        const user = ref(db, 'users/' + currentUser.uid);
-        get(user).then((snapshot) => {
-            const data = snapshot.val();
-            var userLN = data['lastName'];
-            var message = document.getElementById('message2').value;
-            const id = push(child(ref(db), 'Rooms/' + mid + '/messages')).key;
-            set(ref(db, 'Rooms/' + mid + '/messages/' + id), {
-                name: userLN,
-                message: message,
-            } )
-        })
-    })
-
-    //THIS IS TO DISPLAY NEW MESSAGES
-    const newMag = ref(db, 'Rooms/' + mid + '/messages');
-    const user = ref(db, 'users/' + currentUser.uid + '/lastName');
-    get(user).then((snapshot) => {
-        const userLN = snapshot.val();
-        onChildAdded(newMag, (data) => {
-            var divData = 
-            '<li><div class="commenterImage"><i class="fa-solid fa-circle-user" style = "margin-left: 20%"></i></div><div class="commentText"><p class="">' + data.val().message + '</p> <span class="date sub-text">' + 'Sent By ' + data.val().name + '</span></div><li>'
-            var d1 = document.getElementById('bodyContent');
-            d1.insertAdjacentHTML('beforebegin', divData);
-        })
-    })
-    */
+    //This is for onDisconnect
     const numofU = ref(db, 'Rooms/' + mid + '/memberCount');
     onValue(numofU, (snapshot) => {
         const numofUsers = snapshot.val();
@@ -107,4 +106,5 @@ get(meetingID).then((snapshot) => {
 
     var test4 = firebase.database().ref('users/' + currentUser.uid + '/onlineRoom')
     test4.onDisconnect().set("")
+*/
 })

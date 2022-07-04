@@ -36,6 +36,7 @@ document.getElementById('btn1').addEventListener('click', () => {
                 owner: currentUser.uid,
                 memberNames: {1: userLN}, 
                 memberCount: 1,
+                readymembers: 0,
                 messages: '',
                 memberUID: {1: currentUser.uid}
             }

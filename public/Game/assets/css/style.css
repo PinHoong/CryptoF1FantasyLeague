@@ -2064,8 +2064,8 @@ button{
 }
 
 .multiCard{
-  width: 40vw;
-  margin-bottom: 30px;
+  /*width: 40vw;*/
+  /*margin-bottom: 30px;*/
   border: none;
   border-radius: 45px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
@@ -2252,5 +2252,41 @@ display:inline-block;
   font-size:large;
   font-family: "Poppins", sans-serif;
   height: 300px;
+}
+
+
+.cardinWR {
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  display:block;
+  margin-left:10px;
+  font-size:large;
+  font-family: "Poppins", sans-serif;
+  background-color: #DC143C;
+  margin-top: 10%;
+}
+
+.wordsinWR {
+  font-family: sans-serif;
+  color: white;
+  font-size: 35px;
+  margin-left: 10%;
+  font-weight: bold;
+}
+
+.numOfPart {
+  font-family: sans-serif;
+  color: #cda45e;
+  font-size: 45px;
+  font-weight: bold;
+}
+
+#numofCoins {
+  font-family: sans-serif;
+  color: #cda45e;
+  font-size: 45px;
+  font-weight: bold;
 }
 

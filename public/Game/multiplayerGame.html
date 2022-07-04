@@ -632,5 +632,48 @@
     <p class = 'lineup-r' id = 'car2'></p>
   </div>
   <div id = "cfmation" style = 'display:inline'><a href = '#' class = 'btntoproceed'>Confirm</a></div>
+  <script type="module">
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+    import {getDatabase, ref, update, get, child, push, set} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
+        authDomain: "f1cft-493d1.firebaseapp.com",
+        databaseURL: "https://f1cft-493d1-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "f1cft-493d1",
+        storageBucket: "f1cft-493d1.appspot.com",
+        messagingSenderId: "414144945872",
+        appId: "1:414144945872:web:4926d78a5a38ae78b908d5",
+        measurementId: "G-WNE15MGBR0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const currentUser = JSON.parse(localStorage.getItem('usr'));
+    document.getElementById("cfmation").addEventListener('click', (e) => {
+      console.log('AA')
+      const set1 = ref(db, 'users/' + currentUser.uid)
+      get(set1).then((snapshot) => {
+        const userData = snapshot.val();
+        const pair1C = userData['poneC'];
+        const pair1D = userData['poneD'];
+        const pair2C = userData['ptwoC'];
+        const pair2D = userData['ptwoD'];
+        const onlineRoom = userData['onlineRoom'];
+        if (pair1C == 1 && pair1D == 1 && pair2C == 1 && pair2D == 1) {
+          const numofreadypeople = ref(db, 'Rooms/' + onlineRoom + '/readymembers')
+          get(numofreadypeople).then((snapshot) => {
+            const num = snapshot.val();
+            //alert(num)
+            const num1 = num + 1;
+            //alert(num1)
+            update(ref(db, 'Rooms/' + onlineRoom), {
+              'readymembers': num1,
+            })
+          })
+        } 
+      })
+    })
+  </script>
   <script src="./assets/js/warRoom.js" type="module"></script>
 

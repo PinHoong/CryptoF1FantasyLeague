@@ -71,22 +71,126 @@
   </header><!-- End Header -->
 
   <body>
-      <div class = "container">
-          <div class = "col-4">
-              <table>
-                  <tr>
-                      <th>Index</th>
-                      <th>Name</th>
-                  </tr>
-                  <tr>
-                      <td>1</td>
-                      <td>Sher Yew</td>
-                  </tr>
-              </table>
-
-              <div class = "container">
-                  Hello World!
-              </div>
+    <div class = "container">
+      <div class = "row">
+        <div class = "col-4">
+          <div class = "cardinWR">
+            <span class = "wordsinWR"><i class="fa-solid fa-people-group" style="margin-right: 2%;"></i>Participants: </span>
+            <span id = "numofP" class = "numOfPart">0/5</span>
+            <br>
+            <span class = "wordsinWR"><i class="fa-solid fa-sack-dollar" style="margin-right: 3%;"></i>Wager Amt: </span>
+            <span id = "numofCoins">0.1</span>
           </div>
-      </div>
+            
+            <table>
+                <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td id = 1></td>
+                    <td id = 6></td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td id = 2></td>
+                  <td id = 7></td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td id =3></td>
+                <td id = 8></td>
+            </tr>
+
+            <tr>
+              <td>4</td>
+              <td id = 4></td>
+              <td id = 9></td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td id = 5></td>
+            <td id = 10></td>
+          </tr>
+        </table>
+
+        <button class="book-a-table-btn scrollto d-none d-lg-flex" style="display: inline-block !important; margin-top: 4%; margin-right: 5%; margin-left: 15%;">Play</button>
+        <button class="book-a-table-btn scrollto d-none d-lg-flex" style="display: inline-block !important; margin-top: 4%;">Quit</button>
+        </div>
+
+        <div class = "col-8">
+          <table>
+            <tr>
+              <th>Participant</th>
+              <th>Race Car & Drivers</th>
+              <th>Race Timings</th>
+            </tr>
+
+            <tr>
+              <td>Sher Yew</td>
+              <td>Verstappen & Red Bull</td>
+              <td>TBC</td>
+            </tr>
+
+            <tr>
+              <td>Sher Yew</td>
+              <td>Leclerc & Ferrari</td>
+              <td>TBC</td>
+            </tr>
+
+            <tr>
+              <td>Player 2</td>
+              <td>A & B</td>
+              <td>TBC</td>
+            </tr>
+
+            <tr>
+              <td>Player 2</td>
+              <td>A & B</td>
+              <td>TBC</td>
+            </tr>
+
+            <tr>
+              <td>Player 3</td>
+              <td>A & B</td>
+              <td>TBC</td>
+            </tr>
+
+            <tr>
+              <td>Player 3</td>
+              <td>A & B</td>
+              <td>TBC</td>
+            </tr>
+
+            <tr>
+              <td>Player 4</td>
+              <td>A & B</td>
+              <td>TBC</td>
+            </tr>
+
+            <tr>
+              <td>Player 4</td>
+              <td>A & B</td>
+              <td>TBC</td>
+            </tr>
+
+            <tr>
+              <td>Player 5</td>
+              <td>A & B</td>
+              <td>TBC</td>
+            </tr>
+
+            <td>Player 5</td>
+            <td>A & B</td>
+            <td>TBC</td>
+          </table>
+        </div>
+    </div>
+  </div>
+  <script type="module" src = "./assets/js/warRoom.js"></script>
   </body>
