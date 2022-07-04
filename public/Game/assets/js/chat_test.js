@@ -24,6 +24,7 @@ const anotherref = ref(db, 'users/' + Usr.uid);
 get(anotherref).then((snapshot) =>{
   const data = snapshot.val()
   const username = data['firstName']
+  const mid = data['onlineRoom']
 
   function sendMessage(e) {
     e.preventDefault();
@@ -41,8 +42,14 @@ get(anotherref).then((snapshot) =>{
       .getElementById("messages")
       .scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     
+
       // create db collection and send in the data
       set(ref(db, 'messages/' + timestamp), {
+        username,
+        message,
+      })
+      console.log('room num:' + mid)
+      set(ref(db,'Rooms/' +  mid + '/' + 'messages/' + timestamp), {
         username,
         message,
       })
@@ -58,10 +65,10 @@ const fetchChat = ref(db);
 onValue(fetchChat, (snapshot) => {
   document.getElementById("messages").innerHTML = ``;
   const main = snapshot.val()
-  const messages = main['messages']
+  const mid = main['users'][Usr.uid]['onlineRoom']
+  const messages = main['Rooms'][mid]['messages']
   const username = main['users'][Usr.uid]['firstName']
   for (const [key, value] of Object.entries(messages)) {
-    console.log(value);
     const message = `<li class=${
       username === value['username'] ? "sent" : "receive"
     }><span>${value['username']}: </span>${value['message']}</li>`;
