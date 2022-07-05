@@ -91,17 +91,21 @@ get(wholeDB).then((snapshot) => {
                 }
 
                 function convertHMS(value) {
-                    const sec = parseInt(value, 10);
-                    let hours   = Math.floor(sec / 3600); // get hours
-                    let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
-                    let seconds = sec - (hours * 3600) - (minutes * 60); //  get seconds
-                    let subseconds = parseInt((value - ((minutes*60) + seconds)) * 1000);
-                    // add 0 if value < 10; Example: 2 => 02
-                    if (hours   < 10) {hours   = "0"+hours;}
-                    if (minutes < 10) {minutes = "0"+minutes;}
-                    if (seconds < 10) {seconds = "0"+seconds;}
-                    if (subseconds  < 100) {subseconds   = "0"+subseconds;}
-                    return minutes+':'+seconds+':'+subseconds; // Return is HH : MM : SS
+                    if (parseInt(value) == 999) {
+                        return 'DNF'
+                    } else {
+                        const sec = parseInt(value, 10);
+                        let hours   = Math.floor(sec / 3600); // get hours
+                        let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
+                        let seconds = sec - (hours * 3600) - (minutes * 60); //  get seconds
+                        let subseconds = parseInt((value - ((minutes*60) + seconds)) * 1000);
+                        // add 0 if value < 10; Example: 2 => 02
+                        if (hours   < 10) {hours   = "0"+hours;}
+                        if (minutes < 10) {minutes = "0"+minutes;}
+                        if (seconds < 10) {seconds = "0"+seconds;}
+                        if (subseconds  < 100) {subseconds   = "0"+subseconds;}
+                        return minutes+':'+seconds+':'+subseconds; // Return is HH : MM : SS
+                    }
                 }
             }) 
         }
