@@ -40,6 +40,7 @@ document.getElementById('btn1').addEventListener('click', () => {
                 messages: '',
                 memberUID: {1: currentUser.uid},
                 scoreboard: {1: 0},
+                confirmed: 0,
                 //scoreboard: {},
             }
             update(ref(db), updates);
