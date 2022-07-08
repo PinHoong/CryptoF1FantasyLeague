@@ -1540,6 +1540,7 @@ td:last-child, th:last-child{
   width:90px;
 }
 
+/*
 button{
   width: 50px;
   height: 50px;
@@ -1548,6 +1549,7 @@ button{
   margin-bottom:10px;
   display:inline;
 }
+*/
 
 .special{
   width: 80px;
