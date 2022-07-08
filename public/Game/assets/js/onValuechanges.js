@@ -126,6 +126,54 @@ get(set1).then((snapshot) => {
                 alert('The Fk')
             }
         })
+
+        document.getElementById('leaveGame').addEventListener('click', () => {
+            const main = ref(db);
+            get(main).then((snapshot) => {
+                const data = snapshot.val()
+                const onlineRoom_id = data['users'][currentUser.uid]['onlineRoom']
+                console.log(data, onlineRoom_id)
+                update(ref(db, 'users/' + currentUser.uid),{
+                    'onlineRoom': ''
+                })
+
+                const name = data['users'][currentUser.uid]['lastName']
+            
+                const old = data['Rooms'][onlineRoom_id]['memberUID']
+                const old2 = data['Rooms'][onlineRoom_id]['memberNames']
+                const old3 = data['Rooms'][onlineRoom_id]['ready_arr']
+                const old4 = data['Rooms'][onlineRoom_id]['readymembers']  
+                const old5 = data['Rooms'][onlineRoom_id]['memberCount'] - 1   
+                console.log(old, old2, name)
+                for (var k in old){
+                    if (old[k] == currentUser.uid){
+                        delete old[k]
+                        break
+                    }
+                }
+                for (var k  in old2){
+                    if (old2[k] == name){
+                        delete old2[k]
+                        break 
+                    }
+                }
+                if ((currentUser.uid) in old3){
+                    delete old3[currentUser.uid]
+                    old4 -= 1
+                }
+                update(ref(db, 'Rooms/' + onlineRoom_id),{
+                    'memberUID': old,
+                    'memberNames': old2,
+                    'ready_arr' : old3,
+                    'readymembers': old4,
+                    'memberCount': old5
+                })
+                
+
+            })//end of snapshot
+
+        })
+    
     })
 })
 
