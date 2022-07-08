@@ -48,27 +48,6 @@
       <button class="popup_buttons" onclick="closeWindow()">Get Started</button>
     </div>
   </div>
-  <div id= "popUpmain2" style="display: none;">
-    <div  class = "popup">
-      <h1 class = "newsHeading" style="font-weight: bold;">Rules Of The Game</h1>
-      <p class="threeStages"><i class="fa fa-check-square fa-5x"></i><br>Choose Your Budget Level</p>
-      <!--<i class="fa-solid fa-user" ><p class = "threeStages">Choose the level of difficuly.</p></i>-->
-      <p class="threeStages"><i class="fa fa-handshake-o fa-5x"></i><br>Purchase 2 Drivers & Cars Respectively</p>
-      <p class="threeStages"><i class="fa fa-money fa-5x"></i><br>Prepare your team and get rewarded</p><br>
-      <button class="popup_buttons" style = "margin-top:60px;" onclick = "closeWindow2()">I'M Ready</button>
-    </div>
-  </div>
-  <script>
-    function closeWindow() {
-      document.getElementById('popUpmain').remove();
-      document.getElementById('popUpmain2').style.display = 'block';
-    }
-
-    function closeWindow2() {
-      document.getElementById('popUpmain2').remove();
-      //window.location.href = "components-badges.html"
-    }
-  </script>
   <script type= "module">
     import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
     import {getDatabase, ref, onValue, update, get} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";

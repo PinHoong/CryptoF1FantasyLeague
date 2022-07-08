@@ -25,17 +25,24 @@ get(wholeDB).then((snapshot) => {
     
     //This helps to take account the user pressing the play button
     document.getElementById('startGame').addEventListener('click', () => {
-        if (currentUser.uid == meetingRmOwner) {
-            if (meetingRmCapacity == meetingRmDetails) {
-                update(ref(db, 'Rooms/' + currentMR), {
-                    'confirmed': 1,
-                })
+        const updatedUsers = ref(db, 'Rooms/' + currentMR)
+        get(updatedUsers).then((snapshot3) => {
+            const data3 = snapshot3.val()
+            var meetingRmOwner1 = data3['owner']
+            var meetingRmDetails1 = data3['readymembers']
+            var meetingRmCapacity1 = data3['memberCount']
+            if (meetingRmOwner1 == currentUser.uid) {
+                if (meetingRmCapacity1 == meetingRmDetails1) {
+                    update(ref(db, 'Rooms/' + currentMR), {
+                        'confirmed': 1,
+                    })
+                } else {
+                    alert('One user is currently not confirmed yet!')
+                }
             } else {
-                alert('One user is still selecting their configuration!')
+                alert('Only the owner of the room can start the race!')
             }
-        } else {
-            alert('Only the owner of the room can start the race!')
-        }
+        })
     })
 
     //this is to make use of the onValue changes
