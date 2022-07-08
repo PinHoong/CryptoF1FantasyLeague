@@ -61,7 +61,7 @@ document.getElementById('btn2').addEventListener('click', () => {
     get(starCountRef).then((snapshot) => {
         const prevData = snapshot.val();
         const onlineRoom2 = prevData['users'][currentUser.uid]['onlineRoom'];
-        if (onlineRoom2 != "") {
+        if (onlineRoom2 != "" && onlineRoom2 != meetingID) {
             alert('Cannot Join Multiple Rooms!')
         } else {
             const data = prevData['Rooms'];
