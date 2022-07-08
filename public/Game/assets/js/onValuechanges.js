@@ -83,10 +83,16 @@ get(set1).then((snapshot) => {
                 get(numofreadypeople).then((snapshot) => {
                   const data = snapshot.val();
                   //alert(num)
+                  if (!(currentUser.uid in data['ready_arr'])){
                   const num = data['readymembers']
                   const num1 = num + 1;
                   var scoreboard = data['scoreboard'];
                   var newSB = {};
+                  const previous = data['ready_arr']
+                  console.log(data['ready_arr'])
+                  previous[currentUser.uid] = 1
+                  const updated_ready = previous
+                  console.log("updated_ready:" + updated_ready)
                   for (var s in scoreboard) {
                       if (s != '1') {
                           newSB[s] = scoreboard[s]
@@ -107,9 +113,14 @@ get(set1).then((snapshot) => {
                   //alert(points1)
                   */
                   update(ref(db, 'Rooms/' + onlineRoom), {
+                    'ready_arr': updated_ready,
                     'readymembers': num1,
                     'scoreboard': newSB
                   })
+                }
+                else{
+                    alert("You are readied")
+                }
                 })
             } else {
                 alert('The Fk')
