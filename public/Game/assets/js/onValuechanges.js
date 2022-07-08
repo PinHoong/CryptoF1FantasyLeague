@@ -77,7 +77,7 @@ get(set1).then((snapshot) => {
               pair2key += "," + identity2
             }
         }
-        document.getElementById('cfmation').addEventListener('click', () => {
+        document.getElementById('readyUp').addEventListener('click', () => {
             if (pair1C == 1 && pair1D == 1 && pair2C == 1 && pair2D == 1) {
                 const numofreadypeople = ref(db, 'Rooms/' + onlineRoom)
                 get(numofreadypeople).then((snapshot) => {
