@@ -61,8 +61,11 @@ document.getElementById('btn2').addEventListener('click', () => {
     get(starCountRef).then((snapshot) => {
         const prevData = snapshot.val();
         const onlineRoom2 = prevData['users'][currentUser.uid]['onlineRoom'];
+        const onlineRoomPlayed = prevData[onlineRoom2]['played'];
         if (onlineRoom2 != "" && onlineRoom2 != meetingID) {
             alert('Cannot Join Multiple Rooms!')
+        } else if (onlineRoomPlayed == 1) {
+            alert('The race has already been completed!')
         } else {
             const data = prevData['Rooms'];
             //arryofKeys consist of all the Rooms' meeting ID
