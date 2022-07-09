@@ -73,7 +73,7 @@ document.getElementById('btn1').addEventListener('click', () => {
                         confirmed: 0,
                         ready_arr: {'nil': 0},
                         played: 0,
-                        redeemed: 1,
+                        redeemed: 0,
                     }
                     update(ref(db), updates);
                     update(ref(db, 'users/' + currentUser.uid), {
