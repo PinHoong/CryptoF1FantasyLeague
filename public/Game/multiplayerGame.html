@@ -558,6 +558,34 @@
               }//third for loop
             
             })// SNAPSHOT
+
+            document.getElementById('cfmation').addEventListener('click', () => {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#50C878',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        get(starCountRef).then((snapshot) => {
+          const data = snapshot.val()
+          var p2DCount = data['ptwoD'];
+          var p2CCount = data['ptwoC'];
+          var p1DCount = data['poneD'];
+          var p1CCount = data['poneC'];
+          
+          if ((p2DCount == 1 && p2CCount == 1) && (p1CCount == 1 && p1DCount == 1) && (result.isConfirmed)){
+          window.location.href = "./waitingRoom.html"
+      }
+        else {
+          alert("Draft incomplete")
+        }
+
+        })
+      })
+    })//SWAL command
   
 
   </script>
@@ -637,20 +665,3 @@
   <script src = "./assets/js/onValuechanges.js" type="module"></script>
   <script src="./assets/js/warRoom.js" type="module"></script>
 
-  <script>
-    document.getElementById('cfmation').addEventListener('click', () => {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#50C878',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = "./waitingRoom.html"
-        }
-      })
-    })
-  </script>
