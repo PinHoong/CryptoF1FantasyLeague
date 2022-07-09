@@ -35,6 +35,7 @@ get(wholeDB).then((snapshot) => {
                 if (meetingRmCapacity1 == meetingRmDetails1) {
                     update(ref(db, 'Rooms/' + currentMR), {
                         'confirmed': 1,
+                        'played': 1
                     })
                 } else {
                     alert('One user is currently not confirmed yet!')
