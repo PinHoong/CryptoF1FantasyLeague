@@ -244,8 +244,8 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="fa-solid fa-flag-checkered"></i>
                     </div>
-                    <div class="ps-3">
-                      <a href = "racePage.html"><h6 id="raceName">Saudi Arabia</h6></a>
+                    <div class="ps-3" style = "margin-bottom: 20px">
+                      <a href = "racePage.html" class = 'racebtn'>Single Player</a>
                       <!--<div>Race ends in <span id="time">01:00</span> minutes!</div>-->
                     </div>
                   </div>
@@ -263,8 +263,8 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="fa-solid fa-flag"></i>
                     </div>
-                    <div class="ps-3">
-                      <a href = "multiplayer.html"><h6>Test Your Vehicle</h6></a>
+                    <div class="ps-3" style = "margin-bottom: 20px">
+                      <a class = 'racebtn' href = "multiplayer.html">Multiplayer</a>
                     </div>
                   </div>
                 </div>
@@ -316,7 +316,7 @@
                         if (dd != 'nil'){
                           mapping[pid2[c]] = dd
                           console.log('<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>');
-                          pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' + dd + '<a class="profilebtn" + href =' + dd +'.html>View Profile</a>';
+                          pid[c].innerHTML = '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' + dd;
                           c++;
                         }
                       }
