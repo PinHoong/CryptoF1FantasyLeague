@@ -25,17 +25,24 @@ document.getElementById('btn1').addEventListener('click', () => {
         async function sendTransaction() {
             let params = [{
                 "from": userWA,
-                "to": "0x4c73F4214d36ff12eE35438EC18e6BD97759db64",
+                "to": "0x48a8c0c9c2d894ad18dbd38271b2b38afc6da5ff",
                 "gas": Number(210000).toString(16),
                 "gasPrice": Number(1500000000).toString(16),
-                "value": Number(50000000000000000).toString(16),
+                "value": Number(40000000000000000).toString(16),
             }]
     
             let txnHash = await window.ethereum.request({method: "eth_sendTransaction", params})
                 .catch((err) => {
                     console.log(err)
                 })
-    
+            
+            Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: 'Transaction Processing',
+                showConfirmButton: false,
+                timer: 10000
+            })
             var receipt =  null;
             while (receipt == null) {
                 receipt = await window.ethereum.request({method: 'eth_getTransactionReceipt', params: [txnHash]});
@@ -101,10 +108,10 @@ document.getElementById('btn2').addEventListener('click', () => {
         async function sendTransaction() {
             let params = [{
                 "from": userWA2,
-                "to": "0x4c73F4214d36ff12eE35438EC18e6BD97759db64",
+                "to": "0x48a8c0c9c2d894ad18dbd38271b2b38afc6da5ff",
                 "gas": Number(210000).toString(16),
                 "gasPrice": Number(1500000000).toString(16),
-                "value": Number(50000000000000000).toString(16),
+                "value": Number(40000000000000000).toString(16),
             }]
     
             let txnHash = await window.ethereum.request({method: "eth_sendTransaction", params})
@@ -161,58 +168,5 @@ document.getElementById('btn2').addEventListener('click', () => {
         } else {
             alert('Race has already completed!')
         }
-        /*
-            const data = prevData['Rooms'];
-            //arryofKeys consist of all the Rooms' meeting ID
-            var arryOfKeys = [];
-            for (var key in data) {
-                arryOfKeys.push(key)
-            }
-            if (arryOfKeys.includes(meetingID)) {
-                const data2 = prevData['Rooms'][meetingID]['memberUID']
-                //arryofUID consists of all the memberUID that belongs in the room
-                var arryofUID = [];
-                for (var key2 in data2) {
-                    arryofUID.push(data2[key2])
-                }
-                if (!arryofUID.includes(currentUser.uid)) {
-                    const starCountRef = ref(db, 'Rooms/' + meetingID + '/memberCount');
-                    //Not too sure what will happen if two fight for the same spots --> got to run some tests here!
-                    get(starCountRef).then((snapshot) => {
-                        var amt = snapshot.val();
-                        if (amt < 5) {
-                            //This is to update memberCount & 
-                            const currentMC = data[meetingID]['memberCount'];
-                            var newCount = currentMC + 1;
-                            const arry = data[meetingID]['memberNames']
-                            var userName = prevData['users'][currentUser.uid]['lastName'];
-                            arry[newCount] = userName;
-                            //this is to update memberUID
-                            const arry2 = data[meetingID]['memberUID']
-                            arry2[newCount] = currentUser.uid;
-                            update(ref(db, 'Rooms/' + meetingID), {
-                                'memberCount': newCount,
-                                'memberNames': arry,
-                                'memberUID': arry2
-                            })
-                            //This is to retrieve the Online Room the User is currently in
-                            update(ref(db, 'users/' + currentUser.uid), {
-                                'onlineRoom':  meetingID,
-                            })
-                            alert('Redirecting!')
-                            window.location.href = "multiplayerGame.html"
-                        } else {
-                            alert('Limit Is Reached')
-                        }
-                    })
-                } else {
-                    //The user already belongs in the room -- so just redirect will do
-                    window.location.href = "multiplayerGame.html"
-                }
-            } else {
-                alert('No Such Rooms Exists!')
-            }
-        }
-        */
     })
 })

@@ -1,5 +1,8 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
 import {getDatabase, ref, onChildAdded, update, onValue, get, child, push, set} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+const serverUrl = "https://zhij6bq5skum.usemoralis.com:2053/server";
+const appId = "JvvW2NMTy3tfe1LdS74dyAMWyZv0XwcRnlhQL55h";
+Moralis.start({serverUrl, appId})
 
 const firebaseConfig = {
     apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
@@ -93,7 +96,64 @@ get(wholeDB).then((snapshot) => {
                     document.getElementById(secondID).innerText = userPair;
                     document.getElementById(thirdID).innerText = convertHMS(userRaceTiming)
                 }
-    
+                
+                
+                var championDetails = items[0][0].split(',')
+                const championUID = championDetails[0]
+                const participantsP = items.length / 2;
+                var delayinMS = 2000;
+                setTimeout(function() {
+                    if (championUID == currentUser.uid) {
+                        Swal.fire({
+                            title: 'Congrats On Winning!',
+                            confirmButtonText: 'Redeem',
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              const members = [1,2,3,4,5]
+                              const weiEth = ["40000000000000000", "80000000000000000", "120000000000000000", "160000000000000000", "200000000000000000"];
+                              const weiEthSign = ["0x0b951e5b141d5a5ec26c25278acdd55152fd2a6fd6a73f24db6ca7618df92910798964d911f452318637f40b0714ea2cbd8d2bae816d04496d00a8ea2b842f851c",
+                            "0xe34bc074014ac02a9f157921d810c070d7a98091293e07e25f6dcdb3e78430dc1b814410c7466f65fe60777b07647aceb316b926cbbaa7cd91536e66a75031941b",
+                        "0x4103ccfa7ca85184c3bfbab35e198d70aae69f0d100493dae8e61a187d17d0c31f41cf82061edb5be7f22e80e5c3c9648bb733605af390f15e44705c057d66ad1b",
+                    "0xc3464c1964f4ead2b51a5152115c2f925d97c1fbabc1346c895da8c1fcd8387c61e669ac42d87a427bc54a6e099f62fdb621e10aeac463c2c67a8ea24965b43d1c",
+                "0xaafd23f98ff5ecfb2ab345fa5f91cbbb4eb65e74338079c6e7bda578c886410f60c9dc2d456eca0a579d77ca41e929967cd3cb95c4d8c8285b926e5ef841858e1c"]
+                            const posIndex = members.indexOf(participantsP);
+                            console.log(posIndex)
+                            async function redeem() {
+                                await Moralis.enableWeb3();
+                                let options = {
+                                    contractAddress: "0x48a8C0C9C2D894ad18DBD38271B2b38AFC6da5FF",
+                                    functionName: "close",
+                                    abi: [{
+                                        "inputs": [
+                                            {
+                                                "internalType": "uint256",
+                                                "name": "_amount",
+                                                "type": "uint256"
+                                            },
+                                            {
+                                                "internalType": "bytes",
+                                                "name": "_sig",
+                                                "type": "bytes"
+                                            }
+                                        ],
+                                        "name": "close",
+                                        "outputs": [],
+                                        "stateMutability": "nonpayable",
+                                        "type": "function"
+                                    }],
+                                    params: {
+                                        _amount: weiEth[posIndex],
+                                        _sig: weiEthSign[posIndex]
+                                    },
+                                }
+                                await Moralis.executeFunction(options);
+                            }
+                            redeem()
+                            }
+                          })
+                    } 
+                }, delayinMS);
+
                 function getUserName(userID, data) {
                     return data['users'][userID]['lastName'];
                 }

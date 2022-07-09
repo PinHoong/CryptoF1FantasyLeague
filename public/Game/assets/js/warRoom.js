@@ -57,7 +57,9 @@ get(meetingID).then((snapshot) => {
     const starCountRef3 = ref(db, 'Rooms/' + mid+ '/memberCount');
     onValue(starCountRef3, (snapshot3) => {
         const data3 = snapshot3.val();
+        const potAmt = data3 * 0.04;
         document.getElementById('numofP').innerText = `${data3}` + '/5';
+        document.getElementById('numofCoins').innerText = `${potAmt}`;
     })
 
 
