@@ -25,7 +25,7 @@ get(wholeDB).then((snapshot) => {
     var meetingRmOwner = data['Rooms'][currentMR]['owner']
     var meetingRmDetails = data['Rooms'][currentMR]['readymembers']
     var meetingRmCapacity = data['Rooms'][currentMR]['memberCount']
-    
+    var alreadyRedeemed = data['Rooms'][currentMR]['redeemed']
     //This helps to take account the user pressing the play button
     document.getElementById('startGame').addEventListener('click', () => {
         const updatedUsers = ref(db, 'Rooms/' + currentMR)
@@ -103,7 +103,7 @@ get(wholeDB).then((snapshot) => {
                 const participantsP = items.length / 2;
                 var delayinMS = 2000;
                 setTimeout(function() {
-                    if (championUID == currentUser.uid) {
+                    if (championUID == currentUser.uid && alreadyRedeemed != 1) {
                         Swal.fire({
                             title: 'Congrats On Winning!',
                             confirmButtonText: 'Redeem',
@@ -149,6 +149,9 @@ get(wholeDB).then((snapshot) => {
                                 await Moralis.executeFunction(options);
                             }
                             redeem()
+                            update(ref(db, 'Rooms/' + currentMR), {
+                                'redeemed': 1,
+                            })
                             }
                           })
                     } 

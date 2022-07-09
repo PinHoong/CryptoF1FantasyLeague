@@ -41,7 +41,7 @@ document.getElementById('btn1').addEventListener('click', () => {
                 icon: 'info',
                 title: 'Transaction Processing',
                 showConfirmButton: false,
-                timer: 10000
+                timer: 15000
             })
             var receipt =  null;
             while (receipt == null) {
@@ -73,7 +73,7 @@ document.getElementById('btn1').addEventListener('click', () => {
                         confirmed: 0,
                         ready_arr: {'nil': 0},
                         played: 0,
-                        //scoreboard: {},
+                        redeemed: 1,
                     }
                     update(ref(db), updates);
                     update(ref(db, 'users/' + currentUser.uid), {
@@ -118,7 +118,14 @@ document.getElementById('btn2').addEventListener('click', () => {
                 .catch((err) => {
                     console.log(err)
                 })
-    
+
+            Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: 'Transaction Processing',
+                showConfirmButton: false,
+                timer: 15000
+            })
             var receipt =  null;
             while (receipt == null) {
                 receipt = await window.ethereum.request({method: 'eth_getTransactionReceipt', params: [txnHash]});
