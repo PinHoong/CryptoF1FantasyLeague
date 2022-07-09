@@ -142,7 +142,7 @@ get(set1).then((snapshot) => {
                 const old = data['Rooms'][onlineRoom_id]['memberUID']
                 const old2 = data['Rooms'][onlineRoom_id]['memberNames']
                 const old3 = data['Rooms'][onlineRoom_id]['ready_arr']
-                const old4 = data['Rooms'][onlineRoom_id]['readymembers']  
+                var old4 = data['Rooms'][onlineRoom_id]['readymembers']  
                 const old5 = data['Rooms'][onlineRoom_id]['memberCount'] - 1   
                 console.log(old, old2, name)
                 for (var k in old){
@@ -168,6 +168,8 @@ get(set1).then((snapshot) => {
                     'readymembers': old4,
                     'memberCount': old5
                 })
+
+                location.href = 'index-2.html'
                 
 
             })//end of snapshot
