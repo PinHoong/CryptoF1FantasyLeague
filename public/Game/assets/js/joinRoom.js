@@ -138,8 +138,20 @@ document.getElementById('btn2').addEventListener('click', () => {
                     if (amt < 5) {
                         //This is to update memberCount & 
                         const currentMC = data[meetingID]['memberCount'];
-                        var newCount = currentMC + 1;
+                        var newCount = 1;
                         const arry = data[meetingID]['memberNames']
+                        const arryofKeys = Object.keys(arry)
+                        var counter = 1
+                        for (var k = 0; k < arryofKeys.length; k++) {
+                            if (counter == parseInt(arryofKeys[k])) {
+                                counter ++;
+                                continue;
+                            } else {
+                                break
+                            }
+                        }
+                        var newCount = counter
+                        console.log(newCount)
                         var userName = prevData['users'][currentUser.uid]['lastName'];
                         arry[newCount] = userName;
                         //this is to update memberUID
