@@ -43,6 +43,7 @@ get(meetingID).then((snapshot) => {
         }
     });
 
+    /*
     //This is to determine the status
     const whatsmemberready = ref(db, 'Rooms/' + mid + '/readymembers');
     onValue(whatsmemberready, (snapshot4) => {
@@ -52,6 +53,53 @@ get(meetingID).then((snapshot) => {
             document.getElementById(newid).innerText = 'Ready';
         }
     })
+    */
+
+        const whatsmemberready = ref(db, 'Rooms/' + mid + '/ready_arr')
+        onValue(whatsmemberready, (snapshot4) => {
+            var k2map = {}
+            const memberUIDs = ref(db, 'Rooms/' + mid + '/memberUID')
+            get(memberUIDs).then((snapshot5) => {
+                for (const [key2, value2] of Object.entries(snapshot5.val())) {
+                    k2map[value2] = key2;
+                }
+                console.log(k2map)
+                /*
+                const data4 = snapshot4.val();
+                const arryofKeys = Object.keys(data4)
+                var uid;
+                for (var k = 0; k < arryofKeys.length; k++) {
+                    if (currentUser.uid == arryofKeys[k]) {
+                        uid = currentUser.uid;
+                        break
+                    }
+                }
+                */
+                const kmap = {1:6, 2:7, 3:8, 4:9, 5: 10}
+                const data4 = snapshot4.val();
+                var readyUID = [];
+                var readyUID2 = [6,7,8,9,10]
+                for (const [key, value] of Object.entries(data4)) {
+                    var newKey = k2map[key]
+                    var newid = kmap[newKey];
+                    console.log(newid)
+                    if (newid == undefined) {
+                        continue
+                    } else {
+                        readyUID.push(newid)
+                        document.getElementById(newid).innerText = 'Ready';
+                    }
+                }
+                console.log(readyUID)
+                for (var p = 0; p < readyUID2.length; p++) {
+                    if (!(readyUID.includes(readyUID2[p]))) {
+                        console.log('I am here' + readyUID2[p])
+                        document.getElementById(readyUID2[p]).innerText = "";
+                    }
+                }
+            })
+        })
+
 
     //This to reflect the number of participants accurately
     const starCountRef3 = ref(db, 'Rooms/' + mid+ '/memberCount');

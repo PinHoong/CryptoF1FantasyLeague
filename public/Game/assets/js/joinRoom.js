@@ -138,6 +138,7 @@ document.getElementById('btn2').addEventListener('click', () => {
                     if (amt < 5) {
                         //This is to update memberCount & 
                         const currentMC = data[meetingID]['memberCount'];
+                        const newcurrentMC = currentMC + 1;
                         var newCount = 1;
                         const arry = data[meetingID]['memberNames']
                         const arryofKeys = Object.keys(arry)
@@ -158,7 +159,7 @@ document.getElementById('btn2').addEventListener('click', () => {
                         const arry2 = data[meetingID]['memberUID']
                         arry2[newCount] = currentUser.uid;
                         update(ref(db, 'Rooms/' + meetingID), {
-                            'memberCount': newCount,
+                            'memberCount': newcurrentMC,
                             'memberNames': arry,
                             'memberUID': arry2
                         })
