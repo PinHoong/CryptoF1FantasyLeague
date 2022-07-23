@@ -1,8 +1,6 @@
-
 {
   "hosting": {
-    "site": "crypto-f1",
-
+    "site": "formula1-crypto",
     "public": "public",
     "ignore": [
       "firebase.json",
