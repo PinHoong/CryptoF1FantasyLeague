@@ -132,9 +132,13 @@ get(set1).then((snapshot) => {
             get(main).then((snapshot) => {
                 const data = snapshot.val()
                 const onlineRoom_id = data['users'][currentUser.uid]['onlineRoom']
+                const past_room = data['users'][currentUser.uid]['pastRoom']
+                past_room[onlineRoom_id] = 1
+
                 console.log(data, onlineRoom_id)
                 update(ref(db, 'users/' + currentUser.uid),{
-                    'onlineRoom': ''
+                    'onlineRoom': '',
+                    'pastRoom' : past_room
                 })
 
                 const name = data['users'][currentUser.uid]['lastName']
