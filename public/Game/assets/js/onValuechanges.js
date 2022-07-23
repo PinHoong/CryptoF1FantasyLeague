@@ -147,6 +147,7 @@ get(set1).then((snapshot) => {
                 const old2 = data['Rooms'][onlineRoom_id]['memberNames']
                 const old3 = data['Rooms'][onlineRoom_id]['ready_arr']
                 var old4 = data['Rooms'][onlineRoom_id]['readymembers']  
+                var roomOwner = data['Rooms'][onlineRoom_id]['owner']
                 const old5 = data['Rooms'][onlineRoom_id]['memberCount'] - 1   
                 console.log(old, old2, name)
                 for (var k in old){
@@ -165,17 +166,47 @@ get(set1).then((snapshot) => {
                     delete old3[currentUser.uid]
                     old4 -= 1
                 }
-                update(ref(db, 'Rooms/' + onlineRoom_id),{
-                    'memberUID': old,
-                    'memberNames': old2,
-                    'ready_arr' : old3,
-                    'readymembers': old4,
-                    'memberCount': old5
-                })
+                if (currentUser.uid == roomOwner && old5 != 0) {
+                    for (var key in old) {
+                        var newOwner = old[key]
+                        break
+                    }
+                    update(ref(db, 'Rooms/' + onlineRoom_id),{
+                        'memberUID': old,
+                        'memberNames': old2,
+                        'ready_arr' : old3,
+                        'readymembers': old4,
+                        'memberCount': old5,
+                        'owner': newOwner
+                    }) 
+                } else {
+                    update(ref(db, 'Rooms/' + onlineRoom_id),{
+                        'memberUID': old,
+                        'memberNames': old2,
+                        'ready_arr' : old3,
+                        'readymembers': old4,
+                        'memberCount': old5,
+                    })
+                }
+
+                //if room is not played --> 
 
                 location.href = 'index-2.html'
                 
             })//end of snapshot
+        })
+
+
+        const ownerChange = ref(db, 'Rooms/' + onlineRoom + '/owner')
+        onValue(ownerChange, (snapshotOC) => {
+            var newOwner = snapshotOC.val();
+            const userDataB = ref(db, 'users/' + newOwner);
+            get(userDataB).then((snapshotUD) => {
+                const userData = snapshotUD.val();
+                var userLN = userData['lastName'];
+                var userFN = userData['firstName'];
+                Swal.fire('The leader is ' + userLN + ' ' + userFN)
+            })
         })
         
         const racePlayed = ref(db, 'Rooms/' + onlineRoom + '/played')
