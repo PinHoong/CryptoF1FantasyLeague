@@ -92,14 +92,13 @@ document.getElementById('btn1').addEventListener('click', () => {
 //this is for joining of game room!
 document.getElementById('btn2').addEventListener('click', () => {
     var meetingID = document.getElementById('text1').value.toString();
-    console.log(meetingID)
     const starCountRef = ref(db);
     get(starCountRef).then((snapshot) => {
         const prevData = snapshot.val();
         const totalRooms = prevData['Rooms']
         const onlineRoom2 = prevData['users'][currentUser.uid]['onlineRoom'];
         const past_room = prevData['users'][currentUser.uid]['pastRoom'];
-        const userWA2 = prevData['users'][currentUser.uid]['walletAddress'] 
+        const userWA2 = prevData['users'][currentUser.uid]['walletAddress'];
         //arryofKeys consist of all the Rooms' meeting ID
         var arryOfKeys = [];
         for (var key in totalRooms) {
@@ -107,12 +106,16 @@ document.getElementById('btn2').addEventListener('click', () => {
         }
         const data = prevData['Rooms'];
         var numUsers = data[meetingID]['memberCount'];
-        if (onlineRoom2 == "" && arryOfKeys.includes(meetingID) && numUsers < 5) {
+        console.log(past_room)
+        console.log(meetingID)
+        console.log(meetingID in past_room)
+        if (meetingID in past_room){
+            alert('You cannot rejoin this Room')
+        }
+        else if (onlineRoom2 == "" && arryOfKeys.includes(meetingID) && numUsers < 5) {
             sendTransaction()
         } else if (onlineRoom2 != "" && onlineRoom2 != meetingID) {
             alert('Cannot Join Multiple Rooms!')
-        } else if (past_room.includes(meetingID)){
-            alert('You cannot rejoin this Room')
         }
           else if (onlineRoom2 != "" && onlineRoom2 == meetingID) {
             alert('Redirecting!')
