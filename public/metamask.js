@@ -15,13 +15,13 @@ async function loginwithMetaMask() {
     const accounts = await window.ethereum.request({method: 'eth_requestAccounts'})
         .then(() => {
             document.getElementById("metamaskCtn").innerText = "Connected"
+            window.userWalletAddress = accounts[0]
+            localStorage.wadd = window.userWalletAddress;
         }).catch((e) => {
             console.error(e.message)
             return
         })
     if (!accounts) {return}
-    window.userWalletAddress = accounts[0]
-    localStorage.wadd = window.userWalletAddress;
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
