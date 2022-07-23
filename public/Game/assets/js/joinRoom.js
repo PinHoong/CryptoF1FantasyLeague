@@ -21,7 +21,13 @@ document.getElementById('btn1').addEventListener('click', () => {
     get(userName).then((snapshot) => {
         const data = snapshot.val();
         const userWA = data['walletAddress']
-        sendTransaction()
+        const userRoom = data['onlineRoom'];
+        if (userRoom != "") {
+            alert('You Cannot Mulitple Rooms!')
+        } else {
+            sendTransaction()
+        }
+
         async function sendTransaction() {
             let params = [{
                 "from": userWA,
@@ -49,39 +55,30 @@ document.getElementById('btn1').addEventListener('click', () => {
             }
 
             if (receipt['status'] == "0x1") {
-                const data = snapshot.val();
-                const userRoom = data['onlineRoom'];
-                console.log(userRoom)
-                if (userRoom != "") {
-                    alert('You Cannot Mulitple Rooms!')
-                } else {
-                    console.log('I am Here!')
-                    const userLN = data['lastName']
-                    const newPostKey = push(child(ref(db), 'Rooms')).key;
-                    alert('Send The Unique Room To Your User: ' + newPostKey);
-                        //  -N53RoIIxLrfR3Z2IgBU
-                    const updates = {};
-                    console.log(newPostKey)
-                    updates['/Rooms/' + newPostKey] = {
-                        owner: currentUser.uid,
-                        memberNames: {1: userLN}, 
-                        memberCount: 1,
-                        readymembers: 0,
-                        messages: '',
-                        memberUID: {1: currentUser.uid},
-                        scoreboard: {1: 0},
-                        confirmed: 0,
-                        ready_arr: {'nil': 0},
-                        played: 0,
-                        redeemed: 0,
-                    }
-                    update(ref(db), updates);
-                    update(ref(db, 'users/' + currentUser.uid), {
-                        'onlineRoom':  newPostKey,
-                    })
-        
-                    window.location.href = "multiplayerGame.html"
+                const userLN = data['lastName']
+                const newPostKey = push(child(ref(db), 'Rooms')).key;
+                alert('Send The Unique Room To Your User: ' + newPostKey);
+                const updates = {};
+                console.log(newPostKey)
+                updates['/Rooms/' + newPostKey] = {
+                    owner: currentUser.uid,
+                    memberNames: {1: userLN}, 
+                    memberCount: 1,
+                    readymembers: 0,
+                    messages: '',
+                    memberUID: {1: currentUser.uid},
+                    scoreboard: {1: 0},
+                    confirmed: 0,
+                    ready_arr: {'nil': 0},
+                    played: 0,
+                    redeemed: 0,
                 }
+                update(ref(db), updates);
+                update(ref(db, 'users/' + currentUser.uid), {
+                    'onlineRoom':  newPostKey,
+                })
+        
+                window.location.href = "multiplayerGame.html"
             } else {
                 alert('Something went wrong!')
             }

@@ -78,53 +78,57 @@ get(set1).then((snapshot) => {
             }
         }
         document.getElementById('readyUp').addEventListener('click', () => {
-            if (pair1C == 1 && pair1D == 1 && pair2C == 1 && pair2D == 1) {
-                const numofreadypeople = ref(db, 'Rooms/' + onlineRoom)
-                get(numofreadypeople).then((snapshot) => {
-                  const data = snapshot.val();
-                  //alert(num)
-                  if (!(currentUser.uid in data['ready_arr'])){
-                  const num = data['readymembers']
-                  const num1 = num + 1;
-                  var scoreboard = data['scoreboard'];
-                  var newSB = {};
-                  const previous = data['ready_arr']
-                  console.log(data['ready_arr'])
-                  previous[currentUser.uid] = 1
-                  const updated_ready = previous
-                  console.log("updated_ready:" + updated_ready)
-                  for (var s in scoreboard) {
-                      if (s != '1') {
-                          newSB[s] = scoreboard[s]
-                      }
-                  }
-                  var newpoints1 = scoreCal(points1);
-                  var newpoints2 = scoreCal(points2)
-                  newSB[pair1key] = newpoints1;
-                  newSB[pair2key] = newpoints2;
-                  console.log(newSB);
-                  /*
-                  //console.log(scoreboard)
-                  //alert(scoreboard)
-                  scoreboard[pair1key] = points1
-                  console.log(scoreboard)
-                  //alert(num1)
-                  //alert(pair1key)
-                  //alert(points1)
-                  */
-                  update(ref(db, 'Rooms/' + onlineRoom), {
-                    'ready_arr': updated_ready,
-                    'readymembers': num1,
-                    'scoreboard': newSB
-                  })
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This Action Is Not Reversible!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#50C878',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    if (pair1C == 1 && pair1D == 1 && pair2C == 1 && pair2D == 1) {
+                        const numofreadypeople = ref(db, 'Rooms/' + onlineRoom)
+                        get(numofreadypeople).then((snapshot) => {
+                        const data = snapshot.val();
+                        //alert(num)
+                        if (!(currentUser.uid in data['ready_arr'])){
+                        const num = data['readymembers']
+                        const num1 = num + 1;
+                        var scoreboard = data['scoreboard'];
+                        var newSB = {};
+                        const previous = data['ready_arr']
+                        console.log(data['ready_arr'])
+                        previous[currentUser.uid] = 1
+                        const updated_ready = previous
+                        console.log("updated_ready:" + updated_ready)
+                        for (var s in scoreboard) {
+                            if (s != '1') {
+                                newSB[s] = scoreboard[s]
+                            }
+                        }
+                        var newpoints1 = scoreCal(points1);
+                        var newpoints2 = scoreCal(points2)
+                        newSB[pair1key] = newpoints1;
+                        newSB[pair2key] = newpoints2;
+                        console.log(newSB);
+                        update(ref(db, 'Rooms/' + onlineRoom), {
+                            'ready_arr': updated_ready,
+                            'readymembers': num1,
+                            'scoreboard': newSB
+                        })
+                        }
+                        else{
+                            alert("You are readied")
+                        }
+                        })
+                    } else {
+                        alert('Something Went Wrong!')
+                    }
                 }
-                else{
-                    alert("You are readied")
-                }
-                })
-            } else {
-                alert('Something Went Wrong!')
-            }
+            })
         })
 
         document.getElementById('leaveGame').addEventListener('click', () => {
