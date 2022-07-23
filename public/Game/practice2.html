@@ -308,6 +308,9 @@
       var p2DCount = data['ptwoD'];
       var p2CCount = data['ptwoC'];
 
+      const hashy2 = {'b9': 'b13', 'b10': 'b14', 'b11': 'b15', 'b12': 'b16', 'b13': 'b9', 'b14': 'b10', 'b15': 'b11', 'b16': 'b12'}
+
+
       const carimg = {'Alfa Romeo 2022': 'AlfaRomeo', 'Alpha Tauri 2022': 'AlphaTauri', 'Alpine 2022': 'Alpine', 'Aston Martin 2022': 'AstonMartin', 'Ferrari 2022': 'Ferrari', 'Haas 2022': 'Haas', 'Mclaren 2022': 'Mclaren', 'Mercedes 2022': 'Mercedes', 'Red Bull 2022': 'RedBull', 'Williams 2022': 'Williams'}
       
       function lineup_display(){
@@ -341,6 +344,13 @@
         else{
           document.getElementById('cfmation').innerHTML = "<a href = '#' class = 'btntoproceed'>Confirm</a>"
         }
+      }
+
+      function dimmer(elementt){
+        const h = {'b1': 'b9', 'b10': 'b2', 'b11': 'b3', 'b12': 'b4', 'b13': 'b5', 'b14': 'b6', 'b17': 'b7', 'b16': 'b8', 'b9': 'b1', 'b2': 'b10', 'b3': 'b11', 'b4': 'b12', 'b5': 'b13', 'b6': 'b14', 'b7': 'b17', 'b8': 'b16'}
+        document.getElementById(elementt).style.opacity = 0.5
+        console.log(elementt + " this is the other button that should appear: " + h[elementt])
+        document.getElementById(h[elementt]).style.opacity = 1 
       }
       
       lineup_display()
@@ -378,9 +388,11 @@
                       lineup_display()
                       cfmation()
                       var buttonz = document.getElementById(elementt);
+                      dimmer(elementt)
                       buttonz.style.opacity = 0.5;
 
                       var buttonz2 = document.getElementById(elementt2);
+                      dimmer(elementt2)
                       buttonz2.style.opacity = 0.5;
                     }
                   }
@@ -407,12 +419,12 @@
                       lineup_display()
                       cfmation()
                       var buttonz = document.getElementById(elementt);
+                      dimmer(elementt)
                       console.log(buttonz);
-                      buttonz.style.opacity = 0.5;
 
                       var buttonz2 = document.getElementById(elementt2);
+                      dimmer(elementt2)
                       console.log(buttonz2);
-                      buttonz2.style.opacity = 0.5;
 
 
 
@@ -451,10 +463,12 @@
                       lineup_display()
                       cfmation()
                       var buttonz = document.getElementById(elementt);
+                      dimmer(elementt)
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
 
                       var buttonz2 = document.getElementById(elementt2);
+                      dimmer(elementt2)
                       console.log(buttonz2);
                       buttonz2.style.opacity = 0.5;
 
@@ -481,10 +495,12 @@
                       lineup_display()
                       cfmation()
                       var buttonz = document.getElementById(elementt);
+                      dimmer(elementt)
                       console.log(buttonz);
                       buttonz.style.opacity = 0.5;
 
                       var buttonz2 = document.getElementById(elementt2);
+                      dimmer(elementt2)
                       console.log(buttonz2);
                       buttonz2.style.opacity = 0.5;
 
@@ -512,6 +528,9 @@
                           })
                           p1DCount = 0
                           alert('Driver Benched')
+                          dimmer(elementt)
+                          console.log('this button should pop: '+ hashy2[elementt])
+                          dimmer(hashy2[elementt])
                           clear_lineup_display(elementt)
                           cfmation()
                         }
@@ -531,6 +550,8 @@
                           p1CCount = 0
                           alert('Car Benched')
                           clear_lineup_display(elementt)
+                          dimmer(elementt)
+                          dimmer(hashy2[elementt])
                           cfmation()
                         }
                         else{
@@ -557,6 +578,8 @@
                           p2DCount = 0
                           alert('Driver Benched')
                           clear_lineup_display(elementt)
+                          dimmer(elementt)
+                          dimmer(hashy2[elementt])
                           cfmation()
                           
 
@@ -577,6 +600,8 @@
                           p2CCount = 0
                           alert('Car Benched')
                           clear_lineup_display(elementt)
+                          dimmer(elementt)
+                          dimmer(hashy2[elementt])
                           cfmation()
                         }
                         else{
