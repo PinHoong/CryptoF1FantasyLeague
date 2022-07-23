@@ -347,9 +347,10 @@
       }
 
       function dimmer(elementt){
-        const h = {'b1': 'b9', 'b10': 'b2', 'b11': 'b3', 'b12': 'b4', 'b13': 'b5', 'b14': 'b6', 'b17': 'b7', 'b16': 'b8', 'b9': 'b1', 'b2': 'b10', 'b3': 'b11', 'b4': 'b12', 'b5': 'b13', 'b6': 'b14', 'b7': 'b17', 'b8': 'b16'}
+        console.log("before element:" + elementt)
+        const h = {'b1': 'b9', 'b10': 'b2', 'b11': 'b3', 'b12': 'b4', 'b13': 'b5', 'b14': 'b6', 'b15': 'b7', 'b16': 'b8', 'b9': 'b1', 'b2': 'b10', 'b3': 'b11', 'b4': 'b12', 'b5': 'b13', 'b6': 'b14', 'b7': 'b15', 'b8': 'b16'}
+        console.log('this is the element: ' + h[elementt])  
         document.getElementById(elementt).style.opacity = 0.5
-        console.log(elementt + " this is the other button that should appear: " + h[elementt])
         document.getElementById(h[elementt]).style.opacity = 1 
       }
       
@@ -420,10 +421,11 @@
                       cfmation()
                       var buttonz = document.getElementById(elementt);
                       dimmer(elementt)
-                      console.log(buttonz);
+                      buttonz.style.opacity = 0.5;
 
                       var buttonz2 = document.getElementById(elementt2);
                       dimmer(elementt2)
+                      buttonz2.style.opacity = 0.5;
                       console.log(buttonz2);
 
 
@@ -551,6 +553,7 @@
                           alert('Car Benched')
                           clear_lineup_display(elementt)
                           dimmer(elementt)
+                          //console.log("this is the other button: " + hashy2[elementt])
                           dimmer(hashy2[elementt])
                           cfmation()
                         }
@@ -621,7 +624,14 @@
 
 
     <h4 class="card-title2" style="font-size: 24px; margin-left: 1%;" id = "MD-title">My Draft<i class="fa-solid fa-circle-info"></i><span id="tooltiptext">Allocate 1 Driver and 1 Car per pair with 'Draft'<br>Undo Draft action with the 'Bench'</span></h4>
-      
+    <div class = 'card2'>
+      <p>Pair 1 Lineup/ Pair 2 Lineup</p>
+      <p class = 'lineup' id = 'driver1'></p>
+      <p class = 'lineup' id = "car1"></p>
+      <p class = 'lineup-r' id = 'driver2'></p>
+      <p class = 'lineup-r' id = 'car2'></p>
+    </div>
+    <div id = "cfmation" style = 'display:inline'><a href = '#' class = 'btntoproceed'>Confirm</a></div>
     
     <!-- PAIR ONE SELECTION -->
     <div class="draftheader">Pair 1</div>
@@ -682,14 +692,7 @@
     </div>
 
     </div>
-    <div class = 'card2'>
-      <p>Pair 1 Lineup/ Pair 2 Lineup</p>
-      <p class = 'lineup' id = 'driver1'></p>
-      <p class = 'lineup' id = "car1"></p>
-      <p class = 'lineup-r' id = 'driver2'></p>
-      <p class = 'lineup-r' id = 'car2'></p>
-    </div>
-    <div id = "cfmation" style = 'display:inline'><a href = '#' class = 'btntoproceed'>Confirm</a></div>
+
 
 
 
