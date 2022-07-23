@@ -112,13 +112,7 @@ get(starCountRef5).then((snapshot5) => {
         'test': userRaceTimingDetails,
         'driverNames': driversNamesForPairs,
       })//end of update
-      /*
-      const starCountRef6 = ref(db, 'users/' + currentUser.uid + '/raceResults');
-      get(starCountRef6).then((snapshot6) => {
-          const data6 = snapshot6.val();
-          localStorage.setItem('userRaceResults', JSON.stringify(data6));
-      })
-      */
+
       const userRR = data5['raceResults'];
       if (userRR == 1) {
           const items = JSON.parse(localStorage.getItem('prevItems'));
@@ -157,12 +151,11 @@ get(starCountRef5).then((snapshot5) => {
           const spp = snapshot10.val();
           console.log(spp)
           const spp2 = `"${spp}"`;
-          console.log(spp2)
-          const spp3 = ((spp/50) * 100).toFixed(0);
           document.getElementById('Usrcumulativepoints').innerHTML = '<progress id = "Usrcumulativepoints" value = ' + spp2  + 'max = "50"></progress>';
-          document.getElementById('ProgressStatus').innerHTML = '<span>' + spp3 + '%' + '</span>'
+          document.getElementById('ProgressStatus').innerHTML = '<span>' + spp + '</span>'
         
           var userrrr = data5['currentRace']
+          console.log(userrrr)
           if (spp >= 50 && userrrr == 4) {
             document.getElementById('proceedNextRace').innerText = 'collect';
             document.getElementById('proceedNextRace').href = './luckyWheel.html'
@@ -175,7 +168,8 @@ get(starCountRef5).then((snapshot5) => {
                     'choice':0,
                 })
             })
-          } else {
+          } else if (spp < 50 && userrrr == 4) {
+            console.log('I AM HERE!')
             document.getElementById('proceedNextRace').innerText = 'New';
             document.getElementById('proceedNextRace').href = './index-2.html'
             /*Ugly fix here*/
@@ -228,13 +222,9 @@ get(starCountRef5).then((snapshot5) => {
         get(starCountRef9).then((snapshot9) => {
           const data9 = snapshot9.val();
           const sp = data9['seasonPoints']
-          console.log(sp)
           const sp2 = `"${sp}"`;
-          console.log(sp2)
-          const sp3 = ((sp/50) * 100).toFixed(0);
           document.getElementById('Usrcumulativepoints').innerHTML = '<progress id = "Usrcumulativepoints" value = ' + sp2  + 'max = "50"></progress>';
-          document.getElementById('ProgressStatus').innerHTML = '<span>' + sp3 + '%' + '</span>'
-
+          document.getElementById('ProgressStatus').innerHTML = '<span>' + sp + '</span>'
           /*This will check if the user goes into lucky wheel or not*/
           const userCurrentR = data9['currentRace']
           console.log(userCurrentR)

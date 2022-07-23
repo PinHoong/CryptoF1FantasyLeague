@@ -13,7 +13,9 @@ function toggleButton() {
 
 async function loginwithMetaMask() {
     const accounts = await window.ethereum.request({method: 'eth_requestAccounts'})
-        .catch((e) => {
+        .then(() => {
+            document.getElementById("metamaskCtn").innerText = "Connected"
+        }).catch((e) => {
             console.error(e.message)
             return
         })

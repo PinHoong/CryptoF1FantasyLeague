@@ -42,8 +42,9 @@ hr {
   font-size: 12px;
   font-weight: bold;
   background: #DC143C;
-  width: 120px;
+  width: 150px;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .registerbtn:hover {

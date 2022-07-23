@@ -79,12 +79,6 @@
           <label for="lastName"><b>Last Name</b></label>
           <input type="text" placeholder="Last Name" name="lastName" id="lastName" required><br></br>
 
-          <label for="gender"><b>Gender</b></label>
-          <select name="gender" id="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          </select><br></br>
-
           <label for="favtm"><b>Your Favourite Team:</b></label>
           <select name="favtm" id="favtm">
           <option value="Mercedes">Mercedes</option>
@@ -102,13 +96,11 @@
           <script src="metamask.js"></script>
           </script>
           <button type="button" id="connect" class = "registerbtn">Connect Your Wallet</button>
+          <br>
+          <span style="font-weight: bold;">Connection Status:</span>
+          <span id = "metamaskCtn"></span>
           <hr>
-
           <button type="button" id="submitData" name="submitData" class="registerbtn">Register</button>
-        </div>
-      
-        <div class="container-2 signin">
-          <p>Already have an account? <a href="sign-in.html">Sign in</a>.</p>
         </div>
       </form>
 </body>
@@ -161,9 +153,8 @@
       var firstName = document.getElementById('firstName').value;
       var lastName = document.getElementById('lastName').value;
       var favtm = document.getElementById('favtm').value;
-      var gender = document.getElementById('gender').value;
       var walletAdd = localStorage.wadd;
-      var info = [email, password, firstName, lastName, favtm, gender, walletAdd]
+      var info = [email, password, firstName, lastName, favtm, walletAdd]
       console.log(info)
       if (walletAdd == undefined){
         alert("Refresh Page and Connect your Wallet")
@@ -173,7 +164,7 @@
       }
       else{
       //sign up user
-      createUserWithEmailAndPassword(auth, email, password, firstName, lastName, favtm, gender, walletAdd)
+      createUserWithEmailAndPassword(auth, email, password, firstName, lastName, favtm, walletAdd)
           .then((userCredential) => {
               // Signed in
               const user = userCredential.user;
@@ -184,7 +175,6 @@
                   firstName: firstName,
                   lastName: lastName,
                   favtm: favtm,
-                  gender: gender,
                   walletAddress: walletAdd,
                   driverCount: 0,
                   carCount: 0,
