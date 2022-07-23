@@ -105,6 +105,22 @@ document.getElementById('btn2').addEventListener('click', () => {
             arryOfKeys.push(key)
         }
         const data = prevData['Rooms'];
+        var numUsers = data[meetingID]['memberCount'];
+        if (onlineRoom2 == "" && arryOfKeys.includes(meetingID) && numUsers < 5) {
+            sendTransaction()
+        } else if (onlineRoom2 != "" && onlineRoom2 != meetingID) {
+            alert('Cannot Join Multiple Rooms!')
+        } else if (onlineRoom2 != "" && onlineRoom2 == meetingID) {
+            alert('Redirecting!')
+            window.location.href = "multiplayerGame.html"
+        } else if (!(arryOfKeys.includes(meetingID))) {
+            alert('No such room exists!')
+        } else if (numUsers == 5) {
+            alert('Room Has Hit Its Maximum Capacity!')
+        } else {
+            alert('Race has already completed!')
+        }
+
         async function sendTransaction() {
             let params = [{
                 "from": userWA2,
@@ -113,12 +129,12 @@ document.getElementById('btn2').addEventListener('click', () => {
                 "gasPrice": Number(1500000000).toString(16),
                 "value": Number(40000000000000000).toString(16),
             }]
-    
+        
             let txnHash = await window.ethereum.request({method: "eth_sendTransaction", params})
                 .catch((err) => {
                     console.log(err)
                 })
-
+        
             Swal.fire({
                 position: 'top-end',
                 icon: 'info',
@@ -131,62 +147,42 @@ document.getElementById('btn2').addEventListener('click', () => {
                 receipt = await window.ethereum.request({method: 'eth_getTransactionReceipt', params: [txnHash]});
             }
             if (receipt['status'] == "0x1") {
-                const starCountRef = ref(db, 'Rooms/' + meetingID + '/memberCount');
-                //Not too sure what will happen if two fight for the same spots --> got to run some tests here!
-                get(starCountRef).then((snapshot) => {
-                    var amt = snapshot.val();
-                    if (amt < 5) {
-                        //This is to update memberCount & 
-                        const currentMC = data[meetingID]['memberCount'];
-                        const newcurrentMC = currentMC + 1;
-                        var newCount = 1;
-                        const arry = data[meetingID]['memberNames']
-                        const arryofKeys = Object.keys(arry)
-                        var counter = 1
-                        for (var k = 0; k < arryofKeys.length; k++) {
-                            if (counter == parseInt(arryofKeys[k])) {
-                                counter ++;
-                                continue;
-                            } else {
-                                break
-                            }
-                        }
-                        var newCount = counter
-                        console.log(newCount)
-                        var userName = prevData['users'][currentUser.uid]['lastName'];
-                        arry[newCount] = userName;
-                        //this is to update memberUID
-                        const arry2 = data[meetingID]['memberUID']
-                        arry2[newCount] = currentUser.uid;
-                        update(ref(db, 'Rooms/' + meetingID), {
-                            'memberCount': newcurrentMC,
-                            'memberNames': arry,
-                            'memberUID': arry2
-                        })
-                        //This is to retrieve the Online Room the User is currently in
-                        update(ref(db, 'users/' + currentUser.uid), {
-                            'onlineRoom':  meetingID,
-                        })
-                        alert('Redirecting!')
-                        window.location.href = "multiplayerGame.html"
+                //This is to update memberCount & 
+                const currentMC = data[meetingID]['memberCount'];
+                const newcurrentMC = currentMC + 1;
+                var newCount = 1;
+                const arry = data[meetingID]['memberNames']
+                const arryofKeys = Object.keys(arry)
+                var counter = 1
+                for (var k = 0; k < arryofKeys.length; k++) {
+                    if (counter == parseInt(arryofKeys[k])) {
+                        counter ++;
+                        continue;
                     } else {
-                        alert('Limit Is Reached')
+                        break
                     }
+                }
+                var newCount = counter
+                console.log(newCount)
+                var userName = prevData['users'][currentUser.uid]['lastName'];
+                arry[newCount] = userName;
+                //this is to update memberUID
+                const arry2 = data[meetingID]['memberUID']
+                arry2[newCount] = currentUser.uid;
+                update(ref(db, 'Rooms/' + meetingID), {
+                    'memberCount': newcurrentMC,
+                    'memberNames': arry,
+                    'memberUID': arry2
                 })
+                //This is to retrieve the Online Room the User is currently in
+                update(ref(db, 'users/' + currentUser.uid), {
+                    'onlineRoom':  meetingID,
+                })
+                alert('Redirecting!')
+                window.location.href = "multiplayerGame.html"
             } else {
-                alert('Something is Wrong!')
+                alert('Transaction Failed!')
             }
-        }
-        if (onlineRoom2 == "" && arryOfKeys.includes(meetingID)) {
-            sendTransaction()
-        } else if (onlineRoom2 != "" && onlineRoom2 != meetingID) {
-            alert('Cannot Join Multiple Rooms!')
-        } else if (onlineRoom2 != "" && onlineRoom2 == meetingID) {
-            window.location.href = "multiplayerGame.html"
-        } else if (!(arryOfKeys.includes(meetingID))) {
-            alert('No such room exists!')
-        } else {
-            alert('Race has already completed!')
         }
     })
 })
