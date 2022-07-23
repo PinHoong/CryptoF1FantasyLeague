@@ -440,6 +440,7 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   border: 2px solid #DC143C;
   font-weight: bold;
+  background-color: #DC143C;
 }
 
 #playnow {
