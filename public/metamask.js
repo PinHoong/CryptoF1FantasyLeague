@@ -13,17 +13,14 @@ function toggleButton() {
 
 async function loginwithMetaMask() {
     const accounts = await window.ethereum.request({method: 'eth_requestAccounts'})
-        .then(() => document.getElementById("metamaskCtn").innerText = "Connected")
-        
-        /*
-        catch((e) => {
+        .catch((e) => {
             console.error(e.message)
             return
         })
-        */
     if (!accounts) {return}
     window.userWalletAddress = accounts[0]
     localStorage.wadd = window.userWalletAddress;
+    document.getElementById("metamaskCtn").innerText = "Connected";
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
