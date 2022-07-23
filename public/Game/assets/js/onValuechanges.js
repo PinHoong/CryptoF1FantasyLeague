@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-import {getDatabase, ref, update, get, child, push, set} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+import {getDatabase, ref, update, get, child, push, set, onValue} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
@@ -123,7 +123,7 @@ get(set1).then((snapshot) => {
                 }
                 })
             } else {
-                alert('The Fk')
+                alert('Something Went Wrong!')
             }
         })
 
@@ -171,11 +171,17 @@ get(set1).then((snapshot) => {
 
                 location.href = 'index-2.html'
                 
-
             })//end of snapshot
-
         })
-    
+        
+        const racePlayed = ref(db, 'Rooms/' + onlineRoom + '/played')
+        onValue(racePlayed, (snapshotRP) => {
+            var racePlayed2 = snapshotRP.val();
+            console.log(racePlayed2)
+            if (racePlayed2 == 1) {
+                document.getElementById('leaveGame').innerText = 'Leave';
+            }
+        })
     })
 })
 
