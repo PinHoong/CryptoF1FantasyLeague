@@ -59,7 +59,6 @@ document.getElementById('btn1').addEventListener('click', () => {
                 const newPostKey = push(child(ref(db), 'Rooms')).key;
                 alert('Send The Unique Room To Your User: ' + newPostKey);
                 const updates = {};
-                console.log(newPostKey)
                 updates['/Rooms/' + newPostKey] = {
                     owner: currentUser.uid,
                     memberNames: {1: userLN}, 
@@ -103,9 +102,6 @@ document.getElementById('btn2').addEventListener('click', () => {
         }
         const data = prevData['Rooms'];
         var numUsers = data[meetingID]['memberCount'];
-        console.log(past_room)
-        console.log(meetingID)
-        console.log(meetingID in past_room)
         if (meetingID in past_room){
             alert('You cannot rejoin this Room')
         }
@@ -167,7 +163,6 @@ document.getElementById('btn2').addEventListener('click', () => {
                     }
                 }
                 var newCount = counter
-                console.log(newCount)
                 var userName = prevData['users'][currentUser.uid]['lastName'];
                 arry[newCount] = userName;
                 //this is to update memberUID

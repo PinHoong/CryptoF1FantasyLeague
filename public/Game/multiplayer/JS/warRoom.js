@@ -43,17 +43,6 @@ get(meetingID).then((snapshot) => {
         }
     });
 
-    /*
-    //This is to determine the status
-    const whatsmemberready = ref(db, 'Rooms/' + mid + '/readymembers');
-    onValue(whatsmemberready, (snapshot4) => {
-        const data4 = snapshot4.val();
-        for (var i = 1; i <= data4; i++) {
-            const newid = i + 5;
-            document.getElementById(newid).innerText = 'Ready';
-        }
-    })
-    */
 
         const whatsmemberready = ref(db, 'Rooms/' + mid + '/ready_arr')
         onValue(whatsmemberready, (snapshot4) => {
@@ -64,17 +53,7 @@ get(meetingID).then((snapshot) => {
                     k2map[value2] = key2;
                 }
                 console.log(k2map)
-                /*
-                const data4 = snapshot4.val();
-                const arryofKeys = Object.keys(data4)
-                var uid;
-                for (var k = 0; k < arryofKeys.length; k++) {
-                    if (currentUser.uid == arryofKeys[k]) {
-                        uid = currentUser.uid;
-                        break
-                    }
-                }
-                */
+
                 const kmap = {1:6, 2:7, 3:8, 4:9, 5: 10}
                 const data4 = snapshot4.val();
                 var readyUID = [];
@@ -109,39 +88,4 @@ get(meetingID).then((snapshot) => {
         document.getElementById('numofP').innerText = `${data3}` + '/5';
         document.getElementById('numofCoins').innerText = `${potAmt}`;
     })
-
-
-
-    /* This is to reflect the drivers car
-    /*
-    //This is for onDisconnect
-    const numofU = ref(db, 'Rooms/' + mid + '/memberCount');
-    onValue(numofU, (snapshot) => {
-        const numofUsers = snapshot.val();
-        const newNumofusers = numofUsers - 1;
-        var test = firebase.database().ref('Rooms/' + mid + '/memberCount')
-        test.onDisconnect().set(newNumofusers);
-    })
-    
-    const updatememberUID = ref(db, 'Rooms/' + mid + '/memberUID');
-    onValue(updatememberUID, (snapshot2) => {
-        const data2 = snapshot2.val();
-        var index;
-        for (var keys in data2) {
-            if (data2[keys] == currentUser.uid) {
-                index = keys;
-            }
-        }
-        console.log(index)
-
-        var test2 = firebase.database().ref('Rooms/' + mid + '/memberUID/' + index)
-        test2.onDisconnect().remove()
-
-        var test3 = firebase.database().ref('Rooms/' + mid + '/memberNames/' + index)
-        test3.onDisconnect().remove()
-    })
-
-    var test4 = firebase.database().ref('users/' + currentUser.uid + '/onlineRoom')
-    test4.onDisconnect().set("")
-*/
 })

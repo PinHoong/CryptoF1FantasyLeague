@@ -21,5 +21,8 @@ get(starCountRef).then((snapshot) => {
   if (data == 1) {
     document.getElementById('book-a-table-btn2').style.pointerEvents = 'none';
     document.getElementById('Redeem').style.pointerEvents = 'none';
+    const wheel = document.querySelector('.wheel');
+    wheel.style.pointerEvents = 'none';
+    document.getElementById('quit').style.pointerEvents = '';
   }
 })
