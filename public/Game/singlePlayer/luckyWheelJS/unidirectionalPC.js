@@ -2,22 +2,6 @@ const serverUrl = "https://zhij6bq5skum.usemoralis.com:2053/server";
 const appId = "JvvW2NMTy3tfe1LdS74dyAMWyZv0XwcRnlhQL55h";
 Moralis.start({serverUrl, appId})
 
-
-/*
-async function login() {
-    let user = Moralis.User.current();
-    if(!user) {
-        try {
-            user = await Moralis.authenticate({signingMessage: "Authenticate"});
-            await Moralis.enableWeb3();
-            console.log(user);
-            console.log(user.get('ethAddress'));
-        } catch(error) {
-            console.log(error)
-        }
-    }
-}
-*/
 async function redeem() {
     await Moralis.enableWeb3();
     const pointsAvail = ['0.1', '0.06', '0.05', '0.2', '0.04', '0.03', '0.02']
@@ -59,6 +43,4 @@ async function redeem() {
     await Moralis.executeFunction(options);
 
 }
-
-//document.getElementById('connect').onclick = login;
 document.getElementById('Redeem').onclick = redeem;
