@@ -83,7 +83,6 @@
     const starCountRef = ref(db, 'users/' + currentUser.uid + '/funded');
     get(starCountRef).then((snapshot) => {
       const funded = snapshot.val();
-      console.log(funded)
       if (funded == 1) {
         document.getElementById('popUpmain').style.display = "none";
       } else {
@@ -271,12 +270,10 @@
                       for (var dd in li){
                         if (dd != 'nil'){
                           mapping[pid2[c]] = dd
-                          console.log('<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>');
                           pid[c].innerHTML = '<img src="Stores/drivers/' + dictt[dd]  + '.jpg" class="special"> ' + dd;
                           c++;
                         }
                       }
-                      console.log(mapping)
                       //START OF DRIVER DRAFT JS CODE
                       //TO RE-IMPLEMENT DRAFTING REPLACE INNERHTML WITH '<img src="assets/img/drivers/' + dictt[dd]  + '.jpg" class="special"> ' +  dd + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ pid[c] +'>Draft</button>'
                       /*for (var i = 0;i < data['driverCount'];i++){
@@ -330,9 +327,7 @@
                   for (var cc in li2){
                         if (cc != 'nil'){
                           mapping2[cid2[c]] = cc
-                          console.log('this is cc' + cc)
 
-                          console.log('<img src="assets/img/' + dictt2[cc]  + '.png" class="special"> ' +  cc + '<button class="book-a-table-btn scrollto d-none d-lg-flex" id='+ cid[c] +'>Draft</button>');
                           cid[c].innerHTML = '<img src="Stores/cars/' + dictt2[cc]  + '.png" class="special"> ' +  cc;
                           c++;
                         }

@@ -53,7 +53,6 @@ get(wholeDB).then((snapshot) => {
     const israceConfirmed = ref(db, 'Rooms/' + currentMR + '/confirmed')
     onValue(israceConfirmed, (snapshot) => {
         const confirmedNo = snapshot.val();
-        console.log(confirmedNo)
         if (confirmedNo != 0) {
             const starCountRef = ref(db, 'Rooms/' + currentMR + '/scoreboard')
             //This get is important as it ensures the ensure array is taken whenever the value changes -- aka gameStart
@@ -75,11 +74,8 @@ get(wholeDB).then((snapshot) => {
                     var userRaceTiming = items[keys][1];
                     var userDetailsArr = userDetails.split(',')
                     var userLN = getUserName(userDetailsArr[0], data)
-                    console.log(userLN)
                     var userPair = userDetailsArr[1] + " & " + userDetailsArr[2]
-                    console.log(userRaceTiming)
-                    console.log(userLN)
-                    console.log(userPair)
+
     
     
                     //this is to perform the innerText
@@ -117,7 +113,6 @@ get(wholeDB).then((snapshot) => {
                     "0xc3464c1964f4ead2b51a5152115c2f925d97c1fbabc1346c895da8c1fcd8387c61e669ac42d87a427bc54a6e099f62fdb621e10aeac463c2c67a8ea24965b43d1c",
                 "0xaafd23f98ff5ecfb2ab345fa5f91cbbb4eb65e74338079c6e7bda578c886410f60c9dc2d456eca0a579d77ca41e929967cd3cb95c4d8c8285b926e5ef841858e1c"]
                             const posIndex = members.indexOf(participantsP);
-                            console.log(posIndex)
                             async function redeem() {
                                 await Moralis.enableWeb3();
                                 let options = {
