@@ -32,7 +32,6 @@ get(set1).then((snapshot) => {
         if (k1 != "nil") {
             userpair1cd.push(k1)
         }
-        console.log(userpair1cd)
     }
     //This is to get the pair2 for the user
     var userpair2cd = [];
@@ -41,7 +40,6 @@ get(set1).then((snapshot) => {
             userpair2cd.push(k2)
         }
     }
-    console.log(userpair2cd)
     //This is to extract points for the entire cars database
     const bigdb = ref(db)
     get(bigdb).then((snapshot1) => {
@@ -53,7 +51,6 @@ get(set1).then((snapshot) => {
         var pair1key = "" + currentUser.uid
         for (var c = 0; c < userpair1cd.length; c++) {
             var identity1 = userpair1cd[c];
-            console.log(identity1)
             if (identity1.includes('2022')) {
               points1 += carsdata[identity1]['Score'];
               pair1key += "," + identity1
@@ -62,8 +59,6 @@ get(set1).then((snapshot) => {
               pair1key += "," + identity1
             }
           }
-        console.log(points1)
-        console.log(pair1key)
         //calculation of points for pair2
         var points2 = 0;
         var pair2key = "" + currentUser.uid
@@ -93,17 +88,14 @@ get(set1).then((snapshot) => {
                         const numofreadypeople = ref(db, 'Rooms/' + onlineRoom)
                         get(numofreadypeople).then((snapshot) => {
                         const data = snapshot.val();
-                        //alert(num)
                         if (!(currentUser.uid in data['ready_arr'])){
                         const num = data['readymembers']
                         const num1 = num + 1;
                         var scoreboard = data['scoreboard'];
                         var newSB = {};
                         const previous = data['ready_arr']
-                        console.log(data['ready_arr'])
                         previous[currentUser.uid] = 1
                         const updated_ready = previous
-                        console.log("updated_ready:" + updated_ready)
                         for (var s in scoreboard) {
                             if (s != '1') {
                                 newSB[s] = scoreboard[s]
@@ -113,7 +105,6 @@ get(set1).then((snapshot) => {
                         var newpoints2 = scoreCal(points2)
                         newSB[pair1key] = newpoints1;
                         newSB[pair2key] = newpoints2;
-                        console.log(newSB);
                         update(ref(db, 'Rooms/' + onlineRoom), {
                             'ready_arr': updated_ready,
                             'readymembers': num1,
@@ -139,7 +130,6 @@ get(set1).then((snapshot) => {
                 const past_room = data['users'][currentUser.uid]['pastRoom']
                 past_room[onlineRoom_id] = 1
 
-                console.log(data, onlineRoom_id)
                 update(ref(db, 'users/' + currentUser.uid),{
                     'onlineRoom': '',
                     'pastRoom' : past_room
@@ -153,7 +143,6 @@ get(set1).then((snapshot) => {
                 var old4 = data['Rooms'][onlineRoom_id]['readymembers']  
                 var roomOwner = data['Rooms'][onlineRoom_id]['owner']
                 const old5 = data['Rooms'][onlineRoom_id]['memberCount'] - 1   
-                console.log(old, old2, name)
                 for (var k in old){
                     if (old[k] == currentUser.uid){
                         delete old[k]
@@ -216,7 +205,6 @@ get(set1).then((snapshot) => {
         const racePlayed = ref(db, 'Rooms/' + onlineRoom + '/played')
         onValue(racePlayed, (snapshotRP) => {
             var racePlayed2 = snapshotRP.val();
-            console.log(racePlayed2)
             if (racePlayed2 == 1) {
                 document.getElementById('leaveGame').innerText = 'Leave';
             }

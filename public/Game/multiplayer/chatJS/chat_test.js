@@ -48,7 +48,6 @@ get(anotherref).then((snapshot) =>{
         username,
         message,
       })
-      console.log('room num:' + mid)
       set(ref(db,'Rooms/' +  mid + '/' + 'messages/' + timestamp), {
         username,
         message,

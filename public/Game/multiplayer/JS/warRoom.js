@@ -18,7 +18,6 @@ const currentUser = JSON.parse(localStorage.getItem('usr'));
 const meetingID = ref(db, 'users/' + currentUser.uid + '/onlineRoom');
 get(meetingID).then((snapshot) => {
     const mid = snapshot.val();
-    console.log(mid)
     const starCountRef = ref(db, 'Rooms/' + mid+ '/memberNames');
     onValue(starCountRef, (snapshot) => {
         const data = snapshot.val();
@@ -26,7 +25,6 @@ get(meetingID).then((snapshot) => {
         for (var k in data) {
             arryofI.push(k);
         }
-        console.log(arryofI)
         //This is to display the name properly
         for (var j = 1; j <=5; j++) {
             if (arryofI.includes(j.toString())) {
@@ -37,7 +35,6 @@ get(meetingID).then((snapshot) => {
                     document.getElementById(numBefore).innerText = data[j];
                 }
             } else {
-                console.log(2)
                 document.getElementById(j).innerText = "";
             }
         }
@@ -52,7 +49,6 @@ get(meetingID).then((snapshot) => {
                 for (const [key2, value2] of Object.entries(snapshot5.val())) {
                     k2map[value2] = key2;
                 }
-                console.log(k2map)
 
                 const kmap = {1:6, 2:7, 3:8, 4:9, 5: 10}
                 const data4 = snapshot4.val();
@@ -61,7 +57,6 @@ get(meetingID).then((snapshot) => {
                 for (const [key, value] of Object.entries(data4)) {
                     var newKey = k2map[key]
                     var newid = kmap[newKey];
-                    console.log(newid)
                     if (newid == undefined) {
                         continue
                     } else {
@@ -69,10 +64,8 @@ get(meetingID).then((snapshot) => {
                         document.getElementById(newid).innerText = 'Ready';
                     }
                 }
-                console.log(readyUID)
                 for (var p = 0; p < readyUID2.length; p++) {
                     if (!(readyUID.includes(readyUID2[p]))) {
-                        console.log('I am here' + readyUID2[p])
                         document.getElementById(readyUID2[p]).innerText = "";
                     }
                 }

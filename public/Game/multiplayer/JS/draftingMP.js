@@ -41,7 +41,6 @@ const firebaseConfig = {
 
           if (data['driverCount'] > 0){
         var li = data['drivers'];
-        console.log(li);
         for (var dd in li){
           if (dd != 'nil'){
             mapping[btns[c]] = dd
@@ -55,8 +54,6 @@ const firebaseConfig = {
             c++;
           }
         }
-        console.log(mapping)
-        console.log(mapping_b)
         localStorage.setItem('mapping', JSON.stringify(mapping))
         localStorage.setItem('mapping_dupe', JSON.stringify(mapping_dupe))
         localStorage.setItem('mapping_b', JSON.stringify(mapping_b))
@@ -99,7 +96,6 @@ const firebaseConfig = {
             c++;
           }
         }
-    console.log(mapping2_b);
     localStorage.setItem('mapping2', JSON.stringify(mapping2))
     localStorage.setItem('mapping2_dupe', JSON.stringify(mapping2_dupe))
     localStorage.setItem('mapping2_b', JSON.stringify(mapping2_b))
@@ -171,10 +167,8 @@ get(starCountRef).then((snapshot) => {
 
   function cfmation(){
     if ((p2DCount == 1 && p2CCount == 1) && (p1CCount == 1 && p1DCount == 1)){
-      //document.getElementById('cfmation').innerHTML = "<a href = './waitingRoom.html' class = 'btntoproceed' id = 'cfmation2'>Confirm</a>"
     }
     else{
-      console.log('B')
       document.getElementById('cfmation').innerHTML = "<a href = '#' class = 'btntoproceed'>Confirm</a>"
     }
   }
@@ -206,7 +200,6 @@ get(starCountRef).then((snapshot) => {
                     'pair1': old,
                     'poneD': p1DCount
                   })
-                  console.log("this is poneD: "+ p1DCount)
                   lineup_display()
                   cfmation()
                   var buttonz = document.getElementById(elementt);
@@ -234,16 +227,12 @@ get(starCountRef).then((snapshot) => {
                     'pair1': old,
                     'poneC': p1CCount
                   })
-
-                  //console.log('<img src="assets/img/' + carimg[mapping_combi[elementt]]  + '.png" class="special"> ')
                   lineup_display()
                   cfmation()
                   var buttonz = document.getElementById(elementt);
-                  console.log(buttonz);
                   buttonz.style.opacity = 0.5;
 
                   var buttonz2 = document.getElementById(elementt2);
-                  console.log(buttonz2);
                   buttonz2.style.opacity = 0.5;
 
 
@@ -283,11 +272,9 @@ get(starCountRef).then((snapshot) => {
                   lineup_display()
                   cfmation()
                   var buttonz = document.getElementById(elementt);
-                  console.log(buttonz);
                   buttonz.style.opacity = 0.5;
 
                   var buttonz2 = document.getElementById(elementt2);
-                  console.log(buttonz2);
                   buttonz2.style.opacity = 0.5;
 
                 }
@@ -313,11 +300,9 @@ get(starCountRef).then((snapshot) => {
                   lineup_display()
                   cfmation()
                   var buttonz = document.getElementById(elementt);
-                  console.log(buttonz);
                   buttonz.style.opacity = 0.5;
 
                   var buttonz2 = document.getElementById(elementt2);
-                  console.log(buttonz2);
                   buttonz2.style.opacity = 0.5;
 
                 }
