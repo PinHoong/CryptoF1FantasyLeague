@@ -64,7 +64,6 @@ get(starCountRef2).then((snapshot) => {
 
             if (data['driverCount'] > 0){
           var li = data['drivers'];
-          console.log(li);
           for (var dd in li){
             if (dd != 'nil'){
               mapping[btns[c]] = dd
@@ -78,8 +77,7 @@ get(starCountRef2).then((snapshot) => {
               c++;
             }
           }
-          console.log(mapping)
-          console.log(mapping_b)
+
           localStorage.setItem('mapping', JSON.stringify(mapping))
           localStorage.setItem('mapping_dupe', JSON.stringify(mapping_dupe))
           localStorage.setItem('mapping_b', JSON.stringify(mapping_b))
@@ -127,7 +125,6 @@ get(starCountRef2).then((snapshot) => {
               c++;
             }
           }
-      console.log(mapping2_b);
       localStorage.setItem('mapping2', JSON.stringify(mapping2))
       localStorage.setItem('mapping2_dupe', JSON.stringify(mapping2_dupe))
       localStorage.setItem('mapping2_b', JSON.stringify(mapping2_b))
@@ -210,9 +207,7 @@ get(starCountRef2).then((snapshot) => {
     }
 
     function dimmer(elementt){
-      console.log("before element:" + elementt)
       const h = {'b1': 'b9', 'b10': 'b2', 'b11': 'b3', 'b12': 'b4', 'b13': 'b5', 'b14': 'b6', 'b15': 'b7', 'b16': 'b8', 'b9': 'b1', 'b2': 'b10', 'b3': 'b11', 'b4': 'b12', 'b5': 'b13', 'b6': 'b14', 'b7': 'b15', 'b8': 'b16'}
-      console.log('this is the element: ' + h[elementt])  
       document.getElementById(elementt).style.opacity = 0.5
       document.getElementById(h[elementt]).style.opacity = 1 
     }
@@ -248,7 +243,6 @@ get(starCountRef2).then((snapshot) => {
                       'pair1': old,
                       'poneD': p1DCount
                     })
-                    console.log("this is poneD: "+ p1DCount)
                     lineup_display()
                     cfmation()
                     var buttonz = document.getElementById(elementt);
@@ -279,7 +273,6 @@ get(starCountRef2).then((snapshot) => {
                       'poneC': p1CCount
                     })
 
-                    //console.log('<img src="assets/img/' + carimg[mapping_combi[elementt]]  + '.png" class="special"> ')
                     lineup_display()
                     cfmation()
                     var buttonz = document.getElementById(elementt);
@@ -289,7 +282,6 @@ get(starCountRef2).then((snapshot) => {
                     var buttonz2 = document.getElementById(elementt2);
                     dimmer(elementt2)
                     buttonz2.style.opacity = 0.5;
-                    console.log(buttonz2);
 
 
 
@@ -329,12 +321,10 @@ get(starCountRef2).then((snapshot) => {
                     cfmation()
                     var buttonz = document.getElementById(elementt);
                     dimmer(elementt)
-                    console.log(buttonz);
                     buttonz.style.opacity = 0.5;
 
                     var buttonz2 = document.getElementById(elementt2);
                     dimmer(elementt2)
-                    console.log(buttonz2);
                     buttonz2.style.opacity = 0.5;
 
                   }
@@ -361,12 +351,10 @@ get(starCountRef2).then((snapshot) => {
                     cfmation()
                     var buttonz = document.getElementById(elementt);
                     dimmer(elementt)
-                    console.log(buttonz);
                     buttonz.style.opacity = 0.5;
 
                     var buttonz2 = document.getElementById(elementt2);
                     dimmer(elementt2)
-                    console.log(buttonz2);
                     buttonz2.style.opacity = 0.5;
 
                   }
@@ -394,7 +382,6 @@ get(starCountRef2).then((snapshot) => {
                         p1DCount = 0
                         alert('Driver Benched')
                         dimmer(elementt)
-                        console.log('this button should pop: '+ hashy2[elementt])
                         dimmer(hashy2[elementt])
                         clear_lineup_display(elementt)
                         cfmation()
@@ -416,7 +403,6 @@ get(starCountRef2).then((snapshot) => {
                         alert('Car Benched')
                         clear_lineup_display(elementt)
                         dimmer(elementt)
-                        //console.log("this is the other button: " + hashy2[elementt])
                         dimmer(hashy2[elementt])
                         cfmation()
                       }

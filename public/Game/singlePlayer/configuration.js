@@ -30,7 +30,6 @@ const firebaseConfig = {
       confirmation.innerHTML = '<p style="padding-top:25px; padding-left:15px">You have chosen Configuration: ' + btn_mapping[elementtt] + '<a id="cfmbtn" href="raceResults.html">Proceed</a></p>'
     }
         btnz[i].addEventListener('click', (e) => {
-          console.log(elementtt + ' just got clicked')
           update(ref(db, 'users/' + Usr.uid), {
             'choice': btn_mapping[elementtt],
           })//end of update

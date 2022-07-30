@@ -26,11 +26,8 @@ get(starCountRef).then((snapshot) => {
     for (var key in raceDetails) {
         raceNames.push(key);
     }
-    console.log(raceNo)
     var currentRace = raceNames[raceNo];
-    console.log(currentRace)
     var currentRaceDetails = raceDetails[currentRace];
-        console.log(currentRaceDetails)
         const currentCircuitName = currentRaceDetails['Circuit'];
         const currentCircuitLength = currentRaceDetails['Circuit Length'];
         const currentCircuitImg = currentRaceDetails['Img'];
@@ -38,8 +35,7 @@ get(starCountRef).then((snapshot) => {
         const currentCircuitLaps = currentRaceDetails['Laps'];
         const currentCircuitLRH = currentRaceDetails['Record'];
         const currentRaceHighlights = currentRaceDetails['Highlights'];
-        console.log(currentCircuitName)
-        console.log(currentRaceDetails)
+
         //Time to automate the process
         //First is CircuitLength
         document.getElementById('CircuitLength').innerText = currentCircuitLength;
@@ -66,7 +62,6 @@ get(starCountRef).then((snapshot) => {
         }
         //Race Num
         const correctRN = raceNo + 1;
-        console.log(correctRN)
         document.getElementById('raceNum').innerText = 'race' + ' ' + `${correctRN}`; 
         //race Highlights
         document.getElementById('raceHighlights').innerHTML = `<a href = '${currentRaceHighlights}' target="_blank">Race Highlights</a>`;
