@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Log-in</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/f1_title_logo_2.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3772469bf7.js" crossorigin="anonymous"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/registration.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ======= Header ======= --> 
+    <header id="header" class="fixed-top d-flex align-items-cente">
+      <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+  
+        <!--<h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>-->
+        <a href="../index.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
+  
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li><a class="nav-link scrollto" href="../index.html">Back to Home</a></li>
+          </ul>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        <a href="registration.html" class="book-a-table-btn scrollto d-none d-lg-flex">Register</a>
+  
+      </div>
+    </header><!-- End Header -->
+    
+    <form name = "contact" id = "contact-form">
+        <div class="container-2">
+          <h1>Sign In</h1>
+          <p>Please Enter your Email and Password to Sign In</p>
+          <hr>
+      
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+          <label><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" id="psw" required>
+ 
+          <hr>
+      
+          <button type="button" id="submitData" name="submitData" class="registerbtn">Sign In</button>
+        </div>
+    
+      </form>
+      <script>
+      document.getElementById('psw').addEventListener("keypress", function(event) {
+      // If the user presses the "Enter" key on the keyboard
+      if (event.key === "Enter") {
+        console.log("u just pressed a key ")
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      document.getElementById("submitData").click();
+      }
+      });
+      </script>
+</body>
+<script src = "./SignIn/JS/usersSign_in.js" type="module"></script>
+</html>

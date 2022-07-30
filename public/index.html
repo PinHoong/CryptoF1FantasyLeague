@@ -8,16 +8,8 @@
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>Crypto F1 Fantasy</title>
-  <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Home.css" media="screen">
-  <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-  <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-  <meta name="generator" content="Nicepage 4.10.5, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
   <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
-  
-  
-  
   
   <script type="application/ld+json">{
   "@context": "http://schema.org",
@@ -37,24 +29,24 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/f1_title_logo_2.png" rel="icon">
+  <link href="./MainPage/assets/img/f1_title_logo_2.png" rel="icon">
   <!--<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">-->
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="./MainPage/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="./MainPage/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="./MainPage/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./MainPage/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="./MainPage/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="./MainPage/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="./MainPage/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/3772469bf7.js" crossorigin="anonymous"></script>
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="./MainPage/LandingPage/css/style.css" rel="stylesheet">
 
 </head>
 <body>
@@ -62,7 +54,7 @@
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
-      <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/Logo_2.png" alt="" class="img-fluid"></a>
+      <a href="index.html" class="logo me-auto me-lg-0"><img src="./MainPage/assets/img/Logo_2.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
@@ -75,8 +67,8 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <div id = 'userlink'><a href="sign-in.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:35px">Log-in</a></div>
-      <a href="registration.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:30px" id="signoutlink">Sign-Up</a>
+      <div id = 'userlink'><a href="./MainPage/sign-in.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:35px">Log-in</a></div>
+      <a href="./MainPage/registration.html" class="book-a-table-btn scrollto d-none d-lg-flex" style="padding-left:30px" id="signoutlink">Sign-Up</a>
 
     </div>
   </header><!-- End Header -->
@@ -84,7 +76,7 @@
   <script>
     let userlink = document.getElementById('userlink');
     var currentUser = null;
-
+    
     function getUsername(){
       let keeploggedIn = localStorage.getItem('keepLoggedIn');
       if ((keeploggedIn) == 'yes'){
@@ -94,23 +86,19 @@
         currentUser = JSON.parse(sessionStorage.getItem('user'));
       }
     }
-
+    
     function Signout() {
       sessionStorage.removeItem('user');
       localStorage.removeItem('user');
       localStorage.removeItem('keepLoggedIn');
       window.location = 'index.html';
     }
-
+    
     window.onload = function(){
       getUsername();
-      console.log('this is the current user' + currentUser);
       if (currentUser == null){
-        //userlink.innerText = 'Log In';
-        //userlink.classList.replace('nav-link', 'btn');
-        //userlink.classList.add('btn-primary');
         userlink.href = 'sign-in.html';
-
+    
       } 
       else{
         userlink.innerHTML = '<i class="fa-solid fa-user" style = "padding-top:4px;color:#CDA45E">' + currentUser + '</i>';
@@ -124,11 +112,12 @@
       }
     }
   </script>
+
    
   
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">   
-    <video autoplay muted loop id="myVideo" width="100%" height="1080"><source src="assets/vid/f1headvid.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>  
+    <video autoplay muted loop id="myVideo" width="100%" height="1080"><source src="./MainPage/LandingPage/vid/f1headvid.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>  
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
         <div class="col-lg-8">
@@ -137,8 +126,8 @@
           <h2>Leave It All On The Track</h2>
 
           <div class="btns" id="specialBtns">
-            <a href="registration.html" class="btn-menu animated fadeInUp scrollto" id="playnow">Register</a>
-            <a href="sign-in.html" class="btn-book animated fadeInUp scrollto" id="dependantlogin">Log-In</a>
+            <a href="./MainPage/registration.html" class="btn-menu animated fadeInUp scrollto" id="playnow">Register</a>
+            <a href="./MainPage//sign-in.html" class="btn-book animated fadeInUp scrollto" id="dependantlogin">Log-In</a>
           </div>
         </div>
       </div>
@@ -158,7 +147,7 @@
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
             <div class="about-img">
-              <img src="assets/img/f1podium.jpg" alt="Podium Picture">
+              <img src="./MainPage/assets/img/f1podium.jpg" alt="Podium Picture">
             </div>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
@@ -238,7 +227,7 @@
         <div class="swiper-slide">
           <div class="row event-item">
             <div class="col-lg-6">
-              <img src="assets/img/crypto-pic.jpg" class="img-fluid" alt="" style="height:320px">
+              <img src="./MainPage/assets/img/crypto-pic.jpg" class="img-fluid" alt="" style="height:320px">
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0 content">
               <h3>Crypto Payouts</h3>
@@ -254,7 +243,7 @@
         <div class="swiper-slide">
           <div class="row event-item">
             <div class="col-lg-6">
-              <img src="assets/img/merch.png.png" class="img-fluid" alt="">
+              <img src="./MainPage/assets/img/merch.png.png" class="img-fluid" alt="">
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0 content">
               <h3>Merchandise</h3>
@@ -270,7 +259,7 @@
         <div class="swiper-slide">
           <div class="row event-item">
             <div class="col-lg-6">
-              <img src="assets/img/trip.png" class="img-fluid" alt="">
+              <img src="./MainPage/assets/img/trip.png" class="img-fluid" alt="">
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0 content">
               <h3>Paddock Club Passes</h3>
@@ -291,58 +280,28 @@
 </section><!-- End Events Section -->
 
     <!-- ======= Menu Section ======= -->
-    <section id="menu" class="menu section-bg" style="background-image: url('./assets/img/store-back.jpg');">
+    <section id="menu" class="menu section-bg" style="background-image: url('./MainPage/assets/img/store-back.jpg');">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Teams & Drivers</h2>
           <p>Current Season</p>
         </div>
-
+        <script src = "./MainPage/LandingPage/JS/currentSeason.js" type="module"></script>
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/Alfa_Romeo_logo.png" class="menu-img" alt="Alfa Romeo">
+            <img src="./MainPage/assets/img/Alfa_Romeo_logo.png" class="menu-img" alt="Alfa Romeo">
             <div class="menu-content">
 
               <a href="#" id = "alfa_romeo"></a>
-              <script type="module">
-                    const firebaseConfig = {
-                      apiKey: "AIzaSyBTE9LzXJdLd2-zQFCU9HlxevzanZRbQWg",
-                      authDomain: "f1cft-493d1.firebaseapp.com",
-                      databaseURL: "https://f1cft-493d1-default-rtdb.asia-southeast1.firebasedatabase.app",
-                      projectId: "f1cft-493d1",
-                      storageBucket: "f1cft-493d1.appspot.com",
-                      messagingSenderId: "414144945872",
-                      appId: "1:414144945872:web:4926d78a5a38ae78b908d5",
-                      measurementId: "G-WNE15MGBR0"
-                      };
-                import {initializeApp} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-                import { getDatabase, ref, onValue} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
-                const app = initializeApp(firebaseConfig);
-                const db = getDatabase(app);
-                const starCountRef = ref(db, 'teams/');
-                const tms = [alfa_romeo, alpha_tauri, alpine, aston_martin, ferrari, haas, mclaren, mercedes, red_bull, williams];
-                const tms2 = [alfa_romeo2, alpha_tauri2, alpine2, aston_martin2, ferrari2, haas2, mclaren2, mercedes2, red_bull2, williams2];
-                var c = 0;
-                onValue(starCountRef, (snapshot) => {
-                    var data = snapshot.val();
-                    for (var key in data) {
-                      console.log(key);
-                      tms[c].innerText = key.toUpperCase();
-                      tms2[c].innerText = data[key]['driver1'] + ', ' + data[key]['driver2'];
-                      console.log(data[key]['driver1']);
-                      c++;
-                    }
-                  });
-              </script>
             </div>
             <div class="menu-ingredients" id="alfa_romeo2">
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/Alpha Tauri.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Alpha Tauri.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id="alpha_tauri"></a>
             </div>
@@ -351,7 +310,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/Alpine.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Alpine.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id="alpine"></a>
             </div>
@@ -360,7 +319,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/Aston Martin.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Aston Martin.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id="aston_martin"></a>
             </div>
@@ -369,7 +328,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/Ferrari.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Ferrari.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id="ferrari"></a>
             </div>
@@ -378,7 +337,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/Haas.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Haas.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id = "haas"></a>
             </div>
@@ -387,7 +346,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/Mclaren.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Mclaren.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id="mclaren"></a>
             </div>
@@ -396,7 +355,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/Mercedes.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Mercedes.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id="mercedes"></a>
             </div>
@@ -405,7 +364,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/Red Bull.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Red Bull.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id="red_bull"></a>
             </div>
@@ -414,7 +373,7 @@
           </div>
           
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/Williams.jpeg" class="menu-img" alt="">
+            <img src="./MainPage/assets/img/Williams.jpeg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#" id="williams"></a>
             </div>
@@ -447,7 +406,7 @@
                   I reccomended this to all my friends and family!
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/sylvia_chan.jpeg" class="testimonial-img" alt="">
+                <img src="./MainPage/assets/img/testimonials/sylvia_chan.jpeg" class="testimonial-img" alt="">
                 <h3>Sylvia</h3>
                 <h4>CEO</h4>
               </div>
@@ -460,7 +419,7 @@
                   This made me rich! Lots of money to be earned!
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/Simon.png" class="testimonial-img" alt="">
+                <img src="./MainPage/assets/img/testimonials/Simon.png" class="testimonial-img" alt="">
                 <h3>Simon Leviev</h3>
                 <h4>Entrepreneur</h4>
               </div>
@@ -473,7 +432,7 @@
                   I feel like a team principal when playing this fantasy game!
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/Titus.jpeg" class="testimonial-img" alt="">
+                <img src="./MainPage/assets/img/testimonials/Titus.jpeg" class="testimonial-img" alt="">
                 <h3>Titus Low</h3>
                 <h4>Freelancer</h4>
               </div>
@@ -518,15 +477,16 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="./MainPage/assets/vendor/aos/aos.js"></script>
+  <script src="./MainPage/assets/vendor/aos/aos.js"></script>
+  <script src="./MainPage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./MainPage/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="./MainPage/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="./MainPage/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="./MainPage/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="./MainPage/LandingPage/JS/main.js"></script>
 
 </body>
 
