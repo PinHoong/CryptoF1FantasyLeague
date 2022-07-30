@@ -33,7 +33,6 @@ document.getElementById("submitData").addEventListener('click', (e) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log(user)
             localStorage.setItem('usr', JSON.stringify(user)); 
             // ...
 

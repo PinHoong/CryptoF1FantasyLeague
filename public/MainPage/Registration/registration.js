@@ -43,7 +43,6 @@ import {getDatabase, set, ref, update} from "https://www.gstatic.com/firebasejs/
       var favtm = document.getElementById('favtm').value;
       var walletAdd = localStorage.wadd;
       var info = [email, password, firstName, lastName, favtm, walletAdd]
-      console.log(info)
       if (walletAdd == undefined){
         alert("Refresh Page and Connect your Wallet")
       }
