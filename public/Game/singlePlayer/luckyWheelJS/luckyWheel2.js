@@ -100,10 +100,20 @@ document.getElementById('Redeem').style.pointerEvents = '';
 });
 
 quit.addEventListener('click', () => {
-    alert('There is no going back');
-    update(ref(db, 'users/' + currentUser.uid), {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#50C878',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      update(ref(db, 'users/' + currentUser.uid), {
         'pointsRedeemed': 0,
         'visited': 0,
-    })
-    window.location.href = "./index-2.html";
+      })
+      window.location.href = "./index-2.html";
+    }
+  })
 })
